@@ -40,7 +40,7 @@ func _physics_process(delta):
 	rotation_degrees = angle-90
 	move_and_slide(motion)"
 
-[node name="Dinghy1" type="Node2D" index="0"]
+[node name="Dinghy1" type="Node2D"]
 
 _sections_unfolded = [ "Material", "Pause", "Transform", "Visibility" ]
 __meta__ = {
