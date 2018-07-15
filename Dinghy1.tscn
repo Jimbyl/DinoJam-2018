@@ -11,14 +11,14 @@ var speedMax = 400
 var acc = 25
 var fric = 1
 var angle = 0
-var angleSpeed = 2
+var angleSpeed = 3
 
 func _physics_process(delta):
 	#change direction
 	if Input.is_action_pressed('ui_right'):
-		angle+=angleSpeed
+		angle+=angleSpeed*speed/speedMax+.5
 	elif Input.is_action_pressed('ui_left'):
-		angle-=angleSpeed
+		angle-=angleSpeed*speed/speedMax+.5
 	#change speed
 	if Input.is_action_pressed('ui_up'):
 		if speed <= speedMax:
