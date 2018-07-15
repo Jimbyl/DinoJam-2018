@@ -34,12 +34,6 @@ func _physics_process(delta):
 		speed -= fric
 		if speed < 0 or is_on_wall():
 			speed = 0
-	if Input.is_action_pressed('ui_page_up'):
-		scale.x +=.1
-		scale.y +=.1
-	elif Input.is_action_pressed('ui_page_down') and scale.x >= .1 and scale.y >= .1:
-		scale.x -=.1
-		scale.y -=.1
 	#update speed and direction
 	motion.x = speed*cos((angle)*PI/180)
 	motion.y = speed*sin((angle)*PI/180)
@@ -61,16 +55,16 @@ collision_mask = 1
 collision/safe_margin = 0.08
 script = SubResource( 1 )
 
-[node name="Sprite" type="Sprite" parent="KinematicBody2D" index="0"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="KinematicBody2D" index="0"]
+
+build_mode = 0
+polygon = PoolVector2Array( -20, -40, 20, -40, 20, 10, 10, 30, 0, 40, -10, 30, -20, 10, -20, -40 )
+
+[node name="Sprite" type="Sprite" parent="KinematicBody2D" index="1"]
 
 scale = Vector2( 2, 2 )
 texture = ExtResource( 1 )
 _sections_unfolded = [ "Transform" ]
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="KinematicBody2D" index="1"]
-
-build_mode = 0
-polygon = PoolVector2Array( 0, -40, 20, -40, 20, 40, -20, 40, -20, -40 )
 
 [node name="Camera2D" type="Camera2D" parent="KinematicBody2D" index="2"]
 
@@ -96,6 +90,6 @@ drag_margin_bottom = 0.0
 editor_draw_screen = true
 editor_draw_limits = false
 editor_draw_drag_margin = false
-_sections_unfolded = [ "Drag Margin", "Limit", "Offset", "Pause", "Smoothing" ]
+_sections_unfolded = [ "Drag Margin", "Editor", "Limit", "Offset", "Pause", "Smoothing" ]
 
 
