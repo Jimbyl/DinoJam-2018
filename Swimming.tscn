@@ -44,7 +44,7 @@ func _physics_process(delta):
 custom_solver_bias = 0.0
 extents = Vector2( 11.2291, 10.7744 )
 
-[node name="Swimming" type="Node" index="0"]
+[node name="Swimming" type="Node"]
 
 [node name="KinematicBody2D" type="KinematicBody2D" parent="." index="0"]
 
