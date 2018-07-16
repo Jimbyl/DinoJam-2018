@@ -140,7 +140,6 @@ group = null
 text = "INVENTORY"
 flat = false
 align = 1
-_sections_unfolded = [ "Hint" ]
 
 [node name="QuitGameButton" type="Button" parent="CenterContainer/VBoxContainer" index="4"]
 
