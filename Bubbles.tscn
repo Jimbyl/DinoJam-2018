@@ -4,21 +4,21 @@
 [ext_resource path="res://UI/ui_dive/ui_dive1.png" type="Texture" id=2]
 [ext_resource path="res://UI/ui_dive/ui_dive2.png" type="Texture" id=3]
 
-[sub_resource type="GDScript" id=1]
+[sub_resource type="GDScript" id=3]
 
-script/source = "extends TextureButton
-onready var Dinghy = get_tree().find_node(\"Dinghy1\")
-onready var Bubbles = get_node(\"Bubbles\")
+script/source = "extends Node2D
 
 func _on_TextureButton_pressed():
-	get_tree().change_scene(\"res://Swimming\")
+	get_tree().change_scene(\"res://Swimming.tscn\")
 func _process(delta):
+	var Dinghy = get_tree().get_nodes_in_group(\"DiveButton\")[0]
+	var Bubbles = get_tree().get_nodes_in_group(\"DiveButton\")[1]
 	if abs(Dinghy.position.x - Bubbles.position.x) < 100 and abs(Dinghy.position.y - Bubbles.position.y) < 100 :
-		disabled = false
-		visible = true
+		get_node(\"TextureButton\").disabled = false
+		get_node(\"TextureButton\").visible = true
 	else:
-		disabled = true
-		visible = false"
+		get_node(\"TextureButton\").disabled = true
+		get_node(\"TextureButton\").visible = false"
 
 [sub_resource type="SpriteFrames" id=2]
 
@@ -29,7 +29,11 @@ animations = [ {
 "speed": 5.0
 } ]
 
-[node name="Bubbles" type="Node2D" index="0"]
+[node name="Bubbles" type="Node2D" index="0" groups=[
+"DiveButton",
+]]
+
+script = SubResource( 3 )
 
 [node name="Sprite" type="Sprite" parent="." index="0"]
 
@@ -41,7 +45,7 @@ anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = -32.0
+margin_left = -111.0
 margin_top = -92.0
 margin_right = 32.0
 margin_bottom = -28.0
@@ -56,18 +60,17 @@ toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
 group = null
-script = SubResource( 1 )
 _sections_unfolded = [ "Material", "Pause", "Textures", "Visibility" ]
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="TextureButton" index="0"]
 
-position = Vector2( -10.5492, 21.8091 )
+position = Vector2( 60.6596, 38.9975 )
 frames = SubResource( 2 )
 animation = "default"
 frame = 1
 playing = true
 _sections_unfolded = [ "Transform", "Z Index" ]
 
-[connection signal="pressed" from="TextureButton" to="TextureButton" method="_on_TextureButton_pressed"]
+[connection signal="pressed" from="TextureButton" to="." method="_on_TextureButton_pressed"]
 
 
