@@ -15,7 +15,7 @@ var gravity = 6
 var friction = 5
 
 func _physics_process(delta):
-	if is_on_ceiling(): #halt veritcal momentum if you hit the ceiling
+	if is_on_ceiling(): #halt vertical momentum if you hit the ceiling
 		motion.y = 0
 	if !is_on_floor(): #bring to floor if you're not on the floor
 		motion.y += gravity
@@ -25,8 +25,6 @@ func _physics_process(delta):
 	if Input.is_action_just_pressed('ui_up'):#swim up
 		motion.y = min(motion.y, 0) #reset vertical momentum if you're falling
 		motion.y += jumpSpeed
-	elif Input.is_action_pressed('ui_down'):#swim down
-		motion.y += gravity*3
 	if Input.is_action_pressed('ui_right'): #swim left and right
 		motion.x = swimSpeed
 	elif Input.is_action_pressed('ui_left'):
