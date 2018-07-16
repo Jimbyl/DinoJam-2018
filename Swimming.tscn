@@ -25,9 +25,8 @@ func _physics_process(delta):
 	if Input.is_action_just_pressed('ui_up'):#swim up
 		motion.y = min(motion.y, 0) #reset vertical momentum if you're falling
 		motion.y += jumpSpeed
-	elif Input.is_action_just_pressed('ui_down'):#swim down
-		motion.y = max(motion.y, 0) #reset vertical momentum if you're rising
-		motion.y -= jumpSpeed
+	elif Input.is_action_pressed('ui_down'):#swim down
+		motion.y += gravity*3
 	if Input.is_action_pressed('ui_right'): #swim left and right
 		motion.x = swimSpeed
 	elif Input.is_action_pressed('ui_left'):
@@ -36,6 +35,7 @@ func _physics_process(delta):
 		motion.x -= sign(motion.x)*friction
 		if abs(motion.x) <friction:
 			motion.x = 0
+	
 	if abs(motion.y) > maxVertSpeed:
 		motion.y = sign(motion.y)*maxVertSpeed
 	move_and_slide(motion)
