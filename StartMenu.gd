@@ -10,3 +10,7 @@ func _on_QuitGameButton_pressed():
 
 func _on_SwimButton_pressed():
 	get_tree().change_scene("res://Swimming.tscn")
+
+
+func _on_InventoryButton_pressed():
+	get_tree().change_scene("res://PlayerInventory.tscn")
