@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/HesaPirate.ogg-30a6f7f6d9f3eba66663986234d3718c.oggstr"
+
+[deps]
+
+source_file="res://Music/HesaPirate.ogg"
+dest_files=[ "res://.import/HesaPirate.ogg-30a6f7f6d9f3eba66663986234d3718c.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0
