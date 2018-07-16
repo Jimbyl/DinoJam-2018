@@ -14,13 +14,11 @@ func _on_TextureButton_pressed():
 	get_tree().change_scene(\"res://Dock.tscn\")
 "
 
-[node name="World" type="Node"]
+[node name="World" type="Node" index="0"]
 
 [node name="Map" type="Node" parent="." index="0"]
 
 [node name="Water" type="Node" parent="Map" index="0"]
-
-editor/display_folded = true
 
 [node name="Water" parent="Map/Water" index="0" instance=ExtResource( 1 )]
 
