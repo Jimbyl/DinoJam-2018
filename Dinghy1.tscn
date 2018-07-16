@@ -8,17 +8,17 @@ script/source = "extends KinematicBody2D
 var motion = Vector2()
 var speed = 0
 var speedMax = 400
-var acc = 25
+var acc = 5
 var fric = 1
 var angle = 0
-var angleSpeed = 4
+var angleSpeed = 2
 
 func _physics_process(delta):
 	#change direction
 	if Input.is_action_pressed('ui_right'):
-		angle+=angleSpeed*speed/speedMax+.5
+		angle+=angleSpeed*speed/speedMax+.25
 	elif Input.is_action_pressed('ui_left'):
-		angle-=angleSpeed*speed/speedMax+.5
+		angle-=angleSpeed*speed/speedMax+.25
 	#change speed
 	if Input.is_action_pressed('ui_up'): #accelerate
 		if speed <= speedMax:
@@ -40,7 +40,7 @@ func _physics_process(delta):
 	rotation_degrees = angle-90
 	move_and_slide(motion)"
 
-[node name="Dinghy1" type="Node2D" groups=[
+[node name="Dinghy1" type="Node2D" index="0" groups=[
 "DiveButton",
 ]]
 
