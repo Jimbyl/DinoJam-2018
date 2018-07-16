@@ -1,9 +1,8 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=2 format=2]
 
 [ext_resource path="res://StartMenu.gd" type="Script" id=1]
-[ext_resource path="res://HesaPirate.ogg" type="AudioStream" id=2]
 
-[node name="StartMenu" type="Control" index="0"]
+[node name="StartMenu" type="Control"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -165,15 +164,6 @@ group = null
 text = "EXIT"
 flat = false
 align = 1
-
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." index="1"]
-
-stream = ExtResource( 2 )
-volume_db = 2.0
-pitch_scale = 1.0
-autoplay = true
-mix_target = 0
-bus = "Master"
 
 [connection signal="pressed" from="CenterContainer/VBoxContainer/StartGameButton" to="." method="_on_StartGameButton_pressed"]
 
