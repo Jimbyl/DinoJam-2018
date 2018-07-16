@@ -8,10 +8,10 @@
 script/source = "extends KinematicBody2D
 var motion = Vector2()
 var normalVector = Vector2(-1,0)
-var swimSpeed = 200
+var swimSpeed = 150
 var jumpSpeed = -300
 var maxVertSpeed = 400
-var gravity = 10
+var gravity = 6
 var friction = 5
 
 func _physics_process(delta):
@@ -25,7 +25,9 @@ func _physics_process(delta):
 	if Input.is_action_just_pressed('ui_up'):#swim up
 		motion.y = min(motion.y, 0) #reset vertical momentum if you're falling
 		motion.y += jumpSpeed
-		
+	elif Input.is_action_just_pressed('ui_down'):#swim down
+		motion.y = max(motion.y, 0) #reset vertical momentum if you're rising
+		motion.y -= jumpSpeed
 	if Input.is_action_pressed('ui_right'): #swim left and right
 		motion.x = swimSpeed
 	elif Input.is_action_pressed('ui_left'):
