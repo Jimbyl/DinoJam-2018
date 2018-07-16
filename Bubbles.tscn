@@ -49,7 +49,7 @@ animations = [ {
 "speed": 5.0
 } ]
 
-[node name="Bubbles" type="Node2D" index="0" groups=[
+[node name="Bubbles" type="Node2D" groups=[
 "DiveButton",
 ]]
 
@@ -59,7 +59,7 @@ script = SubResource( 1 )
 
 frames = SubResource( 2 )
 animation = "default"
-frame = 8
+frame = 11
 playing = true
 
 [node name="TextureButton" type="TextureButton" parent="." index="1"]
@@ -90,6 +90,7 @@ _sections_unfolded = [ "Material", "Pause", "Textures", "Visibility" ]
 position = Vector2( 60.6596, 38.9975 )
 frames = SubResource( 3 )
 animation = "default"
+frame = 1
 playing = true
 _sections_unfolded = [ "Transform", "Z Index" ]
 
