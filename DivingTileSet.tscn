@@ -8,7 +8,7 @@
 [sub_resource type="RectangleShape2D" id=1]
 
 custom_solver_bias = 0.0
-extents = Vector2( 32.0329, 31.9491 )
+extents = Vector2( 32, 32 )
 
 [node name="DivingTileSet" type="Node"]
 
@@ -36,7 +36,7 @@ shape = SubResource( 1 )
 
 [node name="sand" type="Sprite" parent="." index="1"]
 
-position = Vector2( 160, 32 )
+position = Vector2( 160.238, 32 )
 texture = ExtResource( 2 )
 __meta__ = {
 "_edit_group_": true

@@ -1,14 +1,15 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=14 format=2]
 
-[ext_resource path="res://Sprites/Player/charhatscuba/Charhatscuba1.png" type="Texture" id=1]
-[ext_resource path="res://Sprites/Player/charhatscuba/Charhatscuba2.png" type="Texture" id=2]
-[ext_resource path="res://Sprites/Player/charhatscuba/Charhatscuba4.png" type="Texture" id=3]
-[ext_resource path="res://Sprites/Player/charhatscuba/Charhatscuba5.png" type="Texture" id=4]
-[ext_resource path="res://Sprites/Player/charhatscuba/Charhatscuba6.png" type="Texture" id=5]
-[ext_resource path="res://Sprites/Player/charhatscuba/Charhatscuba7.png" type="Texture" id=6]
-[ext_resource path="res://Sprites/Player/charhatscuba/Charhatscuba8.png" type="Texture" id=7]
-[ext_resource path="res://AnimatedSprite.gd" type="Script" id=8]
-[ext_resource path="res://Tiles/Diving.tres" type="TileSet" id=9]
+[ext_resource path="res://Sprites/Player/charhatscuba/Charhatscuba2.png" type="Texture" id=1]
+[ext_resource path="res://Sprites/Player/charhatscuba/Charhatscuba4.png" type="Texture" id=2]
+[ext_resource path="res://Sprites/Player/charhatscuba/Charhatscuba5.png" type="Texture" id=3]
+[ext_resource path="res://Sprites/Player/charhatscuba/Charhatscuba6.png" type="Texture" id=4]
+[ext_resource path="res://Sprites/Player/charhatscuba/Charhatscuba7.png" type="Texture" id=5]
+[ext_resource path="res://Sprites/Player/charhatscuba/Charhatscuba8.png" type="Texture" id=6]
+[ext_resource path="res://Sprites/Player/charhatscuba/Charhatscuba1.png" type="Texture" id=7]
+[ext_resource path="res://Sprites/Player/charhatscuba/Charhatscuba3.png" type="Texture" id=8]
+[ext_resource path="res://AnimatedSprite.gd" type="Script" id=9]
+[ext_resource path="res://Tiles/Diving.tres" type="TileSet" id=10]
 
 [sub_resource type="GDScript" id=1]
 
@@ -20,26 +21,40 @@ var jumpSpeed = -300
 var maxVertSpeed = 400
 var gravity = 6
 var friction = 5
+var grounded = 0
 
 func _physics_process(delta):
+	if is_on_floor():
+		grounded = 1
+		print(\"GROUND\")
+	elif !is_on_floor():
+		grounded = 0
+		print(\"NOTGROUNDED\")
 	if is_on_ceiling(): #halt vertical momentum if you hit the ceiling
 		motion.y = 0
-	if !is_on_floor(): #bring to floor if you're not on the floor
+	if grounded == 0: #bring to floor if you're not on the floor
 		motion.y += gravity
+	elif grounded == 1 :
+		if motion.x == 0:
+			get_node(\"AnimatedSprite\").set_animation(\"Ground\")
+		elif Input.is_action_pressed('ui_right'):
+			get_node(\"AnimatedSprite\").set_animation(\"Walk\")
+		elif Input.is_action_pressed('ui_left'):
+			get_node(\"AnimatedSprite\").set_animation(\"Walk\")
 	else:
-		motion.y = 0
-		get_node(\"AnimatedSprite\").frame=0
-		get_node(\"AnimatedSprite\").set_animation(\"Ground\")
-	if motion.y > gravity:
+		motion.y=0
+	if motion.y > gravity and grounded == 0:
 		get_node(\"AnimatedSprite\").set_animation(\"Swim\")
+		print(\"FALLING\")
 	if Input.is_action_just_pressed('ui_up'):#swim up
-		get_node(\"AnimatedSprite\").set_frame(0)
-		if is_on_floor():#set sprite to jump if on floor or to swim if not
+		get_node(\"AnimatedSprite\").set_frame(0) #reset swim stroke on up input
+		if grounded == 1:#set sprite to jump if on floor or to swim if not
 			get_node(\"AnimatedSprite\").set_animation(\"Jump\")
-		if !is_on_floor():
+		if grounded == 0:
 			get_node(\"AnimatedSprite\").set_animation(\"Stroke\")
 		motion.y = min(motion.y, 0) #reset vertical momentum if you're falling
 		motion.y += jumpSpeed
+		grounded = 0
 	if Input.is_action_pressed('ui_right'): #swim left and right
 		motion.x = swimSpeed
 		get_node(\"AnimatedSprite\").set_flip_h(false)
@@ -64,32 +79,37 @@ animations = [ {
 "name": "Ground",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 2 ) ],
+"frames": [ ExtResource( 2 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ) ],
+"loop": false,
+"name": "Stroke",
+"speed": 10.0
+}, {
+"frames": [ ExtResource( 7 ) ],
 "loop": true,
 "name": "Jump",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 2 ) ],
-"loop": true,
-"name": "Float",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ) ],
+"frames": [ ExtResource( 2 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ) ],
 "loop": true,
 "name": "Swim",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ) ],
-"loop": false,
-"name": "Stroke",
-"speed": 10.0
+"frames": [ ExtResource( 7 ) ],
+"loop": true,
+"name": "Float",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 7 ), ExtResource( 1 ), ExtResource( 8 ), ExtResource( 1 ) ],
+"loop": true,
+"name": "Walk",
+"speed": 5.0
 } ]
 _sections_unfolded = [ "Resource" ]
 
 [sub_resource type="RectangleShape2D" id=3]
 
 custom_solver_bias = 0.0
-extents = Vector2( 21.5641, 32.1012 )
+extents = Vector2( 10, 31 )
 
 [node name="Swimming" type="Node" index="0"]
 
@@ -110,10 +130,9 @@ __meta__ = {
 
 scale = Vector2( 0.75, 0.75 )
 frames = SubResource( 2 )
-animation = "Swim"
-frame = 4
+animation = "Float"
 playing = true
-script = ExtResource( 8 )
+script = ExtResource( 9 )
 _sections_unfolded = [ "Transform", "Visibility" ]
 
 [node name="Camera2D" type="Camera2D" parent="KinematicBody2D" index="1"]
@@ -150,7 +169,7 @@ shape = SubResource( 3 )
 [node name="TileMap" type="TileMap" parent="." index="1"]
 
 mode = 0
-tile_set = ExtResource( 9 )
+tile_set = ExtResource( 10 )
 cell_size = Vector2( 64, 64 )
 cell_quadrant_size = 16
 cell_custom_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
