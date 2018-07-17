@@ -1,14 +1,20 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=13 format=2]
 
-[ext_resource path="res://Ship parts/crew (3).png" type="Texture" id=1]
-[ext_resource path="res://Beach.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Music/minecraftstyle.ogg" type="AudioStream" id=3]
+[ext_resource path="res://Sprites/Player/charhatscuba/Charhatscuba1.png" type="Texture" id=1]
+[ext_resource path="res://Sprites/Player/charhatscuba/Charhatscuba2.png" type="Texture" id=2]
+[ext_resource path="res://Sprites/Player/charhatscuba/Charhatscuba3.png" type="Texture" id=3]
+[ext_resource path="res://Sprites/Player/charhatscuba/Charhatscuba4.png" type="Texture" id=4]
+[ext_resource path="res://Sprites/Player/charhatscuba/Charhatscuba5.png" type="Texture" id=5]
+[ext_resource path="res://Sprites/Player/charhatscuba/Charhatscuba6.png" type="Texture" id=6]
+[ext_resource path="res://Sprites/Player/charhatscuba/Charhatscuba7.png" type="Texture" id=7]
+[ext_resource path="res://Sprites/Player/charhatscuba/Charhatscuba8.png" type="Texture" id=8]
+[ext_resource path="res://Beach.tscn" type="PackedScene" id=9]
 
 [sub_resource type="GDScript" id=1]
 
 script/source = "extends KinematicBody2D
 var motion = Vector2()
-var normalVector = Vector2(-1,0)
+var normalVector = Vector2(0,-1)
 var swimSpeed = 150
 var jumpSpeed = -300
 var maxVertSpeed = 400
@@ -17,18 +23,24 @@ var friction = 5
 
 func _physics_process(delta):
 	if is_on_ceiling(): #halt vertical momentum if you hit the ceiling
+		print(\"a\")
 		motion.y = 0
 	if !is_on_floor(): #bring to floor if you're not on the floor
 		motion.y += gravity
+		get_node(\"AnimatedSprite\").playing=true
 	else:
 		motion.y = 0
+		get_node(\"AnimatedSprite\").playing=false
+		get_node(\"AnimatedSprite\").frame=0
 	
 	if Input.is_action_just_pressed('ui_up'):#swim up
 		motion.y = min(motion.y, 0) #reset vertical momentum if you're falling
 		motion.y += jumpSpeed
 	if Input.is_action_pressed('ui_right'): #swim left and right
 		motion.x = swimSpeed
+		get_node(\"AnimatedSprite\").set_flip_h(false)
 	elif Input.is_action_pressed('ui_left'):
+		get_node(\"AnimatedSprite\").set_flip_h(true)
 		motion.x = -swimSpeed
 	else:
 		motion.x -= sign(motion.x)*friction
@@ -37,15 +49,24 @@ func _physics_process(delta):
 	
 	if abs(motion.y) > maxVertSpeed:
 		motion.y = sign(motion.y)*maxVertSpeed
-	move_and_slide(motion)
+	move_and_slide(motion,normalVector)
 "
 
-[sub_resource type="RectangleShape2D" id=2]
+[sub_resource type="SpriteFrames" id=2]
+
+animations = [ {
+"frames": [ ExtResource( 1 ), ExtResource( 2 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=3]
 
 custom_solver_bias = 0.0
-extents = Vector2( 11.2291, 10.7744 )
+extents = Vector2( 21.5641, 32.1012 )
 
-[node name="Swimming" type="Node"]
+[node name="Swimming" type="Node" index="0"]
 
 [node name="KinematicBody2D" type="KinematicBody2D" parent="." index="0"]
 
@@ -58,9 +79,14 @@ __meta__ = {
 "_edit_group_": true
 }
 
-[node name="Sprite" type="Sprite" parent="KinematicBody2D" index="0"]
+[node name="AnimatedSprite" type="AnimatedSprite" parent="KinematicBody2D" index="0"]
 
-texture = ExtResource( 1 )
+scale = Vector2( 0.75, 0.75 )
+frames = SubResource( 2 )
+animation = "default"
+frame = 6
+playing = true
+_sections_unfolded = [ "Transform" ]
 
 [node name="Camera2D" type="Camera2D" parent="KinematicBody2D" index="1"]
 
@@ -90,55 +116,47 @@ _sections_unfolded = [ "Drag Margin", "Limit", "Smoothing" ]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="KinematicBody2D" index="2"]
 
-shape = SubResource( 2 )
+position = Vector2( 0.858551, 1.50246 )
+shape = SubResource( 3 )
 
-[node name="Sand" parent="." index="1" instance=ExtResource( 2 )]
+[node name="Sand" parent="." index="1" instance=ExtResource( 9 )]
 
 position = Vector2( 32, 96 )
 
-[node name="Sand2" parent="." index="2" instance=ExtResource( 2 )]
+[node name="Sand2" parent="." index="2" instance=ExtResource( 9 )]
 
 position = Vector2( 96, 96 )
 
-[node name="Sand3" parent="." index="3" instance=ExtResource( 2 )]
+[node name="Sand3" parent="." index="3" instance=ExtResource( 9 )]
 
 position = Vector2( -32, 96 )
 
-[node name="Sand4" parent="." index="4" instance=ExtResource( 2 )]
+[node name="Sand4" parent="." index="4" instance=ExtResource( 9 )]
 
 position = Vector2( -96, 96 )
 
-[node name="Sand5" parent="." index="5" instance=ExtResource( 2 )]
+[node name="Sand5" parent="." index="5" instance=ExtResource( 9 )]
 
 position = Vector2( -160, 96 )
 
-[node name="Sand6" parent="." index="6" instance=ExtResource( 2 )]
+[node name="Sand6" parent="." index="6" instance=ExtResource( 9 )]
 
 position = Vector2( 160, 96 )
 
-[node name="Sand7" parent="." index="7" instance=ExtResource( 2 )]
+[node name="Sand7" parent="." index="7" instance=ExtResource( 9 )]
 
 position = Vector2( 224, 96 )
 
-[node name="Sand8" parent="." index="8" instance=ExtResource( 2 )]
+[node name="Sand8" parent="." index="8" instance=ExtResource( 9 )]
 
 position = Vector2( -160, 32 )
 
-[node name="Sand9" parent="." index="9" instance=ExtResource( 2 )]
+[node name="Sand9" parent="." index="9" instance=ExtResource( 9 )]
 
 position = Vector2( -160, -32 )
 
-[node name="Sand10" parent="." index="10" instance=ExtResource( 2 )]
+[node name="Sand10" parent="." index="10" instance=ExtResource( 9 )]
 
 position = Vector2( -160, -96 )
-
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." index="11"]
-
-stream = ExtResource( 3 )
-volume_db = 2.0
-pitch_scale = 1.0
-autoplay = true
-mix_target = 0
-bus = "Master"
 
 

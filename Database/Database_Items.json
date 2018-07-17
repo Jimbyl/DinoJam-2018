@@ -1,19 +1,28 @@
 {
+	"0": {
+		"name": "",
+		"icon": "res://Database/Item_Icons/empty_slot.png",
+		"type": "consumable",
+		"stackable": false,
+		"description":"fuck",
+		"sell_price": 100
+	},
+
 	"1": {
 		"name": "Item 1",
 		"icon": "res://Database/Item_Icons/Item_001.png",
 		"type": "consumable",
 		"stackable": true,
-		"description";"test #swag bitch",
-		"sell_price" 69
-	}
+		"description":"test #swag bitch",
+		"sell_price": 69
+	},
 	
 	"2": {
-		"name": "Item 2",
+		"name": "BIG ROCK",
 		"icon": "res://Database/Item_Icons/Item_002.png",
 		"type": "equipment",
 		"stackable": false,
-		"description";"A large rock that is very big.",
-		"sell_price" 1
-	}
+		"description":"A large rock that is very big.",
+		"sell_price": 1
+	},
 }

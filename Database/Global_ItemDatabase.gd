@@ -6,10 +6,9 @@ var url_database_item = "res://Database//Database_Items.json"
 
 
 func get_item(id):
-	var itemData = {}
-	itemData = Global_DataParser.load_data(url_database_item)
+	var itemData = Global_DataParser.load_data(url_database_item)
 	
-	if !itemData.has(String(id)):
+	if !itemData.has(id):
 		print("Item does not exist.")
 		return
 	
