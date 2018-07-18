@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=2]
 
-[ext_resource path="res://icon.png" type="Texture" id=1]
+[ext_resource path="res://Sprites/Mobs/Pufferfish.png" type="Texture" id=1]
 
 [sub_resource type="GDScript" id=1]
 
@@ -14,7 +14,11 @@ func _physics_process(delta):
 	var angle = monster.get_angle_to(player.position)
 	motion.x = speed*cos(angle)
 	motion.y = speed*sin(angle)
-	move_and_slide(motion, normalVec)"
+	move_and_slide(motion, normalVec)
+	if motion.x > 0:
+		get_node(\"Sprite\").set_flip_h(true)
+	if motion.x < 0:
+		get_node(\"Sprite\").set_flip_h(false)"
 
 [sub_resource type="CircleShape2D" id=2]
 
@@ -41,5 +45,6 @@ shape = SubResource( 2 )
 [node name="Sprite" type="Sprite" parent="KinematicBody2D" index="1"]
 
 texture = ExtResource( 1 )
+_sections_unfolded = [ "Offset" ]
 
 
