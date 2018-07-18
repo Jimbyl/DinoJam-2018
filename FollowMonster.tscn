@@ -1,0 +1,45 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://icon.png" type="Texture" id=1]
+
+[sub_resource type="GDScript" id=1]
+
+script/source = "extends KinematicBody2D
+var motion = Vector2()
+var normalVec = Vector2(0,-1)
+var speed = 125
+func _physics_process(delta):
+	var player = get_tree().get_nodes_in_group(\"SwimmingAI\")[0]
+	var monster = get_tree().get_nodes_in_group(\"SwimmingAI\")[1]
+	var angle = monster.get_angle_to(player.position)
+	motion.x = speed*cos(angle)
+	motion.y = speed*sin(angle)
+	move_and_slide(motion, normalVec)"
+
+[sub_resource type="CircleShape2D" id=2]
+
+custom_solver_bias = 0.0
+radius = 28.3572
+
+[node name="FollowMonster" type="Node2D" index="0"]
+
+[node name="KinematicBody2D" type="KinematicBody2D" parent="." index="0" groups=[
+"SwimmingAI",
+]]
+
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+collision/safe_margin = 0.08
+script = SubResource( 1 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="KinematicBody2D" index="0"]
+
+shape = SubResource( 2 )
+
+[node name="Sprite" type="Sprite" parent="KinematicBody2D" index="1"]
+
+texture = ExtResource( 1 )
+
+
