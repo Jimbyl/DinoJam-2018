@@ -4,20 +4,29 @@
 		"icon": "res://Database/Item_Icons/empty_slot.png",
 		"type": "consumable",
 		"stackable": false,
-		"description":"fuck",
-		"sell_price": 100
+		"description":"",
+		"sell_price": 0
 	},
 
 	"1": {
-		"name": "Item 1",
-		"icon": "res://Database/Item_Icons/Item_001.png",
-		"type": "consumable",
+		"name": "Wood",
+		"icon": "res://Sprites/Items/Materials/wood.png",
+		"type": "material",
 		"stackable": true,
-		"description":"test #swag bitch",
-		"sell_price": 69
+		"description":"Some wood",
+		"sell_price": 5
 	},
 	
 	"2": {
+		"name": "Metal",
+		"icon": "res://Sprites/Items/Materials/Metal.png",
+		"type": "material",
+		"stackable": true,
+		"description":"Some metal",
+		"sell_price": 10
+	},
+	
+	"3": {
 		"name": "BIG ROCK",
 		"icon": "res://Database/Item_Icons/Item_002.png",
 		"type": "equipment",
