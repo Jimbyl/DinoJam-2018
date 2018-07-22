@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://Swimming.gd" type="Script" id=1]
 [ext_resource path="res://Sprites/Player/charhatscuba/Charhatscuba1.png" type="Texture" id=2]
@@ -15,6 +15,7 @@
 [ext_resource path="res://FollowMonster.tscn" type="PackedScene" id=13]
 [ext_resource path="res://Chest2.tscn" type="PackedScene" id=14]
 [ext_resource path="res://coin.tscn" type="PackedScene" id=15]
+[ext_resource path="res://Database/DiveItems/CommonDrops/ItemWood.tscn" type="PackedScene" id=16]
 
 [sub_resource type="GDScript" id=1]
 
@@ -92,15 +93,15 @@ animations = [ {
 "name": "Jump",
 "speed": 5.0
 }, {
+"frames": [ ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ) ],
+"loop": true,
+"name": "Swim",
+"speed": 5.0
+}, {
 "frames": [ ExtResource( 3 ) ],
 "loop": true,
 "name": "Ground",
 "speed": 5.0
-}, {
-"frames": [ ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ) ],
-"loop": false,
-"name": "Stroke",
-"speed": 10.0
 }, {
 "frames": [ ExtResource( 2 ) ],
 "loop": true,
@@ -108,9 +109,9 @@ animations = [ {
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ) ],
-"loop": true,
-"name": "Swim",
-"speed": 5.0
+"loop": false,
+"name": "Stroke",
+"speed": 10.0
 } ]
 _sections_unfolded = [ "Resource" ]
 
@@ -191,6 +192,7 @@ margin_left = -510.0
 margin_top = -298.0
 margin_right = 446.0
 margin_bottom = 238.0
+_sections_unfolded = [ "Focus", "Grow Direction", "Hint", "Margin", "Rect" ]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="KinematicBody2D" index="2"]
 
@@ -303,9 +305,11 @@ _sections_unfolded = [ "Transform" ]
 
 [node name="Chest2" parent="." index="3" instance=ExtResource( 14 )]
 
-position = Vector2( 1142.83, 920.165 )
+position = Vector2( 1132.99, 920.816 )
 
 [node name="Coins" type="Node" parent="." index="4"]
+
+editor/display_folded = true
 
 [node name="coin" parent="Coins" index="0" instance=ExtResource( 15 )]
 
@@ -350,5 +354,9 @@ size_flags_vertical = 4
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
+
+[node name="ItemWood" parent="." index="6" instance=ExtResource( 16 )]
+
+position = Vector2( 122.095, -189.445 )
 
 
