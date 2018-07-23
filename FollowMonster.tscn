@@ -7,7 +7,7 @@
 script/source = "extends KinematicBody2D
 var motion = Vector2()
 var normalVec = Vector2(0,-1)
-var speed = 125
+var speed = 75
 func _physics_process(delta):
 	var player = get_tree().get_nodes_in_group(\"SwimmingAI\")[0]
 	var monster = get_tree().get_nodes_in_group(\"SwimmingAI\")[1]
@@ -32,11 +32,11 @@ radius = 28.3572
 ]]
 
 input_pickable = false
-collision_layer = 1
+collision_layer = 2
 collision_mask = 1
 collision/safe_margin = 0.08
 script = SubResource( 1 )
-_sections_unfolded = [ "Transform" ]
+_sections_unfolded = [ "Transform", "collision" ]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="KinematicBody2D" index="0"]
 
