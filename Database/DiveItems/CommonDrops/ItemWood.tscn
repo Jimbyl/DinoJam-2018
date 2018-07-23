@@ -9,23 +9,25 @@ var motion = Vector2()
 var floorVec = Vector2(0,-1)
 func _physics_process(delta):
 	if !is_on_floor():
-		motion.y += 6
+		motion.y += 1
 	else:
 		motion.y = 0
-	if abs(motion.x) >= 10:
-		motion.x -= sign(motion.x)*10
+	if abs(motion.x) >= 1:
+		motion.x -= sign(motion.x)*1
 	else:
 		motion.x = 0
-	move_and_slide(motion, floorVec)"
+	move_and_slide(motion, floorVec, 5, 100)"
 
 [sub_resource type="RectangleShape2D" id=2]
 
 custom_solver_bias = 0.0
 extents = Vector2( 10, 10 )
 
-[node name="ItemWood" type="Node2D" groups=[
+[node name="ItemWood" type="Node2D" index="0" groups=[
 "CommonDrops",
 ]]
+
+_sections_unfolded = [ "Transform" ]
 
 [node name="KinematicBody2D" type="KinematicBody2D" parent="." index="0"]
 

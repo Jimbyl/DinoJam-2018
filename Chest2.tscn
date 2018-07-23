@@ -56,7 +56,7 @@ func lootGen():
 		var it = load(item)
 		add_child(it.instance(),true)
 		var k = get_children()[origSize+j].get_node(\"KinematicBody2D\")
-		k.motion = polar2cartesian(50, -PI*j/lSize)
+		k.motion = polar2cartesian(150, -PI*j/lSize)
 		print(k.motion)
 		j+=1
 

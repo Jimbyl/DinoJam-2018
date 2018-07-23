@@ -16,12 +16,13 @@ func _physics_process(delta):
 		motion.x -= sign(motion.x)*1
 	else:
 		motion.x = 0
-	move_and_slide(motion, floorVec)"
+	move_and_slide(motion, floorVec, 5, 100)"
 
 [sub_resource type="RectangleShape2D" id=2]
 
 custom_solver_bias = 0.0
 extents = Vector2( 10, 10 )
+_sections_unfolded = [ "Resource" ]
 
 [node name="ItemMetal" type="Node2D" groups=[
 "CommonDrops",
@@ -38,6 +39,7 @@ script = SubResource( 1 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="KinematicBody2D" index="0"]
 
 shape = SubResource( 2 )
+_sections_unfolded = [ "Transform", "Z Index" ]
 
 [node name="Sprite" type="Sprite" parent="KinematicBody2D" index="1"]
 
