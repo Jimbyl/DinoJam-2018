@@ -14,8 +14,3 @@ func _on_SwimButton_pressed():
 
 func _on_InventoryButton_pressed():
 	get_tree().change_scene("res://PlayerInventory.tscn")
-
-
-func _on_RockButton_pressed():
-	add_child(load("res://DumbButton.tscn").instance())
-	print(self.get_children())

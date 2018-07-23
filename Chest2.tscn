@@ -3,7 +3,7 @@
 [ext_resource path="res://Sprites/Decor/chest1.png" type="Texture" id=1]
 [ext_resource path="res://Sprites/Decor/chest1open.png" type="Texture" id=2]
 
-[sub_resource type="GDScript" id=1]
+[sub_resource type="GDScript" id=2]
 
 script/source = "extends Node2D
 
@@ -19,62 +19,9 @@ func _process(delta):
 
 func _on_Button_pressed():
 	get_node(\"ChestClosed\").visible = false
-	get_node(\"ChestOpen\").visible = true
-	lootGen()
+	get_node(\"ChestOpen\").visible = true"
 
-func lootGen():
-	var loot = []
-	var commonDropsGp = list_files_in_directory(\"res://Database/DiveItems/CommonDrops\")
-	var uncommonDropsGp = list_files_in_directory(\"res://Database/DiveItems/uncommonDrops\")
-	var rareDropsGp = list_files_in_directory(\"res://Database/DiveItems/rareDrops\")
-	
-	var basicCount = randi()%10 + 1 #number of basic items to be added
-	var luck = 0#randi()%100 + 1
-	var i = 0
-	var ItemNum
-	while i < basicCount:
-		ItemNum = randi()%commonDropsGp.size()
-		loot.append(commonDropsGp[ItemNum])
-		i+=1
-	if luck >= 75:
-		ItemNum = randi()%uncommonDropsGp.size()
-		loot.append(uncommonDropsGp[ItemNum])
-		i+=1
-	if luck >= 90:
-		ItemNum = randi()%uncommonDropsGp.size()
-		loot.append(uncommonDropsGp[ItemNum])
-		i+=1
-	if luck >= 95:
-		ItemNum = randi()%rareDropsGp.size()
-		loot.append(rareDropsGp[ItemNum])
-		i+=1
-	var lSize = loot.size()
-	var j = 0
-	print(loot)
-	var origSize = get_children().size()
-	for item in loot:
-		var it = load(item)
-		add_child(it.instance(),true)
-		var k = get_children()[origSize+j].get_node(\"KinematicBody2D\")
-		k.motion = polar2cartesian(50, -PI*j/lSize)
-		print(k.motion)
-		j+=1
-
-func list_files_in_directory(path):
-	var files = []
-	var dir = Directory.new()
-	dir.open(path)
-	dir.list_dir_begin()
-	while true:
-		var file = dir.get_next()
-		if file == \"\":
-			break
-		elif not file.begins_with(\".\"):
-			files.append(\"res://Database/DiveItems/CommonDrops/\"+file)
-	dir.list_dir_end()
-	return files"
-
-[sub_resource type="RectangleShape2D" id=2]
+[sub_resource type="RectangleShape2D" id=1]
 
 custom_solver_bias = 0.0
 extents = Vector2( 40.3977, 24.1684 )
@@ -98,9 +45,9 @@ _sections_unfolded = [ "Resource" ]
 shortcut = SubResource( 3 )
 _sections_unfolded = [ "Resource" ]
 
-[node name="Chest2" type="Node2D"]
+[node name="Chest2" type="Node2D" index="0"]
 
-script = SubResource( 1 )
+script = SubResource( 2 )
 
 [node name="ChestClosed" type="Sprite" parent="." index="0"]
 
@@ -121,12 +68,11 @@ constant_linear_velocity = Vector2( 0, 0 )
 constant_angular_velocity = 0.0
 friction = 1.0
 bounce = 0.0
-_sections_unfolded = [ "Collision", "Material", "Pause", "Pickable", "Transform", "Visibility" ]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" index="0"]
 
 position = Vector2( 0, 16 )
-shape = SubResource( 2 )
+shape = SubResource( 1 )
 _sections_unfolded = [ "Transform" ]
 
 [node name="Button" type="Button" parent="." index="3"]
