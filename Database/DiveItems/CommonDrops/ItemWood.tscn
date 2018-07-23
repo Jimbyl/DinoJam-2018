@@ -23,7 +23,7 @@ func _physics_process(delta):
 custom_solver_bias = 0.0
 extents = Vector2( 10, 10 )
 
-[node name="ItemWood" type="Node2D" index="0" groups=[
+[node name="ItemWood" type="Node2D" groups=[
 "CommonDrops",
 ]]
 
