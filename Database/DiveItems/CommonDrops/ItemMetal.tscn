@@ -37,7 +37,7 @@ func _on_Area2D_body_entered(body):
 custom_solver_bias = 0.0
 extents = Vector2( 12, 12 )
 
-[node name="ItemMetal" type="Node2D" groups=[
+[node name="ItemMetal" type="Node2D" index="0" groups=[
 "CommonDrops",
 ]]
 
@@ -49,9 +49,10 @@ __meta__ = {
 
 input_pickable = false
 collision_layer = 1
-collision_mask = 1
+collision_mask = 0
 collision/safe_margin = 0.08
 script = SubResource( 1 )
+_sections_unfolded = [ "Collision" ]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="KinematicBody2D" index="0"]
 
@@ -69,9 +70,11 @@ gravity_vec = Vector2( 0, 1 )
 gravity = 98.0
 linear_damp = 0.1
 angular_damp = 1.0
+collision_mask = 0
 audio_bus_override = false
 audio_bus_name = "Master"
 script = SubResource( 3 )
+_sections_unfolded = [ "Collision" ]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="KinematicBody2D/Area2D" index="0"]
 
