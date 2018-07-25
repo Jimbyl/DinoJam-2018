@@ -101,7 +101,14 @@ func _physics_process(delta):
 func create_bullet():
 		var bullet = BULLET_SCENE.instance()
 		get_parent().add_child(bullet)
-		bullet.set_position(get_node(\"Position2D\").get_global_position())
+		if !get_node(\"AnimatedSprite\").flip_h:
+			bullet.set_position(get_node(\"Position2D\").get_global_position())
+		else:
+			var bulletPosition = get_node(\"Position2D\").get_global_position()
+			bulletPosition.x -=60
+			bullet.get_node(\"Sprite\").set_flip_h(true)
+			bullet.set_position(bulletPosition)
+			bullet.speed_x = -1
 
 
 func _on_Area2D_body_entered(body):
@@ -178,12 +185,12 @@ width = 2000
 custom_solver_bias = 0.0
 extents = Vector2( 10, 10 )
 
-[sub_resource type="RectangleShape2D" id=8]
+[sub_resource type="RectangleShape2D" id=7]
 
 custom_solver_bias = 0.0
 extents = Vector2( 12.4093, 12.1704 )
 
-[sub_resource type="RectangleShape2D" id=7]
+[sub_resource type="RectangleShape2D" id=8]
 
 custom_solver_bias = 0.0
 extents = Vector2( 10.3523, 10 )
@@ -446,7 +453,7 @@ audio_bus_name = "Master"
 
 position = Vector2( 1.28379, 72.2389 )
 scale = Vector2( 2.56237, 3.31925 )
-shape = SubResource( 8 )
+shape = SubResource( 7 )
 _sections_unfolded = [ "Transform" ]
 
 [node name="Air" type="Area2D" parent="." index="8"]
@@ -464,19 +471,9 @@ audio_bus_name = "Master"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Air" index="0"]
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> parent of 35ab04e... Merge branch 'master' of https://github.com/Jimbyl/DinoJam-2018
-position = Vector2( 1.2973, 2.63114 )
-scale = Vector2( 2.93774, 2.85331 )
-shape = SubResource( 8 )
-=======
 position = Vector2( 1.2973, 2.6798 )
 scale = Vector2( 2.93774, 2.85705 )
-shape = SubResource( 7 )
->>>>>>> parent of bac4b64... Updated swimming
+shape = SubResource( 8 )
 
 [connection signal="body_entered" from="Water" to="KinematicBody2D" method="_on_Water_body_entered"]
 
