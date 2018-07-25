@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/GunshotRifle_BW.57683.ogg-acb8c2ad63c40bc9bb5ba6f3d964fbde.oggstr"
+
+[deps]
+
+source_file="res://Sound Effects/GunshotRifle_BW.57683.ogg"
+dest_files=[ "res://.import/GunshotRifle_BW.57683.ogg-acb8c2ad63c40bc9bb5ba6f3d964fbde.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

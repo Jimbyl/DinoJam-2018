@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/fish swim.ogg-14ed774da7770eacef20f2cba7871fcf.oggstr"
+
+[deps]
+
+source_file="res://Sound Effects/Water Interaction/fish swim.ogg"
+dest_files=[ "res://.import/fish swim.ogg-14ed774da7770eacef20f2cba7871fcf.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0
