@@ -28,8 +28,6 @@ _sections_unfolded = [ "Resource" ]
 "CommonDrops",
 ]]
 
-_sections_unfolded = [ "Material" ]
-
 [node name="KinematicBody2D" type="KinematicBody2D" parent="." index="0"]
 
 input_pickable = false
