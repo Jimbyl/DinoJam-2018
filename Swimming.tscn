@@ -101,14 +101,7 @@ func _physics_process(delta):
 func create_bullet():
 		var bullet = BULLET_SCENE.instance()
 		get_parent().add_child(bullet)
-		if !get_node(\"AnimatedSprite\").flip_h:
-			bullet.set_position(get_node(\"Position2D\").get_global_position())
-		else:
-			var bulletPosition = get_node(\"Position2D\").get_global_position()
-			bulletPosition.x -=60
-			bullet.get_node(\"Sprite\").set_flip_h(true)
-			bullet.set_position(bulletPosition)
-			bullet.speed_x = -1
+		bullet.set_position(get_node(\"Position2D\").get_global_position())
 
 
 func _on_Area2D_body_entered(body):
@@ -473,12 +466,11 @@ audio_bus_name = "Master"
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> parent of 35ab04e... Merge branch 'master' of https://github.com/Jimbyl/DinoJam-2018
 position = Vector2( 1.2973, 2.63114 )
 scale = Vector2( 2.93774, 2.85331 )
-=======
-position = Vector2( 1.2973, 2.6798 )
-scale = Vector2( 2.93774, 2.85705 )
->>>>>>> fcbf2f60e901d8a3db44418161a6195cecb59ced
 shape = SubResource( 8 )
 =======
 position = Vector2( 1.2973, 2.6798 )
