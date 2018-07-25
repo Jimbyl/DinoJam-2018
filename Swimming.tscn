@@ -1,13 +1,13 @@
 [gd_scene load_steps=23 format=2]
 
 [ext_resource path="res://Swimming.gd" type="Script" id=1]
-[ext_resource path="res://Sprites/Player/charhatscuba/Charhatscuba4.png" type="Texture" id=2]
-[ext_resource path="res://Sprites/Player/charhatscuba/Charhatscuba5.png" type="Texture" id=3]
-[ext_resource path="res://Sprites/Player/charhatscuba/Charhatscuba6.png" type="Texture" id=4]
-[ext_resource path="res://Sprites/Player/charhatscuba/Charhatscuba7.png" type="Texture" id=5]
-[ext_resource path="res://Sprites/Player/charhatscuba/Charhatscuba8.png" type="Texture" id=6]
-[ext_resource path="res://Sprites/Player/charhatscuba/Charhatscuba1.png" type="Texture" id=7]
-[ext_resource path="res://Sprites/Player/charhatscuba/Charhatscuba2.png" type="Texture" id=8]
+[ext_resource path="res://Sprites/Player/charhatscuba/Charhatscuba2.png" type="Texture" id=2]
+[ext_resource path="res://Sprites/Player/charhatscuba/Charhatscuba4.png" type="Texture" id=3]
+[ext_resource path="res://Sprites/Player/charhatscuba/Charhatscuba5.png" type="Texture" id=4]
+[ext_resource path="res://Sprites/Player/charhatscuba/Charhatscuba6.png" type="Texture" id=5]
+[ext_resource path="res://Sprites/Player/charhatscuba/Charhatscuba7.png" type="Texture" id=6]
+[ext_resource path="res://Sprites/Player/charhatscuba/Charhatscuba8.png" type="Texture" id=7]
+[ext_resource path="res://Sprites/Player/charhatscuba/Charhatscuba1.png" type="Texture" id=8]
 [ext_resource path="res://Sprites/Player/charhatscuba/Charhatscuba3.png" type="Texture" id=9]
 [ext_resource path="res://AnimatedSprite.gd" type="Script" id=10]
 [ext_resource path="res://GUI.tscn" type="PackedScene" id=11]
@@ -101,41 +101,48 @@ func _physics_process(delta):
 func create_bullet():
 		var bullet = BULLET_SCENE.instance()
 		get_parent().add_child(bullet)
-		bullet.set_position(get_node(\"Position2D\").get_global_position())
+		if !get_node(\"AnimatedSprite\").flip_h:
+			bullet.set_position(get_node(\"Position2D\").get_global_position())
+		else:
+			var bulletPosition = get_node(\"Position2D\").get_global_position()
+			bulletPosition.x -=60
+			bullet.get_node(\"Sprite\").set_flip_h(true)
+			bullet.set_position(bulletPosition)
+			bullet.speed_x = -1
 "
 
 [sub_resource type="SpriteFrames" id=2]
 
 animations = [ {
-"frames": [ ExtResource( 2 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ) ],
-"loop": false,
-"name": "Stroke",
-"speed": 10.0
-}, {
-"frames": [ ExtResource( 7 ) ],
+"frames": [ ExtResource( 2 ) ],
 "loop": true,
-"name": "Jump",
+"name": "Ground",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ), ExtResource( 8 ) ],
-"loop": true,
-"name": "Walk",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 2 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ) ],
+"frames": [ ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ) ],
 "loop": true,
 "name": "Swim",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 7 ) ],
+"frames": [ ExtResource( 8 ) ],
 "loop": true,
 "name": "Float",
 "speed": 5.0
 }, {
+"frames": [ ExtResource( 8 ), ExtResource( 2 ), ExtResource( 9 ), ExtResource( 2 ) ],
+"loop": true,
+"name": "Walk",
+"speed": 5.0
+}, {
 "frames": [ ExtResource( 8 ) ],
 "loop": true,
-"name": "Ground",
+"name": "Jump",
 "speed": 5.0
+}, {
+"frames": [ ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ) ],
+"loop": false,
+"name": "Stroke",
+"speed": 10.0
 } ]
 _sections_unfolded = [ "Resource" ]
 
