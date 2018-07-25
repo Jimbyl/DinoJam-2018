@@ -331,7 +331,7 @@ bus = "Master"
 [node name="Radio" type="Sprite" parent="KinematicBody2D/SFX" index="4"]
 
 position = Vector2( 91.2681, -91.7314 )
-z_index = 1
+z_index = 2
 texture = ExtResource( 15 )
 _sections_unfolded = [ "Z Index" ]
 __meta__ = {
