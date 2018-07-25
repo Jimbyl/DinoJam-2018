@@ -120,6 +120,7 @@ _sections_unfolded = [ "Material", "Process Material", "Time" ]
 position = Vector2( 3.57628e-007, 3.57628e-007 )
 scale = Vector2( 0.625, 0.625 )
 texture = ExtResource( 3 )
+_sections_unfolded = [ "Offset", "Transform" ]
 
 [node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="." index="3"]
 

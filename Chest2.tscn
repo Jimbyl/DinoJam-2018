@@ -51,14 +51,14 @@ func lootGen():
 	var lSize = loot.size()
 	var j = 0
 	print(loot)
-	var origSize = get_children().size()
+	var angle = 0
 	for item in loot:
-		var it = load(item)
-		add_child(it.instance(),true)
-		var k = get_children()[origSize+j].get_node(\"KinematicBody2D\")
-		k.motion = polar2cartesian(150, -PI*j/lSize)
+		angle += -PI/lSize
+		var it = load(item).instance()
+		add_child(it,true)
+		var k = it.get_node(\"KinematicBody2D\")
+		k.motion = polar2cartesian(150, angle)
 		print(k.motion)
-		j+=1
 
 func list_files_in_directory(path):
 	var files = []
@@ -98,7 +98,7 @@ _sections_unfolded = [ "Resource" ]
 shortcut = SubResource( 3 )
 _sections_unfolded = [ "Resource" ]
 
-[node name="Chest2" type="Node2D"]
+[node name="Chest2" type="Node2D" index="0"]
 
 script = SubResource( 1 )
 
@@ -127,6 +127,7 @@ _sections_unfolded = [ "Collision", "Material", "Pause", "Pickable", "Transform"
 
 position = Vector2( 0, 16 )
 shape = SubResource( 2 )
+disabled = true
 _sections_unfolded = [ "Transform" ]
 
 [node name="Button" type="Button" parent="." index="3"]
