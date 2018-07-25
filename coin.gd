@@ -8,9 +8,6 @@ func _ready():
 	
 	if get_owner() != null:
 		get_owner().money_total += value
-		
-		
-	get_node("Area2D").connect ("body_shape_entered",self,"_collect_money")
 	get_node("AnimationPlayer").play("coin")
 
 

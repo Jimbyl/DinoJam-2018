@@ -98,7 +98,7 @@ _sections_unfolded = [ "Resource" ]
 shortcut = SubResource( 3 )
 _sections_unfolded = [ "Resource" ]
 
-[node name="Chest2" type="Node2D" index="0"]
+[node name="Chest2" type="Node2D"]
 
 script = SubResource( 1 )
 
