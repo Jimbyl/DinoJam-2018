@@ -681,7 +681,8 @@ shape = SubResource( 14 )
 
 [node name="sky" type="Sprite" parent="." index="34"]
 
-position = Vector2( 608, 256 )
+position = Vector2( 608, 32 )
 texture = ExtResource( 35 )
+_sections_unfolded = [ "Offset" ]
 
 
