@@ -98,7 +98,7 @@ _sections_unfolded = [ "Resource" ]
 shortcut = SubResource( 3 )
 _sections_unfolded = [ "Resource" ]
 
-[node name="Chest2" type="Node2D"]
+[node name="Chest2" type="Node2D" index="0"]
 
 script = SubResource( 1 )
 
@@ -127,6 +127,7 @@ _sections_unfolded = [ "Collision", "Material", "Pause", "Pickable", "Transform"
 
 position = Vector2( 0, 16 )
 shape = SubResource( 2 )
+disabled = true
 _sections_unfolded = [ "Transform" ]
 
 [node name="Button" type="Button" parent="." index="3"]
