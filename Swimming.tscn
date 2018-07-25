@@ -33,6 +33,8 @@ var gravity = 6
 var setGravity = 6
 var friction = 5
 var grounded = 0
+var in_water = 0
+var can_jump = 1
 
 var can_shoot = true
 var timer = null
@@ -53,6 +55,7 @@ func _physics_process(delta):
 	if is_on_floor():
 		grounded = 1
 		gravity = 0 
+		can_jump = 1
 		print(\"GROUND\")
 	elif !is_on_floor():
 		grounded = 0
@@ -71,15 +74,17 @@ func _physics_process(delta):
 			get_node(\"AnimatedSprite\").set_animation(\"Walk\")
 	else:
 		motion.y=0
-	if motion.y > gravity and grounded == 0:
+	if motion.y > gravity and grounded == 0 and in_water == 1:
 		get_node(\"AnimatedSprite\").set_animation(\"Swim\")
 		#print(\"FALLING\")
-	if Input.is_action_just_pressed('ui_up'):#swim up
+	if Input.is_action_just_pressed('ui_up') and can_jump == 1 :#swim up
 		get_node(\"AnimatedSprite\").set_frame(0) #reset swim stroke on up input
 		if grounded == 1:#set sprite to jump if on floor or to swim if not
 			get_node(\"AnimatedSprite\").set_animation(\"Jump\")
 		if grounded == 0:
 			get_node(\"AnimatedSprite\").set_animation(\"Stroke\")
+		if in_water == 0:
+			can_jump = 0
 		motion.y = min(motion.y, 0) #reset vertical momentum if you're falling
 		motion.y += jumpSpeed
 	if Input.is_action_pressed('ui_right'): #swim left and right
@@ -118,15 +123,17 @@ func create_bullet():
 
 func _on_Area2D_body_entered(body):
 	swimSpeed = 300
-	jumpSpeed = -200
-	maxVertSpeed = 300
+	jumpSpeed = -1000
+	maxVertSpeed = 600
 	gravity = 12
 	setGravity = 12
 	friction = 10
 	grounded = 0
-	get_node(\"SFX/Exit Water\")._set_playing(true)
-	get_node(\"SFX/Shoot\").set_bus(\"Air\")
-	get_node(\"SFX/Music\")._set_playing(false)
+	if in_water == 1:
+		get_node(\"SFX/Exit Water\")._set_playing(true)
+		get_node(\"SFX/Shoot\").set_bus(\"Air\")
+		get_node(\"SFX/Music\")._set_playing(false)
+	in_water = 0
 
 func _on_Water_body_entered(body):
 	swimSpeed = 150
@@ -136,9 +143,12 @@ func _on_Water_body_entered(body):
 	setGravity = 6
 	friction = 5
 	grounded = 0
-	get_node(\"SFX/Enter Water\")._set_playing(true)
-	get_node(\"SFX/Shoot\").set_bus(\"Underwater\")
-	get_node(\"SFX/Music\")._set_playing(true)"
+	can_jump = 1
+	if in_water == 0:
+		get_node(\"SFX/Enter Water\")._set_playing(true)
+		get_node(\"SFX/Shoot\").set_bus(\"Underwater\")
+		get_node(\"SFX/Music\")._set_playing(true)
+	in_water = 1"
 
 [sub_resource type="SpriteFrames" id=2]
 
