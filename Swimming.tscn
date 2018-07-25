@@ -46,6 +46,22 @@ func on_timeout_complete():
 	can_shoot = true
 
 func _physics_process(delta):
+	if underwater == true:
+		swimSpeed = 300
+		jumpSpeed = -350
+		maxVertSpeed = 400
+		gravity = 15
+		setGravity = 15
+		friction = 10
+		grounded = 0
+	if underwater == false:
+		swimSpeed = 150
+		jumpSpeed = -300
+		maxVertSpeed = 300
+		gravity = 6 
+		setGravity = 6
+		friction = 5
+		grounded = 0
 	if is_on_floor():
 		grounded = 1
 		gravity = 0 
@@ -105,22 +121,10 @@ func create_bullet():
 
 
 func _on_Area2D_body_entered(body):
-	swimSpeed = 300
-	jumpSpeed = -200
-	maxVertSpeed = 300
-	gravity = 12
-	setGravity = 12
-	friction = 10
-	grounded = 0
+	var underwater = false
 
 func _on_Water_body_entered(body):
-	swimSpeed = 150
-	jumpSpeed = -300
-	maxVertSpeed = 400
-	gravity = 6 
-	setGravity = 6
-	friction = 5
-	grounded = 0"
+	var underwater = true"
 
 [sub_resource type="SpriteFrames" id=2]
 
@@ -132,12 +136,12 @@ animations = [ {
 }, {
 "frames": [ ExtResource( 7 ) ],
 "loop": true,
-"name": "Jump",
+"name": "Float",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ), ExtResource( 8 ) ],
+"frames": [ ExtResource( 7 ) ],
 "loop": true,
-"name": "Walk",
+"name": "Jump",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 2 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ) ],
@@ -145,14 +149,14 @@ animations = [ {
 "name": "Swim",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 7 ) ],
-"loop": true,
-"name": "Float",
-"speed": 5.0
-}, {
 "frames": [ ExtResource( 8 ) ],
 "loop": true,
 "name": "Ground",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ), ExtResource( 8 ) ],
+"loop": true,
+"name": "Walk",
 "speed": 5.0
 } ]
 _sections_unfolded = [ "Resource" ]
@@ -178,12 +182,12 @@ width = 2000
 custom_solver_bias = 0.0
 extents = Vector2( 10, 10 )
 
-[sub_resource type="RectangleShape2D" id=8]
+[sub_resource type="RectangleShape2D" id=7]
 
 custom_solver_bias = 0.0
-extents = Vector2( 12.4093, 12.1704 )
+extents = Vector2( 12.4093, 12.4078 )
 
-[sub_resource type="RectangleShape2D" id=7]
+[sub_resource type="RectangleShape2D" id=8]
 
 custom_solver_bias = 0.0
 extents = Vector2( 10.3523, 10 )
@@ -431,7 +435,6 @@ shape = SubResource( 6 )
 
 [node name="Water" type="Area2D" parent="." index="7"]
 
-editor/display_folded = true
 position = Vector2( 450, -404 )
 scale = Vector2( 46.25, 12.6875 )
 input_pickable = true
@@ -446,12 +449,11 @@ audio_bus_name = "Master"
 
 position = Vector2( 1.28379, 72.2389 )
 scale = Vector2( 2.56237, 3.31925 )
-shape = SubResource( 8 )
+shape = SubResource( 7 )
 _sections_unfolded = [ "Transform" ]
 
 [node name="Air" type="Area2D" parent="." index="8"]
 
-editor/display_folded = true
 position = Vector2( 450, -404 )
 scale = Vector2( 46.25, 12.6875 )
 input_pickable = true
@@ -464,9 +466,9 @@ audio_bus_name = "Master"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Air" index="0"]
 
-position = Vector2( 1.2973, 2.6798 )
-scale = Vector2( 2.93774, 2.85705 )
-shape = SubResource( 7 )
+position = Vector2( 1.2973, 2.63114 )
+scale = Vector2( 2.93774, 2.85331 )
+shape = SubResource( 8 )
 
 [connection signal="body_entered" from="Water" to="KinematicBody2D" method="_on_Water_body_entered"]
 
