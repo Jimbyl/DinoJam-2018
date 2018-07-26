@@ -1,13 +1,13 @@
-[gd_scene load_steps=35 format=2]
+[gd_scene load_steps=36 format=2]
 
 [ext_resource path="res://Swimming.gd" type="Script" id=1]
-[ext_resource path="res://Sprites/Player/charhatscuba/Charhatscuba2.png" type="Texture" id=2]
-[ext_resource path="res://Sprites/Player/charhatscuba/Charhatscuba1.png" type="Texture" id=3]
-[ext_resource path="res://Sprites/Player/charhatscuba/Charhatscuba4.png" type="Texture" id=4]
-[ext_resource path="res://Sprites/Player/charhatscuba/Charhatscuba5.png" type="Texture" id=5]
-[ext_resource path="res://Sprites/Player/charhatscuba/Charhatscuba6.png" type="Texture" id=6]
-[ext_resource path="res://Sprites/Player/charhatscuba/Charhatscuba7.png" type="Texture" id=7]
-[ext_resource path="res://Sprites/Player/charhatscuba/Charhatscuba8.png" type="Texture" id=8]
+[ext_resource path="res://Sprites/Player/charhatscuba/Charhatscuba1.png" type="Texture" id=2]
+[ext_resource path="res://Sprites/Player/charhatscuba/Charhatscuba4.png" type="Texture" id=3]
+[ext_resource path="res://Sprites/Player/charhatscuba/Charhatscuba5.png" type="Texture" id=4]
+[ext_resource path="res://Sprites/Player/charhatscuba/Charhatscuba6.png" type="Texture" id=5]
+[ext_resource path="res://Sprites/Player/charhatscuba/Charhatscuba7.png" type="Texture" id=6]
+[ext_resource path="res://Sprites/Player/charhatscuba/Charhatscuba8.png" type="Texture" id=7]
+[ext_resource path="res://Sprites/Player/charhatscuba/Charhatscuba2.png" type="Texture" id=8]
 [ext_resource path="res://Sprites/Player/charhatscuba/Charhatscuba3.png" type="Texture" id=9]
 [ext_resource path="res://AnimatedSprite.gd" type="Script" id=10]
 [ext_resource path="res://Music/Diving.ogg" type="AudioStream" id=11]
@@ -56,6 +56,7 @@ func _ready():
 	timer.set_wait_time(bullet_delay)
 	timer.connect(\"timeout\", self, \"on_timeout_complete\")
 	add_child(timer)
+	get_node(\"SFX/Radio/AudioStreamPlayer2D\")._set_playing(true)
 func on_timeout_complete():
 	can_shoot = true
 
@@ -86,8 +87,6 @@ func _physics_process(delta):
 			get_node(\"AnimatedSprite\").set_animation(\"Walk\")
 		elif Input.is_action_pressed('ui_left'):
 			get_node(\"AnimatedSprite\").set_animation(\"Walk\")
-	else:
-		motion.y=0
 	if motion.y > gravity and grounded == 0 and in_water == 1:
 		get_node(\"AnimatedSprite\").set_animation(\"Swim\")
 		#print(\"FALLING\")
@@ -115,13 +114,45 @@ func _physics_process(delta):
 	if abs(motion.y) > maxVertSpeed:
 		motion.y = sign(motion.y)*maxVertSpeed
 	move_and_slide(motion,normalVector)
+
+	var player = get_node(\"Position2D\").get_global_position()	#discern between water and air
+	if player.y <= 0:
+		swimSpeed = 300
+		jumpSpeed = -1000
+		maxVertSpeed = 600
+		gravity = 12
+		setGravity = 12
+		friction = 10
+		grounded = 0
+		breath = 100
+		if in_water == 1:
+			get_node(\"SFX/Radio/AudioStreamPlayer2D\")._set_playing(true)
+			get_node(\"SFX/Exit Water\")._set_playing(true)
+			get_node(\"SFX/Shoot\").set_bus(\"Air\")
+			get_node(\"SFX/Music\")._set_playing(false)
+		in_water = 0
+	elif player.y > 0:
+		swimSpeed = 150
+		jumpSpeed = -300
+		maxVertSpeed = 400
+		gravity = 6 
+		setGravity = 6
+		friction = 5
+		grounded = 0
+		can_jump = 1
+		if in_water == 0:
+			get_node(\"SFX/Radio/AudioStreamPlayer2D\")._set_playing(false)
+			get_node(\"SFX/Enter Water\")._set_playing(true)
+			get_node(\"SFX/Shoot\").set_bus(\"Underwater\")
+			get_node(\"SFX/Music\")._set_playing(true)
+		in_water = 1
 	
 	if (Input.is_action_just_pressed(\"ui_accept\") and can_shoot):
 			create_bullet()
 			can_shoot = false
 			timer.start()
 			get_node(\"SFX/Shoot\").playing = true
-	
+			
 func create_bullet():
 		var bullet = BULLET_SCENE.instance()
 		get_parent().add_child(bullet)
@@ -132,72 +163,39 @@ func create_bullet():
 			bulletPosition.x -=60
 			bullet.get_node(\"Sprite\").set_flip_h(true)
 			bullet.set_position(bulletPosition)
-			bullet.speed_x = -1
-
-
-func _on_Area2D_body_entered(body):
-	swimSpeed = 300
-	jumpSpeed = -1000
-	maxVertSpeed = 600
-	gravity = 12
-	setGravity = 12
-	friction = 10
-	grounded = 0
-	breath = 100
-	if in_water == 1:
-		get_node(\"SFX/Radio/AudioStreamPlayer2D\")._set_playing(true)
-		get_node(\"SFX/Exit Water\")._set_playing(true)
-		get_node(\"SFX/Shoot\").set_bus(\"Air\")
-		get_node(\"SFX/Music\")._set_playing(false)
-	in_water = 0
-
-func _on_Water_body_entered(body):
-	swimSpeed = 150
-	jumpSpeed = -300
-	maxVertSpeed = 400
-	gravity = 6 
-	setGravity = 6
-	friction = 5
-	grounded = 0
-	can_jump = 1
-	if in_water == 0:
-		get_node(\"SFX/Radio/AudioStreamPlayer2D\")._set_playing(false)
-		get_node(\"SFX/Enter Water\")._set_playing(true)
-		get_node(\"SFX/Shoot\").set_bus(\"Underwater\")
-		get_node(\"SFX/Music\")._set_playing(true)
-	in_water = 1"
+			bullet.speed_x = -1"
 
 [sub_resource type="SpriteFrames" id=2]
 
 animations = [ {
 "frames": [ ExtResource( 2 ) ],
 "loop": true,
-"name": "Ground",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 3 ) ],
-"loop": true,
-"name": "Float",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 3 ) ],
-"loop": true,
 "name": "Jump",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ) ],
+"frames": [ ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ) ],
 "loop": false,
 "name": "Stroke",
 "speed": 10.0
 }, {
-"frames": [ ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ) ],
+"frames": [ ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ) ],
 "loop": true,
 "name": "Swim",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 3 ), ExtResource( 2 ), ExtResource( 9 ), ExtResource( 2 ) ],
+"frames": [ ExtResource( 2 ) ],
+"loop": true,
+"name": "Float",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 2 ), ExtResource( 8 ), ExtResource( 9 ), ExtResource( 8 ) ],
 "loop": true,
 "name": "Walk",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 8 ) ],
+"loop": true,
+"name": "Ground",
 "speed": 5.0
 } ]
 _sections_unfolded = [ "Resource" ]
@@ -245,30 +243,35 @@ _sections_unfolded = [ "Color", "Emission Shape", "Gravity", "Hue Variation", "I
 [sub_resource type="RectangleShape2D" id=4]
 
 custom_solver_bias = 0.0
-extents = Vector2( 10, 31 )
+extents = Vector2( 10.8974, 23 )
 
-[sub_resource type="Gradient" id=5]
+[sub_resource type="CircleShape2D" id=5]
+
+custom_solver_bias = 0.0
+radius = 10.0
+
+[sub_resource type="Gradient" id=6]
 
 offsets = PoolRealArray( 0, 0.05 )
 colors = PoolColorArray( 0.282684, 0.512552, 0.613281, 0.54698, 0.122181, 0.0958099, 0.355469, 1 )
 
-[sub_resource type="GradientTexture" id=6]
+[sub_resource type="GradientTexture" id=7]
 
 flags = 4
-gradient = SubResource( 5 )
+gradient = SubResource( 6 )
 width = 2000
-
-[sub_resource type="RectangleShape2D" id=7]
-
-custom_solver_bias = 0.0
-extents = Vector2( 10, 10 )
 
 [sub_resource type="RectangleShape2D" id=8]
 
 custom_solver_bias = 0.0
-extents = Vector2( 12.4093, 12.1704 )
+extents = Vector2( 10, 10 )
 
 [sub_resource type="RectangleShape2D" id=9]
+
+custom_solver_bias = 0.0
+extents = Vector2( 12.4093, 12.1704 )
+
+[sub_resource type="RectangleShape2D" id=10]
 
 custom_solver_bias = 0.0
 extents = Vector2( 10.3523, 10 )
@@ -281,7 +284,6 @@ script = ExtResource( 1 )
 "SwimmingAI",
 ]]
 
-editor/display_folded = true
 position = Vector2( -99.9701, -101.838 )
 z_index = 2
 input_pickable = false
@@ -422,15 +424,22 @@ _sections_unfolded = [ "Focus", "Grow Direction", "Hint", "Margin", "Rect" ]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="KinematicBody2D" index="3"]
 
-position = Vector2( 0.858551, 1.50246 )
+position = Vector2( 1, -6 )
 shape = SubResource( 4 )
+_sections_unfolded = [ "Transform" ]
 
-[node name="Position2D" type="Position2D" parent="KinematicBody2D" index="4"]
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="KinematicBody2D" index="4"]
+
+position = Vector2( 1, 23 )
+shape = SubResource( 5 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="Position2D" type="Position2D" parent="KinematicBody2D" index="5"]
 
 position = Vector2( 30, 0 )
 _sections_unfolded = [ "Transform" ]
 
-[node name="Timer" type="Timer" parent="KinematicBody2D" index="5"]
+[node name="Timer" type="Timer" parent="KinematicBody2D" index="6"]
 
 process_mode = 1
 wait_time = 1.0
@@ -449,8 +458,6 @@ mix_target = 0
 bus = "Master"
 
 [node name="Map" type="Node" parent="." index="2"]
-
-editor/display_folded = true
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="Map" index="0"]
 
@@ -499,7 +506,7 @@ position = Vector2( 30000, 10000 )
 rotation = 1.5708
 scale = Vector2( 10, 200000 )
 z_index = 4
-texture = SubResource( 6 )
+texture = SubResource( 7 )
 _sections_unfolded = [ "Material", "Transform", "Visibility", "Z Index" ]
 
 [node name="Foreground" type="TileMap" parent="Map" index="2"]
@@ -565,7 +572,7 @@ collision_layer = 1
 collision_mask = 1
 occluder_light_mask = 1
 format = 1
-tile_data = PoolIntArray( -262171, 19, 0, -196633, 19, 0, -262144, -1610612720, 0, -131095, 19, 0, -196608, -1610612720, 0, -65558, 19, 0, -65540, 5, 0, -131072, -1610612720, 0, -131069, 5, 0, -19, 19, 0, -4, 11, 0, -3, 17, 0, -2, 17, 0, -1, 17, 0, -65536, 13, 0, -65535, 17, 0, -65534, 17, 0, -65533, 10, 0, 196595, 19, 0, 131099, 19, 0, 262134, 19, 0, 327671, 19, 0, 393201, 23, 0, 393202, 23, 0, 393203, 23, 0, 393204, 23, 0, 458736, 23, 0, 458737, 23, 0, 458738, 23, 0, 458739, 23, 0, 458740, 23, 0, 393272, 1, 0, 524272, 23, 0, 524273, 23, 0, 524274, 23, 0, 524275, 23, 0, 524276, 23, 0, 524277, 23, 0, 458774, 18, 0, 589808, 23, 0, 589809, 23, 0, 589810, 23, 0, 589811, 23, 0, 589812, 23, 0, 589813, 23, 0, 589816, 19, 0, 655344, 23, 0, 655345, 23, 0, 655346, 23, 0, 655347, 23, 0, 655348, 23, 0, 655349, 23, 0, 720880, 23, 0, 720881, 23, 0, 720882, 23, 0, 720883, 23, 0, 720884, 23, 0, 720885, 23, 0, 655365, 17, 0, 655366, 17, 0, 655368, 17, 0, 655369, 17, 0, 655370, 17, 0, 655371, 17, 0, 655372, 17, 0, 655373, 1610612751, 0, 786417, 23, 0, 786418, 23, 0, 786419, 23, 0, 786420, 23, 0, 786421, 23, 0, 720900, 19, 0, 720902, -1610612719, 0, 720908, 11, 0, 720909, 15, 0, 720910, 17, 0, 720911, 17, 0, 720912, 1610612751, 0, 720917, 18, 0, 851954, 23, 0, 851955, 23, 0, 851956, 23, 0, 851957, 23, 0, 851958, 23, 0, 786432, 18, 0, 786438, -1610612719, 0, 786439, 9, 0, 786447, 11, 0, 786448, 15, 0, 786449, 17, 0, 786450, 17, 0, 786451, 1610612751, 0, 917491, 23, 0, 917492, 23, 0, 917493, 23, 0, 917494, 23, 0, 917501, 18, 0, 851970, 21, 0, 851971, 20, 0, 851972, 20, 0, 851973, 22, 0, 851975, 17, 0, 851976, 17, 0, 851977, 1610612751, 0, 851978, 9, 0, 851986, 11, 0, 851987, -1610612719, 0, 983027, 23, 0, 983028, 23, 0, 983029, 23, 0, 983030, 23, 0, 983031, 23, 0, 983032, 22, 0, 917504, 21, 0, 917505, 20, 0, 917506, 23, 0, 917507, 23, 0, 917508, 23, 0, 917509, 23, 0, 917513, 15, 0, 917514, 17, 0, 917515, 17, 0, 917516, 17, 0, 917517, 9, 0, 917523, -1610612719, 0, 1048564, 23, 0, 1048565, 23, 0, 1048566, 23, 0, 1048567, 23, 0, 1048568, 23, 0, 1048569, 20, 0, 1048570, 20, 0, 1048571, 20, 0, 1048572, 20, 0, 1048573, 20, 0, 1048574, 20, 0, 1048575, 20, 0, 983040, 23, 0, 983041, 23, 0, 983042, 23, 0, 983043, 23, 0, 983044, 23, 0, 983045, 23, 0, 983053, 5, 0, 983054, 6, 0, 983055, 6, 0, 983056, 6, 0, 983057, 6, 0, 983058, 6, 0, 983059, -1073741809, 0, 1114101, 23, 0, 1114102, 23, 0, 1114103, 23, 0, 1114104, 23, 0, 1114105, 23, 0, 1114106, 23, 0, 1114107, 23, 0, 1114108, 23, 0, 1114109, 23, 0, 1114110, 23, 0, 1114111, 23, 0, 1048576, 23, 0, 1048577, 23, 0, 1048578, 23, 0, 1048579, 23, 0, 1048580, 23, 0, 1048581, 23, 0, 1179639, 23, 0, 1179640, 23, 0, 1179641, 23, 0, 1179642, 23, 0, 1179643, 23, 0, 1179644, 23, 0, 1179645, 23, 0, 1179646, 23, 0, 1179647, 23, 0, 1114112, 23, 0, 1114113, 23, 0, 1114114, 23, 0, 1114115, 23, 0, 1114116, 23, 0, 1114117, 23, 0 )
+tile_data = PoolIntArray( -262171, 19, 0, -196633, 19, 0, -262144, -1610612720, 0, -131095, 19, 0, -196608, -1610612720, 0, -65558, 19, 0, -65540, 5, 0, -65539, 9, 0, -131072, -1610612720, 0, -131069, 5, 0, -19, 19, 0, -4, 11, 0, -3, 17, 0, -2, 17, 0, -1, 17, 0, -65536, 13, 0, -65535, 17, 0, -65534, 17, 0, -65533, 10, 0, 196595, 19, 0, 131099, 19, 0, 262134, 19, 0, 327671, 19, 0, 393201, 23, 0, 393202, 23, 0, 393203, 23, 0, 393204, 23, 0, 458736, 23, 0, 458737, 23, 0, 458738, 23, 0, 458739, 23, 0, 458740, 23, 0, 393272, 1, 0, 524272, 23, 0, 524273, 23, 0, 524274, 23, 0, 524275, 23, 0, 524276, 23, 0, 524277, 23, 0, 458774, 18, 0, 589808, 23, 0, 589809, 23, 0, 589810, 23, 0, 589811, 23, 0, 589812, 23, 0, 589813, 23, 0, 589816, 19, 0, 655344, 23, 0, 655345, 23, 0, 655346, 23, 0, 655347, 23, 0, 655348, 23, 0, 655349, 23, 0, 720880, 23, 0, 720881, 23, 0, 720882, 23, 0, 720883, 23, 0, 720884, 23, 0, 720885, 23, 0, 655365, 17, 0, 655366, 17, 0, 655368, 17, 0, 655369, 17, 0, 655370, 17, 0, 655371, 17, 0, 655372, 17, 0, 655373, 1610612751, 0, 786417, 23, 0, 786418, 23, 0, 786419, 23, 0, 786420, 23, 0, 786421, 23, 0, 720900, 19, 0, 720902, -1610612719, 0, 720908, 11, 0, 720909, 15, 0, 720910, 17, 0, 720911, 17, 0, 720912, 1610612751, 0, 720917, 18, 0, 851954, 23, 0, 851955, 23, 0, 851956, 23, 0, 851957, 23, 0, 851958, 23, 0, 786432, 18, 0, 786438, -1610612719, 0, 786439, 9, 0, 786447, 11, 0, 786448, 15, 0, 786449, 17, 0, 786450, 17, 0, 786451, 1610612751, 0, 917491, 23, 0, 917492, 23, 0, 917493, 23, 0, 917494, 23, 0, 917501, 18, 0, 851970, 21, 0, 851971, 20, 0, 851972, 20, 0, 851973, 22, 0, 851975, 17, 0, 851976, 17, 0, 851977, 1610612751, 0, 851978, 9, 0, 851986, 11, 0, 851987, -1610612719, 0, 983027, 23, 0, 983028, 23, 0, 983029, 23, 0, 983030, 23, 0, 983031, 23, 0, 983032, 22, 0, 917504, 21, 0, 917505, 20, 0, 917506, 23, 0, 917507, 23, 0, 917508, 23, 0, 917509, 23, 0, 917513, 15, 0, 917514, 17, 0, 917515, 17, 0, 917516, 17, 0, 917517, 9, 0, 917523, -1610612719, 0, 1048564, 23, 0, 1048565, 23, 0, 1048566, 23, 0, 1048567, 23, 0, 1048568, 23, 0, 1048569, 20, 0, 1048570, 20, 0, 1048571, 20, 0, 1048572, 20, 0, 1048573, 20, 0, 1048574, 20, 0, 1048575, 20, 0, 983040, 23, 0, 983041, 23, 0, 983042, 23, 0, 983043, 23, 0, 983044, 23, 0, 983045, 23, 0, 983053, 5, 0, 983054, 6, 0, 983055, 6, 0, 983056, 6, 0, 983057, 6, 0, 983058, 6, 0, 983059, -1073741809, 0, 1114101, 23, 0, 1114102, 23, 0, 1114103, 23, 0, 1114104, 23, 0, 1114105, 23, 0, 1114106, 23, 0, 1114107, 23, 0, 1114108, 23, 0, 1114109, 23, 0, 1114110, 23, 0, 1114111, 23, 0, 1048576, 23, 0, 1048577, 23, 0, 1048578, 23, 0, 1048579, 23, 0, 1048580, 23, 0, 1048581, 23, 0, 1179639, 23, 0, 1179640, 23, 0, 1179641, 23, 0, 1179642, 23, 0, 1179643, 23, 0, 1179644, 23, 0, 1179645, 23, 0, 1179646, 23, 0, 1179647, 23, 0, 1114112, 23, 0, 1114113, 23, 0, 1114114, 23, 0, 1114115, 23, 0, 1114116, 23, 0, 1114117, 23, 0 )
 _sections_unfolded = [ "Occluder", "Z Index" ]
 
 [node name="Background" type="TileMap" parent="Map" index="5"]
@@ -652,7 +659,7 @@ _sections_unfolded = [ "Collision" ]
 
 position = Vector2( -0.22679, 20.1667 )
 scale = Vector2( 3.1925, 2.55128 )
-shape = SubResource( 7 )
+shape = SubResource( 8 )
 
 [node name="Water" type="Area2D" parent="." index="9"]
 
@@ -670,7 +677,7 @@ audio_bus_name = "Master"
 
 position = Vector2( 1.28379, 72.2389 )
 scale = Vector2( 2.56237, 3.31925 )
-shape = SubResource( 8 )
+shape = SubResource( 9 )
 _sections_unfolded = [ "Transform" ]
 
 [node name="Air" type="Area2D" parent="." index="10"]
@@ -687,9 +694,9 @@ audio_bus_name = "Master"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Air" index="0"]
 
-position = Vector2( 1.2973, 2.6798 )
+position = Vector2( 5.55259, 4.80041 )
 scale = Vector2( 2.93774, 2.85705 )
-shape = SubResource( 9 )
+shape = SubResource( 10 )
 
 [node name="Button" type="Button" parent="." index="11"]
 
