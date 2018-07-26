@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=2]
+[gd_scene load_steps=34 format=2]
 
 [ext_resource path="res://Swimming.gd" type="Script" id=1]
 [ext_resource path="res://Sprites/Player/charhatscuba/Charhatscuba1.png" type="Texture" id=2]
@@ -81,6 +81,7 @@ func _physics_process(delta):
 	if grounded == 0: #bring to floor if you're not on the floor
 		motion.y += gravity
 	elif grounded == 1 :
+		motion.y = setGravity
 		if motion.x == 0:
 			get_node(\"AnimatedSprite\").set_animation(\"Ground\")
 		elif Input.is_action_pressed('ui_right'):
@@ -89,12 +90,14 @@ func _physics_process(delta):
 			get_node(\"AnimatedSprite\").set_animation(\"Walk\")
 	if motion.y > gravity and grounded == 0 and in_water == 1:
 		get_node(\"AnimatedSprite\").set_animation(\"Swim\")
-		#print(\"FALLING\")
+		print(\"FALLING\")
 	if Input.is_action_just_pressed('ui_up') and can_jump == 1 :#swim up
 		get_node(\"AnimatedSprite\").set_frame(0) #reset swim stroke on up input
-		if grounded == 1:#set sprite to jump if on floor or to swim if not
+		if in_water == 0: #out of water, never do the stroke animation on jump
 			get_node(\"AnimatedSprite\").set_animation(\"Jump\")
-		if grounded == 0:
+		elif grounded == 1:#set sprite to jump if on floor or to swim if not
+			get_node(\"AnimatedSprite\").set_animation(\"Jump\")
+		elif grounded == 0:
 			get_node(\"AnimatedSprite\").set_animation(\"Stroke\")
 		if in_water == 0:
 			can_jump = 0
@@ -108,19 +111,19 @@ func _physics_process(delta):
 		motion.x = -swimSpeed
 	else:
 		motion.x -= sign(motion.x)*friction
-		if abs(motion.x) <friction:
-			motion.x = 0
+		#if abs(motion.x) <friction:
+			#motion.x = 0
 	
 	if abs(motion.y) > maxVertSpeed:
 		motion.y = sign(motion.y)*maxVertSpeed
-	move_and_slide(motion,normalVector)
+	print (motion , setGravity)
+	move_and_slide(motion,normalVector,5,4,.8)
 
 	var player = get_node(\"Position2D\").get_global_position()	#discern between water and air
 	if player.y <= 0:
 		swimSpeed = 300
 		jumpSpeed = -1000
 		maxVertSpeed = 600
-		gravity = 12
 		setGravity = 12
 		friction = 10
 		grounded = 0
@@ -135,7 +138,6 @@ func _physics_process(delta):
 		swimSpeed = 150
 		jumpSpeed = -300
 		maxVertSpeed = 400
-		gravity = 6 
 		setGravity = 6
 		friction = 5
 		grounded = 0
@@ -266,16 +268,6 @@ width = 2000
 custom_solver_bias = 0.0
 extents = Vector2( 10, 10 )
 
-[sub_resource type="RectangleShape2D" id=9]
-
-custom_solver_bias = 0.0
-extents = Vector2( 12.4093, 12.1704 )
-
-[sub_resource type="RectangleShape2D" id=10]
-
-custom_solver_bias = 0.0
-extents = Vector2( 10.3523, 10 )
-
 [node name="Swimming" type="Node" index="0"]
 
 script = ExtResource( 1 )
@@ -284,6 +276,7 @@ script = ExtResource( 1 )
 "SwimmingAI",
 ]]
 
+editor/display_folded = true
 position = Vector2( -99.9701, -101.838 )
 z_index = 2
 input_pickable = false
@@ -448,6 +441,8 @@ autostart = false
 
 [node name="Sound" type="Node" parent="." index="1"]
 
+editor/display_folded = true
+
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Sound" index="0"]
 
 stream = null
@@ -458,6 +453,8 @@ mix_target = 0
 bus = "Master"
 
 [node name="Map" type="Node" parent="." index="2"]
+
+editor/display_folded = true
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="Map" index="0"]
 
@@ -661,44 +658,7 @@ position = Vector2( -0.22679, 20.1667 )
 scale = Vector2( 3.1925, 2.55128 )
 shape = SubResource( 8 )
 
-[node name="Water" type="Area2D" parent="." index="9"]
-
-position = Vector2( 450, -404 )
-scale = Vector2( 46.25, 12.6875 )
-input_pickable = true
-gravity_vec = Vector2( 0, 1 )
-gravity = 98.0
-linear_damp = 0.1
-angular_damp = 1.0
-audio_bus_override = false
-audio_bus_name = "Master"
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Water" index="0"]
-
-position = Vector2( 1.28379, 72.2389 )
-scale = Vector2( 2.56237, 3.31925 )
-shape = SubResource( 9 )
-_sections_unfolded = [ "Transform" ]
-
-[node name="Air" type="Area2D" parent="." index="10"]
-
-position = Vector2( 450, -404 )
-scale = Vector2( 46.25, 12.6875 )
-input_pickable = true
-gravity_vec = Vector2( 0, 1 )
-gravity = 98.0
-linear_damp = 0.1
-angular_damp = 1.0
-audio_bus_override = false
-audio_bus_name = "Master"
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Air" index="0"]
-
-position = Vector2( 5.55259, 4.80041 )
-scale = Vector2( 2.93774, 2.85705 )
-shape = SubResource( 10 )
-
-[node name="Button" type="Button" parent="." index="11"]
+[node name="Button" type="Button" parent="." index="9"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -722,10 +682,6 @@ group = null
 text = "Leave"
 flat = false
 align = 1
-
-[connection signal="body_entered" from="Water" to="KinematicBody2D" method="_on_Water_body_entered"]
-
-[connection signal="body_entered" from="Air" to="KinematicBody2D" method="_on_Area2D_body_entered"]
 
 [connection signal="pressed" from="Button" to="." method="_on_Button_pressed"]
 

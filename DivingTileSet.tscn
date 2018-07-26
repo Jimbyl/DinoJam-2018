@@ -35,17 +35,22 @@
 [ext_resource path="res://Tiles/Diving/utile34.png" type="Texture" id=33]
 [ext_resource path="res://Tiles/Diving/utile32.png" type="Texture" id=34]
 
-[sub_resource type="RectangleShape2D" id=19]
+[sub_resource type="RectangleShape2D" id=1]
 
 custom_solver_bias = 0.0
 extents = Vector2( 32, 32 )
 
-[sub_resource type="RectangleShape2D" id=10]
+[sub_resource type="RectangleShape2D" id=2]
 
 custom_solver_bias = 0.0
 extents = Vector2( 32, 32 )
 
-[sub_resource type="RectangleShape2D" id=20]
+[sub_resource type="RectangleShape2D" id=3]
+
+custom_solver_bias = 0.0
+extents = Vector2( 32, 32 )
+
+[sub_resource type="RectangleShape2D" id=4]
 
 custom_solver_bias = 0.0
 extents = Vector2( 32, 32 )
@@ -61,6 +66,21 @@ custom_solver_bias = 0.0
 extents = Vector2( 32, 32 )
 
 [sub_resource type="RectangleShape2D" id=7]
+
+custom_solver_bias = 0.0
+extents = Vector2( 32, 32 )
+
+[sub_resource type="RectangleShape2D" id=8]
+
+custom_solver_bias = 0.0
+extents = Vector2( 32, 32 )
+
+[sub_resource type="RectangleShape2D" id=9]
+
+custom_solver_bias = 0.0
+extents = Vector2( 32, 32 )
+
+[sub_resource type="RectangleShape2D" id=10]
 
 custom_solver_bias = 0.0
 extents = Vector2( 32, 32 )
@@ -81,26 +101,6 @@ custom_solver_bias = 0.0
 extents = Vector2( 32, 32 )
 
 [sub_resource type="RectangleShape2D" id=14]
-
-custom_solver_bias = 0.0
-extents = Vector2( 32, 32 )
-
-[sub_resource type="RectangleShape2D" id=15]
-
-custom_solver_bias = 0.0
-extents = Vector2( 32, 32 )
-
-[sub_resource type="RectangleShape2D" id=16]
-
-custom_solver_bias = 0.0
-extents = Vector2( 32, 32 )
-
-[sub_resource type="RectangleShape2D" id=17]
-
-custom_solver_bias = 0.0
-extents = Vector2( 32, 32 )
-
-[sub_resource type="RectangleShape2D" id=18]
 
 custom_solver_bias = 0.0
 extents = Vector2( 32, 32 )
@@ -128,7 +128,7 @@ bounce = 0.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Wood/StaticBody2D" index="0"]
 
-shape = SubResource( 19 )
+shape = SubResource( 1 )
 
 [node name="woodground" type="Sprite" parent="." index="1"]
 
@@ -151,7 +151,7 @@ bounce = 0.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="woodground/StaticBody2D" index="0"]
 
-shape = SubResource( 10 )
+shape = SubResource( 2 )
 
 [node name="sand" type="Sprite" parent="." index="2"]
 
@@ -174,7 +174,7 @@ bounce = 0.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="sand/StaticBody2D3" index="0"]
 
-shape = SubResource( 10 )
+shape = SubResource( 2 )
 
 [node name="sand ground" type="Sprite" parent="." index="3"]
 
@@ -197,7 +197,7 @@ bounce = 0.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="sand ground/StaticBody2D" index="0"]
 
-shape = SubResource( 20 )
+shape = SubResource( 3 )
 
 [node name="water" type="Sprite" parent="." index="4"]
 
@@ -239,7 +239,6 @@ polygon = PoolVector2Array( -32, 32, 32, -32, 32, 32 )
 
 [node name="wood corner bl" type="Sprite" parent="." index="7"]
 
-editor/display_folded = true
 position = Vector2( 352, 96 )
 texture = ExtResource( 8 )
 __meta__ = {
@@ -335,7 +334,7 @@ bounce = 0.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="log intersection/StaticBody2D" index="0"]
 
-shape = SubResource( 5 )
+shape = SubResource( 4 )
 
 [node name="log corner bg" type="Sprite" parent="." index="12"]
 
@@ -363,7 +362,7 @@ bounce = 0.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Log corner/StaticBody2D" index="0"]
 
-shape = SubResource( 6 )
+shape = SubResource( 5 )
 
 [node name="Log bg" type="Sprite" parent="." index="14"]
 
@@ -391,11 +390,10 @@ bounce = 0.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Log/StaticBody2D" index="0"]
 
-shape = SubResource( 7 )
+shape = SubResource( 6 )
 
 [node name="Sand Corner br" type="Sprite" parent="." index="16"]
 
-editor/display_folded = true
 position = Vector2( 160, 160 )
 texture = ExtResource( 17 )
 __meta__ = {
@@ -459,7 +457,7 @@ bounce = 0.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="rock transisiton center/StaticBody2D" index="0"]
 
-shape = SubResource( 11 )
+shape = SubResource( 7 )
 
 [node name="rock transistion corner left" type="Sprite" parent="." index="19"]
 
@@ -479,7 +477,7 @@ bounce = 0.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="rock transistion corner left/StaticBody2D" index="0"]
 
-shape = SubResource( 12 )
+shape = SubResource( 8 )
 
 [node name="Rock transistion corner right" type="Sprite" parent="." index="20"]
 
@@ -499,7 +497,7 @@ bounce = 0.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Rock transistion corner right/StaticBody2D" index="0"]
 
-shape = SubResource( 13 )
+shape = SubResource( 9 )
 
 [node name="Rock" type="Sprite" parent="." index="21"]
 
@@ -518,7 +516,7 @@ bounce = 0.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Rock/StaticBody2D" index="0"]
 
-shape = SubResource( 14 )
+shape = SubResource( 10 )
 
 [node name="cave bg" type="Sprite" parent="." index="22"]
 
@@ -542,7 +540,7 @@ bounce = 0.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="stone 1/StaticBody2D" index="0"]
 
-shape = SubResource( 15 )
+shape = SubResource( 11 )
 
 [node name="stone 2" type="Sprite" parent="." index="24"]
 
@@ -561,7 +559,7 @@ bounce = 0.0
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="stone 2/StaticBody2D" index="0"]
 
-shape = SubResource( 15 )
+shape = SubResource( 11 )
 
 [node name="stone 3" type="Sprite" parent="." index="25"]
 
@@ -580,7 +578,7 @@ bounce = 0.0
 
 [node name="CollisionShape2D3" type="CollisionShape2D" parent="stone 3/StaticBody2D" index="0"]
 
-shape = SubResource( 15 )
+shape = SubResource( 11 )
 
 [node name="stone 4" type="Sprite" parent="." index="26"]
 
@@ -599,7 +597,7 @@ bounce = 0.0
 
 [node name="CollisionShape2D4" type="CollisionShape2D" parent="stone 4/StaticBody2D" index="0"]
 
-shape = SubResource( 15 )
+shape = SubResource( 11 )
 
 [node name="bstone 1" type="Sprite" parent="." index="27"]
 
@@ -638,7 +636,7 @@ bounce = 0.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="stone corner/StaticBody2D" index="0"]
 
-shape = SubResource( 16 )
+shape = SubResource( 12 )
 
 [node name="stone out" type="Sprite" parent="." index="32"]
 
@@ -657,7 +655,7 @@ bounce = 0.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="stone out/StaticBody2D" index="0"]
 
-shape = SubResource( 17 )
+shape = SubResource( 13 )
 
 [node name="stone edge" type="Sprite" parent="." index="33"]
 
@@ -676,6 +674,6 @@ bounce = 0.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="stone edge/StaticBody2D" index="0"]
 
-shape = SubResource( 18 )
+shape = SubResource( 14 )
 
 
