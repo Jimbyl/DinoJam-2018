@@ -22,7 +22,9 @@ func _physics_process(delta):
 		get_node(\"Sprite\").set_flip_h(true)
 	if motion.x < 0:
 		get_node(\"Sprite\").set_flip_h(false)
-	get_node(\"HBoxContainer/Health\").set_text(str(health))"
+	get_node(\"HBoxContainer/Health\").set_text(str(health))
+	if health < 1:
+		queue_free()"
 
 [sub_resource type="RectangleShape2D" id=2]
 

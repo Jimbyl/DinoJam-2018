@@ -39,7 +39,7 @@ tracks/1/keys = {
 custom_solver_bias = 0.0
 extents = Vector2( 18.1062, 19.3319 )
 
-[node name="UrchinMonster" type="Node2D" index="0"]
+[node name="UrchinMonster" type="Node2D"]
 
 [node name="KinematicBody2D" type="KinematicBody2D" parent="." index="0" groups=[
 "SwimmingAI",

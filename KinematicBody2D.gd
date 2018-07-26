@@ -13,3 +13,5 @@ func _physics_process(delta):
 		player.motion += polar2cartesian(knockback, angle)
 		player.health -= 1
 	get_node("HBoxContainer/Health").set_text(str(health))
+	if health < 1:
+		queue_free()
