@@ -1,4 +1,4 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Sprites/Ships/starterShip.png" type="Texture" id=1]
 
@@ -14,6 +14,9 @@ var angle = 0
 var angleSpeed = 2
 
 func _physics_process(delta):
+	if speed > 0:
+		get_node(\"Particles2D\").set_emitting(true)
+		get_node(\"Particles2D2\").set_emitting(true)
 	#change direction
 	if Input.is_action_pressed('ui_right'):
 		angle+=angleSpeed*speed/speedMax+.25
@@ -34,13 +37,107 @@ func _physics_process(delta):
 		speed -= fric
 		if speed < 0 or is_on_wall():
 			speed = 0
+			get_node(\"Particles2D\").set_emitting(false)
+			get_node(\"Particles2D2\").set_emitting(false)
 	#update speed and direction
 	motion.x = speed*cos((angle)*PI/180)
 	motion.y = speed*sin((angle)*PI/180)
 	rotation_degrees = angle-90
 	move_and_slide(motion)"
 
-[node name="Dinghy1" type="Node2D"]
+[sub_resource type="Curve" id=4]
+
+min_value = 0.0
+max_value = 1.0
+bake_resolution = 100
+_data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 1 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=5]
+
+flags = 4
+width = 2048
+curve = SubResource( 4 )
+
+[sub_resource type="ParticlesMaterial" id=2]
+
+render_priority = 0
+trail_divisor = 1
+emission_shape = 0
+flag_align_y = false
+flag_rotate_y = false
+flag_disable_z = true
+spread = 0.0
+flatness = 0.0
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 25.0
+initial_velocity_random = 0.0
+angular_velocity = 0.0
+angular_velocity_random = 0.0
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+linear_accel = 0.0
+linear_accel_random = 0.0
+radial_accel = 0.0
+radial_accel_random = 0.0
+tangential_accel = 0.0
+tangential_accel_random = 0.0
+damping = 0.0
+damping_random = 0.0
+angle = 0.0
+angle_random = 0.0
+scale = 4.0
+scale_random = 0.0
+scale_curve = SubResource( 5 )
+color = Color( 1, 1, 1, 1 )
+hue_variation = 0.0
+hue_variation_random = 0.0
+anim_speed = 0.0
+anim_speed_random = 0.0
+anim_offset = 0.0
+anim_offset_random = 0.0
+anim_loop = false
+_sections_unfolded = [ "Angle", "Color", "Gravity", "Initial Velocity", "Scale", "Spread", "Trail" ]
+
+[sub_resource type="ParticlesMaterial" id=3]
+
+render_priority = 0
+trail_divisor = 1
+emission_shape = 0
+flag_align_y = false
+flag_rotate_y = false
+flag_disable_z = true
+spread = 0.0
+flatness = 0.0
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 25.0
+initial_velocity_random = 0.0
+angular_velocity = 0.0
+angular_velocity_random = 0.0
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+linear_accel = 0.0
+linear_accel_random = 0.0
+radial_accel = 0.0
+radial_accel_random = 0.0
+tangential_accel = 0.0
+tangential_accel_random = 0.0
+damping = 0.0
+damping_random = 0.0
+angle = 0.0
+angle_random = 0.0
+scale = 4.0
+scale_random = 0.0
+color = Color( 1, 1, 1, 1 )
+hue_variation = 0.0
+hue_variation_random = 0.0
+anim_speed = 0.0
+anim_speed_random = 0.0
+anim_offset = 0.0
+anim_offset_random = 0.0
+anim_loop = false
+_sections_unfolded = [ "Gravity", "Initial Velocity", "Scale", "Spread" ]
+
+[node name="Dinghy1" type="Node2D" index="0"]
 
 _sections_unfolded = [ "Material", "Pause", "Transform", "Visibility" ]
 __meta__ = {
@@ -92,5 +189,54 @@ editor_draw_screen = true
 editor_draw_limits = false
 editor_draw_drag_margin = false
 _sections_unfolded = [ "Drag Margin", "Editor", "Limit", "Offset", "Pause", "Smoothing" ]
+
+[node name="Particles2D" type="Particles2D" parent="KinematicBody2D" index="3"]
+
+position = Vector2( -20.5619, -46.7783 )
+rotation = -3.14096
+z_index = -1
+emitting = false
+amount = 1000
+lifetime = 4.0
+one_shot = false
+preprocess = 0.0
+speed_scale = 1.0
+explosiveness = 0.0
+randomness = 0.0
+fixed_fps = 0
+fract_delta = true
+visibility_rect = Rect2( -100, -100, 200, 200 )
+local_coords = false
+draw_order = 0
+process_material = SubResource( 2 )
+texture = null
+normal_map = null
+h_frames = 1
+v_frames = 1
+_sections_unfolded = [ "Process Material", "Textures", "Time", "Z Index" ]
+
+[node name="Particles2D2" type="Particles2D" parent="KinematicBody2D" index="4"]
+
+position = Vector2( 22.104, -46.0072 )
+z_index = -1
+emitting = false
+amount = 1000
+lifetime = 4.0
+one_shot = false
+preprocess = 0.0
+speed_scale = 1.0
+explosiveness = 0.0
+randomness = 0.0
+fixed_fps = 0
+fract_delta = true
+visibility_rect = Rect2( -100, -100, 200, 200 )
+local_coords = false
+draw_order = 0
+process_material = SubResource( 3 )
+texture = null
+normal_map = null
+h_frames = 1
+v_frames = 1
+_sections_unfolded = [ "Process Material", "Textures", "Time", "Z Index" ]
 
 
