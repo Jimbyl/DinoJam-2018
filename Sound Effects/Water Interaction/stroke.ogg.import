@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/stroke.ogg-974d6a16a7d91809ed5923e6e85fccfd.oggstr"
+
+[deps]
+
+source_file="res://Sound Effects/Water Interaction/stroke.ogg"
+dest_files=[ "res://.import/stroke.ogg-974d6a16a7d91809ed5923e6e85fccfd.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

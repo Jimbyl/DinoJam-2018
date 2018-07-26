@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=2]
+[gd_scene load_steps=33 format=2]
 
 [ext_resource path="res://Swimming.gd" type="Script" id=1]
 [ext_resource path="res://Sprites/Player/charhatscuba/Charhatscuba4.png" type="Texture" id=2]
@@ -14,15 +14,17 @@
 [ext_resource path="res://Sound Effects/Water Interaction/jump in water.ogg" type="AudioStream" id=12]
 [ext_resource path="res://Sound Effects/Water Interaction/get out.ogg" type="AudioStream" id=13]
 [ext_resource path="res://Sound Effects/GunshotRifle_BW.57683.ogg" type="AudioStream" id=14]
-[ext_resource path="res://Sprites/Decor/Radio.png" type="Texture" id=15]
-[ext_resource path="res://Music/ontheboat.ogg" type="AudioStream" id=16]
-[ext_resource path="res://Sprites/Particles/note.png" type="Texture" id=17]
-[ext_resource path="res://GUI.tscn" type="PackedScene" id=18]
-[ext_resource path="res://coin.tscn" type="PackedScene" id=19]
-[ext_resource path="res://Map scenes/Maptest.tscn" type="PackedScene" id=20]
-[ext_resource path="res://Database/DiveItems/CommonDrops/ItemWood.tscn" type="PackedScene" id=21]
-[ext_resource path="res://Sprites/Ships/boat side.png" type="Texture" id=22]
-[ext_resource path="res://Sprites/Ships/boat sidefore.png" type="Texture" id=23]
+[ext_resource path="res://Sound Effects/Water Interaction/stroke.ogg" type="AudioStream" id=15]
+[ext_resource path="res://Sprites/Decor/Radio.png" type="Texture" id=16]
+[ext_resource path="res://Music/ontheboat.ogg" type="AudioStream" id=17]
+[ext_resource path="res://Sprites/Particles/note.png" type="Texture" id=18]
+[ext_resource path="res://GUI.tscn" type="PackedScene" id=19]
+[ext_resource path="res://Sprites/Particles/bubble.png" type="Texture" id=20]
+[ext_resource path="res://coin.tscn" type="PackedScene" id=21]
+[ext_resource path="res://Map scenes/Maptest.tscn" type="PackedScene" id=22]
+[ext_resource path="res://Database/DiveItems/CommonDrops/ItemWood.tscn" type="PackedScene" id=23]
+[ext_resource path="res://Sprites/Ships/boat side.png" type="Texture" id=24]
+[ext_resource path="res://Sprites/Ships/boat sidefore.png" type="Texture" id=25]
 
 [sub_resource type="GDScript" id=1]
 
@@ -91,6 +93,8 @@ func _physics_process(delta):
 		print(\"FALLING\")
 	if Input.is_action_just_pressed('ui_up') and can_jump == 1 :#swim up
 		get_node(\"AnimatedSprite\").set_frame(0) #reset swim stroke on up input
+		if in_water == 1:
+			get_node(\"SFX/Stroke\")._set_playing(true)
 		if in_water == 0: #out of water, never do the stroke animation on jump
 			get_node(\"AnimatedSprite\").set_animation(\"Jump\")
 		elif grounded == 1:#set sprite to jump if on floor or to swim if not
@@ -145,6 +149,7 @@ func _physics_process(delta):
 			get_node(\"SFX/Enter Water\")._set_playing(true)
 			get_node(\"SFX/Shoot\").set_bus(\"Underwater\")
 			get_node(\"SFX/Music\")._set_playing(true)
+			get_node(\"waterpart\").set_emitting(true)
 		in_water = 1
 	
 	if (Input.is_action_just_pressed(\"ui_accept\") and can_shoot):
@@ -250,6 +255,46 @@ extents = Vector2( 10.8974, 23 )
 custom_solver_bias = 0.0
 radius = 10.0
 
+[sub_resource type="ParticlesMaterial" id=7]
+
+render_priority = 0
+trail_divisor = 1
+emission_shape = 1
+emission_sphere_radius = 10.98
+flag_align_y = false
+flag_rotate_y = false
+flag_disable_z = true
+spread = 64.09
+flatness = 0.0
+gravity = Vector3( 0, -7, 0 )
+initial_velocity = 23.1
+initial_velocity_random = 0.0
+angular_velocity = 0.0
+angular_velocity_random = 0.0
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+linear_accel = 0.0
+linear_accel_random = 0.0
+radial_accel = 0.0
+radial_accel_random = 0.0
+tangential_accel = 0.0
+tangential_accel_random = 0.0
+damping = 0.0
+damping_random = 0.0
+angle = 0.0
+angle_random = 0.0
+scale = 0.96
+scale_random = 0.89
+color = Color( 1, 1, 1, 1 )
+hue_variation = 0.0
+hue_variation_random = 0.0
+anim_speed = 0.0
+anim_speed_random = 0.0
+anim_offset = 0.0
+anim_offset_random = 0.0
+anim_loop = false
+_sections_unfolded = [ "Angle", "Emission Shape", "Gravity", "Initial Velocity", "Scale", "Spread" ]
+
 [sub_resource type="RectangleShape2D" id=6]
 
 custom_solver_bias = 0.0
@@ -263,7 +308,6 @@ script = ExtResource( 1 )
 "SwimmingAI",
 ]]
 
-editor/display_folded = true
 position = Vector2( -99.9701, -101.838 )
 z_index = 2
 input_pickable = false
@@ -292,7 +336,7 @@ editor/display_folded = true
 [node name="Music" type="AudioStreamPlayer" parent="Player/SFX" index="0"]
 
 stream = ExtResource( 11 )
-volume_db = 0.0
+volume_db = -5.0
 pitch_scale = 1.0
 autoplay = false
 mix_target = 0
@@ -301,7 +345,7 @@ bus = "Master"
 [node name="Enter Water" type="AudioStreamPlayer" parent="Player/SFX" index="1"]
 
 stream = ExtResource( 12 )
-volume_db = 0.0
+volume_db = -10.0
 pitch_scale = 1.0
 autoplay = false
 mix_target = 0
@@ -310,7 +354,7 @@ bus = "Master"
 [node name="Exit Water" type="AudioStreamPlayer" parent="Player/SFX" index="2"]
 
 stream = ExtResource( 13 )
-volume_db = 0.0
+volume_db = -10.0
 pitch_scale = 1.0
 autoplay = false
 mix_target = 0
@@ -325,11 +369,20 @@ autoplay = false
 mix_target = 0
 bus = "Master"
 
-[node name="Radio" type="Sprite" parent="Player/SFX" index="4"]
+[node name="Stroke" type="AudioStreamPlayer" parent="Player/SFX" index="4"]
+
+stream = ExtResource( 15 )
+volume_db = 6.05
+pitch_scale = 1.0
+autoplay = false
+mix_target = 0
+bus = "Master"
+
+[node name="Radio" type="Sprite" parent="Player/SFX" index="5"]
 
 position = Vector2( 91.2681, -91.7314 )
 z_index = 2
-texture = ExtResource( 15 )
+texture = ExtResource( 16 )
 _sections_unfolded = [ "Z Index" ]
 __meta__ = {
 "_edit_group_": true
@@ -337,7 +390,7 @@ __meta__ = {
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Player/SFX/Radio" index="0"]
 
-stream = ExtResource( 16 )
+stream = ExtResource( 17 )
 volume_db = -1.0
 pitch_scale = 1.0
 autoplay = false
@@ -362,7 +415,7 @@ visibility_rect = Rect2( -100, -100, 200, 200 )
 local_coords = true
 draw_order = 0
 process_material = SubResource( 3 )
-texture = ExtResource( 17 )
+texture = ExtResource( 18 )
 normal_map = null
 h_frames = 1
 v_frames = 1
@@ -370,6 +423,7 @@ _sections_unfolded = [ "Process Material", "Textures", "Time" ]
 
 [node name="Camera2D" type="Camera2D" parent="Player" index="2"]
 
+editor/display_folded = true
 anchor_mode = 1
 rotating = false
 current = true
@@ -394,7 +448,7 @@ editor_draw_limits = false
 editor_draw_drag_margin = false
 _sections_unfolded = [ "Drag Margin", "Limit", "Smoothing" ]
 
-[node name="gui" parent="Player/Camera2D" index="0" instance=ExtResource( 18 )]
+[node name="gui" parent="Player/Camera2D" index="0" instance=ExtResource( 19 )]
 
 margin_left = -510.0
 margin_top = -298.0
@@ -426,33 +480,58 @@ wait_time = 1.0
 one_shot = false
 autostart = false
 
+[node name="waterpart" type="Particles2D" parent="Player" index="7"]
+
+position = Vector2( 2.15147, 29.6871 )
+rotation = 1.55583
+z_index = 3
+emitting = false
+amount = 20
+lifetime = 6.0
+one_shot = true
+preprocess = 0.0
+speed_scale = 1.0
+explosiveness = 0.75
+randomness = 0.0
+fixed_fps = 0
+fract_delta = true
+visibility_rect = Rect2( -100, -100, 200, 200 )
+local_coords = false
+draw_order = 0
+process_material = SubResource( 7 )
+texture = ExtResource( 20 )
+normal_map = null
+h_frames = 1
+v_frames = 1
+_sections_unfolded = [ "Process Material", "Textures", "Time", "Z Index" ]
+
 [node name="Coins" type="Node2D" parent="." index="1"]
 
 position = Vector2( -504.701, -255.956 )
 z_index = 1
 _sections_unfolded = [ "Visibility", "Z Index" ]
 
-[node name="coin2" parent="Coins" index="0" instance=ExtResource( 19 )]
+[node name="coin2" parent="Coins" index="0" instance=ExtResource( 21 )]
 
 position = Vector2( 353.798, 126.979 )
 
-[node name="coin3" parent="Coins" index="1" instance=ExtResource( 19 )]
+[node name="coin3" parent="Coins" index="1" instance=ExtResource( 21 )]
 
 position = Vector2( 407.762, 132.564 )
 
-[node name="coin4" parent="Coins" index="2" instance=ExtResource( 19 )]
+[node name="coin4" parent="Coins" index="2" instance=ExtResource( 21 )]
 
 position = Vector2( 481.797, 132.398 )
 
-[node name="coin5" parent="Coins" index="3" instance=ExtResource( 19 )]
+[node name="coin5" parent="Coins" index="3" instance=ExtResource( 21 )]
 
 position = Vector2( 569.051, 133.83 )
 
-[node name="coin6" parent="Coins" index="4" instance=ExtResource( 19 )]
+[node name="coin6" parent="Coins" index="4" instance=ExtResource( 21 )]
 
 position = Vector2( 636.259, 135.262 )
 
-[node name="Map" parent="." index="2" instance=ExtResource( 20 )]
+[node name="Map" parent="." index="2" instance=ExtResource( 22 )]
 
 [node name="monster cage" type="StaticBody2D" parent="." index="3"]
 
@@ -475,7 +554,7 @@ scale = Vector2( 3.1925, 2.55128 )
 shape = SubResource( 6 )
 _sections_unfolded = [ "Transform", "Z Index" ]
 
-[node name="ItemWood" parent="." index="4" instance=ExtResource( 21 )]
+[node name="ItemWood" parent="." index="4" instance=ExtResource( 23 )]
 
 position = Vector2( 122.095, -189.445 )
 _sections_unfolded = [ "Transform", "Z Index" ]
@@ -515,7 +594,7 @@ __meta__ = {
 
 [node name="Sprite" type="Sprite" parent="Boat" index="0"]
 
-texture = ExtResource( 22 )
+texture = ExtResource( 24 )
 _sections_unfolded = [ "Transform" ]
 __meta__ = {
 "_edit_group_": true
@@ -544,7 +623,7 @@ polygon = PoolVector2Array( -75.722, -72.8784, -11.4919, -75.937, 36.0179, -72.2
 [node name="Sprite" type="Sprite" parent="Boat/Sprite" index="1"]
 
 z_index = 3
-texture = ExtResource( 23 )
+texture = ExtResource( 25 )
 _sections_unfolded = [ "Z Index" ]
 
 [connection signal="pressed" from="Button" to="." method="_on_Button_pressed"]
