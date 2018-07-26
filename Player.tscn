@@ -167,11 +167,6 @@ animations = [ {
 "name": "Swim",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 1 ), ExtResource( 2 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ) ],
-"loop": false,
-"name": "Stroke",
-"speed": 10.0
-}, {
 "frames": [ ExtResource( 6 ) ],
 "loop": true,
 "name": "Float",
@@ -186,6 +181,11 @@ animations = [ {
 "loop": true,
 "name": "Ground",
 "speed": 5.0
+}, {
+"frames": [ ExtResource( 1 ), ExtResource( 2 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ) ],
+"loop": false,
+"name": "Stroke",
+"speed": 10.0
 }, {
 "frames": [ ExtResource( 6 ) ],
 "loop": true,
@@ -377,22 +377,12 @@ editor_draw_limits = false
 editor_draw_drag_margin = false
 _sections_unfolded = [ "Drag Margin", "Limit", "Smoothing" ]
 
-[node name="gui" type="Control" parent="Camera2D" index="0" instance=ExtResource( 17 )]
+[node name="gui" parent="Camera2D" index="0" instance=ExtResource( 17 )]
 
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 1.0
-anchor_bottom = 1.0
 margin_left = -510.0
 margin_top = -298.0
 margin_right = 446.0
 margin_bottom = 238.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 0
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
 _sections_unfolded = [ "Focus", "Grow Direction", "Hint", "Margin", "Rect" ]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." index="3"]
