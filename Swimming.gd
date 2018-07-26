@@ -6,7 +6,7 @@ var money_collected = 0
 func _ready():
 	var map = 0
 	randomize ()
-	map = randi() % 5 + 1   #comment this out to load default map
+	map = randi() % 5 + 1   #comment this out to load default map or to force a map
 	if map != 0 :
 		var testmap = get_node("Map")
 		remove_child(testmap)
