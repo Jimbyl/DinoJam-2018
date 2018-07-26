@@ -30,7 +30,7 @@ func _physics_process(delta):
 custom_solver_bias = 0.0
 extents = Vector2( 26.1328, 20.454 )
 
-[node name="FollowMonster" type="Node2D" index="0"]
+[node name="FollowMonster" type="Node2D"]
 
 [node name="KinematicBody2D" type="KinematicBody2D" parent="." index="0" groups=[
 "SwimmingAI",
