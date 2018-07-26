@@ -18,9 +18,9 @@
 [ext_resource path="res://Music/ontheboat.ogg" type="AudioStream" id=16]
 [ext_resource path="res://Sprites/Particles/note.png" type="Texture" id=17]
 [ext_resource path="res://GUI.tscn" type="PackedScene" id=18]
-[ext_resource path="res://Map scenes/Maptest.tscn" type="PackedScene" id=19]
-[ext_resource path="res://Database/DiveItems/CommonDrops/ItemWood.tscn" type="PackedScene" id=20]
-[ext_resource path="res://coin.tscn" type="PackedScene" id=21]
+[ext_resource path="res://coin.tscn" type="PackedScene" id=19]
+[ext_resource path="res://Map scenes/Maptest.tscn" type="PackedScene" id=20]
+[ext_resource path="res://Database/DiveItems/CommonDrops/ItemWood.tscn" type="PackedScene" id=21]
 [ext_resource path="res://Tiles/Diving.tres" type="TileSet" id=22]
 
 [sub_resource type="GDScript" id=1]
@@ -254,7 +254,7 @@ radius = 10.0
 custom_solver_bias = 0.0
 extents = Vector2( 10, 10 )
 
-[node name="Swimming" type="Node"]
+[node name="Swimming" type="Node" index="0"]
 
 script = ExtResource( 1 )
 
@@ -425,9 +425,35 @@ wait_time = 1.0
 one_shot = false
 autostart = false
 
-[node name="Map" parent="." index="1" instance=ExtResource( 19 )]
+[node name="Coins" type="Node2D" parent="." index="1"]
 
-[node name="monster cage" type="StaticBody2D" parent="." index="2"]
+position = Vector2( -504.701, -255.956 )
+z_index = 1
+_sections_unfolded = [ "Visibility", "Z Index" ]
+
+[node name="coin2" parent="Coins" index="0" instance=ExtResource( 19 )]
+
+position = Vector2( 353.798, 126.979 )
+
+[node name="coin3" parent="Coins" index="1" instance=ExtResource( 19 )]
+
+position = Vector2( 407.762, 132.564 )
+
+[node name="coin4" parent="Coins" index="2" instance=ExtResource( 19 )]
+
+position = Vector2( 481.797, 132.398 )
+
+[node name="coin5" parent="Coins" index="3" instance=ExtResource( 19 )]
+
+position = Vector2( 569.051, 133.83 )
+
+[node name="coin6" parent="Coins" index="4" instance=ExtResource( 19 )]
+
+position = Vector2( 636.259, 135.262 )
+
+[node name="Map" parent="." index="2" instance=ExtResource( 20 )]
+
+[node name="monster cage" type="StaticBody2D" parent="." index="3"]
 
 editor/display_folded = true
 position = Vector2( 510, -10 )
@@ -448,37 +474,10 @@ scale = Vector2( 3.1925, 2.55128 )
 shape = SubResource( 6 )
 _sections_unfolded = [ "Transform", "Z Index" ]
 
-[node name="ItemWood" parent="." index="3" instance=ExtResource( 20 )]
+[node name="ItemWood" parent="." index="4" instance=ExtResource( 21 )]
 
 position = Vector2( 122.095, -189.445 )
-
-[node name="Coins" type="Node" parent="." index="4"]
-
-editor/display_folded = true
-
-[node name="coin" parent="Coins" index="0" instance=ExtResource( 21 )]
-
-position = Vector2( -500, -100 )
-
-[node name="coin2" parent="Coins" index="1" instance=ExtResource( 21 )]
-
-position = Vector2( 353.798, 126.979 )
-
-[node name="coin3" parent="Coins" index="2" instance=ExtResource( 21 )]
-
-position = Vector2( 407.762, 132.564 )
-
-[node name="coin4" parent="Coins" index="3" instance=ExtResource( 21 )]
-
-position = Vector2( 481.797, 132.398 )
-
-[node name="coin5" parent="Coins" index="4" instance=ExtResource( 21 )]
-
-position = Vector2( 569.051, 133.83 )
-
-[node name="coin6" parent="Coins" index="5" instance=ExtResource( 21 )]
-
-position = Vector2( 636.259, 135.262 )
+_sections_unfolded = [ "Transform", "Z Index" ]
 
 [node name="Button" type="Button" parent="." index="5"]
 

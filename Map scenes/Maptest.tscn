@@ -21,7 +21,6 @@ width = 2000
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="." index="0"]
 
-editor/display_folded = true
 layer = -1
 offset = Vector2( 0, 0 )
 rotation = 0.0
@@ -36,29 +35,32 @@ scroll_ignore_camera_zoom = true
 
 [node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground" index="0"]
 
+z_index = -1
 motion_scale = Vector2( 0.1, 0.05 )
 motion_offset = Vector2( 0, 64 )
 motion_mirroring = Vector2( 0, 0 )
-_sections_unfolded = [ "Motion" ]
+_sections_unfolded = [ "Motion", "Z Index" ]
 
 [node name="Sky" type="Sprite" parent="ParallaxBackground/ParallaxLayer" index="0"]
 
+z_index = -1
 texture = ExtResource( 1 )
 offset = Vector2( 0, -512 )
 region_enabled = true
 region_rect = Rect2( 0, 0, 4096, 1024 )
-_sections_unfolded = [ "Offset", "Region", "Transform" ]
+_sections_unfolded = [ "Offset", "Region", "Transform", "Z Index" ]
 
 [node name="Sky2" type="Sprite" parent="ParallaxBackground/ParallaxLayer" index="1"]
 
 modulate = Color( 0.648438, 0.868164, 1, 1 )
 scale = Vector2( 1, 0.25 )
+z_index = -1
 texture = ExtResource( 1 )
 offset = Vector2( 0, 512 )
 flip_v = true
 region_enabled = true
 region_rect = Rect2( 0, 0, 4096, 1024 )
-_sections_unfolded = [ "Offset", "Region", "Transform", "Visibility" ]
+_sections_unfolded = [ "Offset", "Region", "Transform", "Visibility", "Z Index" ]
 
 [node name="water overlay" type="Sprite" parent="." index="1"]
 
