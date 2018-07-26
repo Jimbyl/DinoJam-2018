@@ -7,7 +7,7 @@ var knockback = 100
 var health = 4
 func _physics_process(delta):
 	var player = get_tree().get_nodes_in_group("SwimmingAI")[0]
-	var monster = get_tree().get_nodes_in_group("SwimmingAI")[1]
+	var monster = get_tree().get_nodes_in_group("SwimmingAI")[2]
 	var angle = monster.get_angle_to(player.position)
 	motion = polar2cartesian(speed, angle)
 	if(global_position.distance_to(player.position) < 60): #attack player
