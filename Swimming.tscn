@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=2]
+[gd_scene load_steps=30 format=2]
 
 [ext_resource path="res://Swimming.gd" type="Script" id=1]
 [ext_resource path="res://Sprites/Player/charhatscuba/Charhatscuba4.png" type="Texture" id=2]
@@ -21,7 +21,8 @@
 [ext_resource path="res://coin.tscn" type="PackedScene" id=19]
 [ext_resource path="res://Map scenes/Maptest.tscn" type="PackedScene" id=20]
 [ext_resource path="res://Database/DiveItems/CommonDrops/ItemWood.tscn" type="PackedScene" id=21]
-[ext_resource path="res://Tiles/Diving.tres" type="TileSet" id=22]
+[ext_resource path="res://Sprites/Ships/boat side.png" type="Texture" id=22]
+[ext_resource path="res://Sprites/Ships/boat sidefore.png" type="Texture" id=23]
 
 [sub_resource type="GDScript" id=1]
 
@@ -485,10 +486,10 @@ anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = -50.0
-margin_top = -170.0
-margin_right = -1.0
-margin_bottom = -150.0
+margin_left = -185.0
+margin_top = -114.0
+margin_right = -136.0
+margin_bottom = -94.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 focus_mode = 2
@@ -506,31 +507,45 @@ align = 1
 
 [node name="Boat" type="Node2D" parent="." index="6"]
 
-editor/display_folded = true
+position = Vector2( 0, -68 )
+_sections_unfolded = [ "Transform", "Z Index" ]
 __meta__ = {
 "_edit_group_": true
 }
 
-[node name="TileMap" type="TileMap" parent="Boat" index="0"]
+[node name="Sprite" type="Sprite" parent="Boat" index="0"]
 
-mode = 0
-tile_set = ExtResource( 22 )
-cell_size = Vector2( 64, 64 )
-cell_quadrant_size = 16
-cell_custom_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
-cell_half_offset = 2
-cell_tile_origin = 0
-cell_y_sort = false
-cell_clip_uv = false
-collision_use_kinematic = false
-collision_friction = 1.0
-collision_bounce = 0.0
+texture = ExtResource( 22 )
+_sections_unfolded = [ "Transform" ]
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Boat/Sprite" index="0"]
+
+input_pickable = false
 collision_layer = 1
 collision_mask = 1
-occluder_light_mask = 1
-format = 1
-tile_data = PoolIntArray( -262144, -1610612720, 0, -196608, -1610612720, 0, -65540, 1610612751, 0, -131072, -1610612720, 0, -131069, -1610612721, 0, -4, 5, 0, -3, 17, 0, -2, 17, 0, -1, 17, 0, -65536, 17, 0, -65535, 17, 0, -65534, 17, 0, -65533, 5, 0 )
-_sections_unfolded = [ "Collision" ]
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Boat/Sprite/StaticBody2D" index="0"]
+
+build_mode = 0
+polygon = PoolVector2Array( -251.214, 0.479618, -240.149, 38.8989, -199.579, 75.1667, -147.329, 96.3741, 223.648, 96.3741, 235.327, 78.8549, 239.938, 50.5783, 239.938, 6.6267 )
+
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="Boat/Sprite/StaticBody2D" index="1"]
+
+build_mode = 0
+polygon = PoolVector2Array( -75.722, -72.8784, -11.4919, -75.937, 36.0179, -72.2667, 113.094, -56.7699, 140.417, -48.4098, 144.292, -44.3317, 152.04, -44.1278, 151.836, -55.1387, 123.697, -80.0151, 58.6514, -92.4533, 7.87904, -99.9978, -32.0863, -99.7939, -56.1471, -96.1236, -59.6135, -91.8416, -71.8478, -88.1713 )
+
+[node name="Sprite" type="Sprite" parent="Boat/Sprite" index="1"]
+
+z_index = 3
+texture = ExtResource( 23 )
+_sections_unfolded = [ "Z Index" ]
 
 [connection signal="pressed" from="Button" to="." method="_on_Button_pressed"]
 
