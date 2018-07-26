@@ -3,12 +3,12 @@
 [ext_resource path="res://Swimming.gd" type="Script" id=1]
 [ext_resource path="res://Sprites/Player/charhatscuba/Charhatscuba2.png" type="Texture" id=2]
 [ext_resource path="res://Sprites/Player/charhatscuba/Charhatscuba1.png" type="Texture" id=3]
-[ext_resource path="res://Sprites/Player/charhatscuba/Charhatscuba3.png" type="Texture" id=4]
-[ext_resource path="res://Sprites/Player/charhatscuba/Charhatscuba4.png" type="Texture" id=5]
-[ext_resource path="res://Sprites/Player/charhatscuba/Charhatscuba5.png" type="Texture" id=6]
-[ext_resource path="res://Sprites/Player/charhatscuba/Charhatscuba6.png" type="Texture" id=7]
-[ext_resource path="res://Sprites/Player/charhatscuba/Charhatscuba7.png" type="Texture" id=8]
-[ext_resource path="res://Sprites/Player/charhatscuba/Charhatscuba8.png" type="Texture" id=9]
+[ext_resource path="res://Sprites/Player/charhatscuba/Charhatscuba4.png" type="Texture" id=4]
+[ext_resource path="res://Sprites/Player/charhatscuba/Charhatscuba5.png" type="Texture" id=5]
+[ext_resource path="res://Sprites/Player/charhatscuba/Charhatscuba6.png" type="Texture" id=6]
+[ext_resource path="res://Sprites/Player/charhatscuba/Charhatscuba7.png" type="Texture" id=7]
+[ext_resource path="res://Sprites/Player/charhatscuba/Charhatscuba8.png" type="Texture" id=8]
+[ext_resource path="res://Sprites/Player/charhatscuba/Charhatscuba3.png" type="Texture" id=9]
 [ext_resource path="res://AnimatedSprite.gd" type="Script" id=10]
 [ext_resource path="res://Music/Diving.ogg" type="AudioStream" id=11]
 [ext_resource path="res://Sound Effects/Water Interaction/jump in water.ogg" type="AudioStream" id=12]
@@ -40,6 +40,9 @@ var grounded = 0
 var in_water = 0
 var can_jump = 1
 
+var health = 4
+var breath = 100
+
 var can_shoot = true
 var timer = null
 var bullet_delay = 0.3
@@ -56,6 +59,12 @@ func on_timeout_complete():
 	can_shoot = true
 
 func _physics_process(delta):
+	get_node(\"Camera2D/gui/ViewportContainer/TextureRect2/HBoxContainer/health\").set_text(str(health))
+	get_node(\"Camera2D/gui/ViewportContainer/TextureRect2/HBoxContainer/breath\").set_text(str(breath))
+	if in_water == 1:
+		breath -= .1
+		if breath <= 0:
+			health -= 1
 	if is_on_floor():
 		grounded = 1
 		gravity = 0 
@@ -133,6 +142,7 @@ func _on_Area2D_body_entered(body):
 	setGravity = 12
 	friction = 10
 	grounded = 0
+	breath = 100
 	if in_water == 1:
 		get_node(\"SFX/Radio/AudioStreamPlayer2D\")._set_playing(true)
 		get_node(\"SFX/Exit Water\")._set_playing(true)
@@ -164,19 +174,9 @@ animations = [ {
 "name": "Ground",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 3 ), ExtResource( 2 ), ExtResource( 4 ), ExtResource( 2 ) ],
-"loop": true,
-"name": "Walk",
-"speed": 5.0
-}, {
 "frames": [ ExtResource( 3 ) ],
 "loop": true,
 "name": "Float",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ) ],
-"loop": true,
-"name": "Swim",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 3 ) ],
@@ -184,10 +184,20 @@ animations = [ {
 "name": "Jump",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ) ],
+"frames": [ ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ) ],
 "loop": false,
 "name": "Stroke",
 "speed": 10.0
+}, {
+"frames": [ ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ) ],
+"loop": true,
+"name": "Swim",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 3 ), ExtResource( 2 ), ExtResource( 9 ), ExtResource( 2 ) ],
+"loop": true,
+"name": "Walk",
+"speed": 5.0
 } ]
 _sections_unfolded = [ "Resource" ]
 
@@ -270,6 +280,7 @@ script = ExtResource( 1 )
 "SwimmingAI",
 ]]
 
+editor/display_folded = true
 position = Vector2( -99.9701, -101.838 )
 z_index = 2
 input_pickable = false
@@ -292,6 +303,8 @@ script = ExtResource( 10 )
 _sections_unfolded = [ "Transform", "Visibility", "Z Index" ]
 
 [node name="SFX" type="Node" parent="KinematicBody2D" index="1"]
+
+editor/display_folded = true
 
 [node name="Music" type="AudioStreamPlayer" parent="KinematicBody2D/SFX" index="0"]
 
@@ -435,6 +448,8 @@ mix_target = 0
 bus = "Master"
 
 [node name="Map" type="Node" parent="." index="2"]
+
+editor/display_folded = true
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="Map" index="0"]
 
