@@ -35,7 +35,7 @@ func _physics_process(delta):
 				speed = 0
 	elif speed > 0: #slowdown
 		speed -= fric
-		if speed < 0 or is_on_wall():
+		if speed <= 0 or is_on_wall():
 			speed = 0
 			get_node(\"Particles2D\").set_emitting(false)
 			get_node(\"Particles2D2\").set_emitting(false)
@@ -45,20 +45,20 @@ func _physics_process(delta):
 	rotation_degrees = angle-90
 	move_and_slide(motion)"
 
-[sub_resource type="Curve" id=4]
+[sub_resource type="Curve" id=2]
 
 min_value = 0.0
 max_value = 1.0
 bake_resolution = 100
 _data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 1 ), 0.0, 0.0, 0, 0 ]
 
-[sub_resource type="CurveTexture" id=5]
+[sub_resource type="CurveTexture" id=3]
 
 flags = 4
 width = 2048
-curve = SubResource( 4 )
+curve = SubResource( 2 )
 
-[sub_resource type="ParticlesMaterial" id=2]
+[sub_resource type="ParticlesMaterial" id=4]
 
 render_priority = 0
 trail_divisor = 1
@@ -87,7 +87,7 @@ angle = 0.0
 angle_random = 0.0
 scale = 4.0
 scale_random = 0.0
-scale_curve = SubResource( 5 )
+scale_curve = SubResource( 3 )
 color = Color( 1, 1, 1, 1 )
 hue_variation = 0.0
 hue_variation_random = 0.0
@@ -98,7 +98,7 @@ anim_offset_random = 0.0
 anim_loop = false
 _sections_unfolded = [ "Angle", "Color", "Gravity", "Initial Velocity", "Scale", "Spread", "Trail" ]
 
-[sub_resource type="ParticlesMaterial" id=3]
+[sub_resource type="ParticlesMaterial" id=5]
 
 render_priority = 0
 trail_divisor = 1
@@ -208,7 +208,7 @@ fract_delta = true
 visibility_rect = Rect2( -100, -100, 200, 200 )
 local_coords = false
 draw_order = 0
-process_material = SubResource( 2 )
+process_material = SubResource( 4 )
 texture = null
 normal_map = null
 h_frames = 1
@@ -232,7 +232,7 @@ fract_delta = true
 visibility_rect = Rect2( -100, -100, 200, 200 )
 local_coords = false
 draw_order = 0
-process_material = SubResource( 3 )
+process_material = SubResource( 5 )
 texture = null
 normal_map = null
 h_frames = 1
