@@ -1,13 +1,13 @@
 [gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Bullet.gd" type="Script" id=1]
-[ext_resource path="res://bubble.png" type="Texture" id=2]
-[ext_resource path="res://temp_bullet.png" type="Texture" id=3]
+[ext_resource path="res://Sprites/Particles/bubble.png" type="Texture" id=2]
+[ext_resource path="res://Sprites/Items/Weapons/Gun/bullet.png" type="Texture" id=3]
 
 [sub_resource type="CircleShape2D" id=1]
 
 custom_solver_bias = 0.0
-radius = 10.0
+radius = 5.80007
 
 [sub_resource type="CanvasItemMaterial" id=2]
 
@@ -38,25 +38,25 @@ emission_sphere_radius = 1.0
 flag_align_y = false
 flag_rotate_y = false
 flag_disable_z = true
-spread = 180.0
+spread = 0.0
 flatness = 0.0
 gravity = Vector3( 0, -75, 0 )
-initial_velocity = 20.0
-initial_velocity_random = 1.0
+initial_velocity = 39.88
+initial_velocity_random = 0.19
 angular_velocity = 0.0
-angular_velocity_random = 1.0
+angular_velocity_random = 0.0
 angular_velocity_curve = SubResource( 4 )
 orbit_velocity = 0.0
 orbit_velocity_random = 0.0
-linear_accel = 1.0
+linear_accel = 0.0
 linear_accel_random = 0.0
 radial_accel = 0.0
 radial_accel_random = 0.0
-tangential_accel = 1.0
-tangential_accel_random = 1.0
+tangential_accel = 0.0
+tangential_accel_random = 0.0
 damping = 0.0
 damping_random = 0.0
-angle = 1.0
+angle = 0.0
 angle_random = 0.0
 scale = 1.0
 scale_random = 0.0
@@ -68,7 +68,7 @@ anim_speed_random = 0.0
 anim_offset = 0.0
 anim_offset_random = 0.0
 anim_loop = false
-_sections_unfolded = [ "Angular Velocity", "Damping", "Emission Shape", "Gravity", "Initial Velocity", "Linear Accel", "Orbit Velocity", "Spread", "Tangential Accel" ]
+_sections_unfolded = [ "Emission Shape", "Gravity", "Initial Velocity", "Spread" ]
 
 [sub_resource type="CanvasItemMaterial" id=6]
 
@@ -76,7 +76,7 @@ render_priority = 0
 blend_mode = 0
 light_mode = 0
 
-[node name="Area2D" type="Area2D"]
+[node name="Area2D" type="Area2D" index="0"]
 
 input_pickable = true
 gravity_vec = Vector2( 0, 1 )
@@ -101,7 +101,7 @@ lifetime = 1.5
 one_shot = true
 preprocess = 0.0
 speed_scale = 1.0
-explosiveness = 0.3
+explosiveness = 0.44
 randomness = 0.0
 fixed_fps = 0
 fract_delta = true
@@ -113,7 +113,7 @@ texture = ExtResource( 2 )
 normal_map = null
 h_frames = 1
 v_frames = 1
-_sections_unfolded = [ "Material", "Process Material", "Time" ]
+_sections_unfolded = [ "Material", "Process Material", "Textures", "Time" ]
 
 [node name="Sprite" type="Sprite" parent="." index="2"]
 

@@ -9,6 +9,9 @@ onready var speed_y = 0
 
 func _ready():
 	set_process(true)
+	var position = get_global_position()
+	if position.y > 0:
+		get_node("Particles2D").set_emitting(true)
 
 func _process(delta):
 	var motion = Vector2(speed_x, speed_y) * BULLET_SPEED
