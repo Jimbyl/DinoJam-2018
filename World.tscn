@@ -17,8 +17,6 @@ func _on_TextureButton_pressed():
 
 [node name="Map" type="Node" parent="." index="0"]
 
-editor/display_folded = true
-
 [node name="TileMap" type="TileMap" parent="Map" index="0"]
 
 position = Vector2( -119.13, 0 )
