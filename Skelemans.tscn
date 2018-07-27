@@ -1,0 +1,74 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://Sprites/Mobs/Skeleton1.png" type="Texture" id=1]
+[ext_resource path="res://Sprites/Mobs/Skeleton2.png" type="Texture" id=2]
+[ext_resource path="res://Sprites/Mobs/Skeleton3.png" type="Texture" id=3]
+[ext_resource path="res://Sprites/Mobs/Skeleton4.png" type="Texture" id=4]
+
+[sub_resource type="GDScript" id=3]
+
+script/source = "extends KinematicBody2D
+
+
+onready var spriteNode = get_node(\"AnimatedSprite\")
+var motion = Vector2()
+var normalVec = Vector2(0,-1)
+var gravity = 6
+var speedMax = 100
+var acc = 4
+var health = 6
+func _physics_process(delta):
+	var player = get_tree().get_nodes_in_group(\"SwimmingAI\")[0]
+	var angle = get_angle_to(player.global_position) + PI/2
+	motion.x += sign(angle)*acc
+	if motion.x >= speedMax:
+		motion.x = speedMax
+	spriteNode.set_flip_h(sign(angle) == 1)
+	motion.y += gravity
+	if(is_on_floor()):
+		motion.y = 0
+		spriteNode.playing = true
+		if player.global_position.y+50 < global_position.y:
+			motion.y = -300
+	else:
+		spriteNode.playing = false
+	move_and_slide(motion, normalVec)
+	
+	if health < 1:
+		queue_free()"
+
+[sub_resource type="RectangleShape2D" id=1]
+
+custom_solver_bias = 0.0
+extents = Vector2( 22.6476, 40.6341 )
+
+[sub_resource type="SpriteFrames" id=2]
+
+animations = [ {
+"frames": [ ExtResource( 1 ), ExtResource( 2 ), ExtResource( 3 ), ExtResource( 4 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
+[node name="Skelemans" type="Node2D" index="0"]
+
+[node name="KinematicSkeleman" type="KinematicBody2D" parent="." index="0"]
+
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+collision/safe_margin = 0.08
+script = SubResource( 3 )
+
+[node name="Collision" type="CollisionShape2D" parent="KinematicSkeleman" index="0"]
+
+position = Vector2( -2, 4 )
+shape = SubResource( 1 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="KinematicSkeleman" index="1"]
+
+frames = SubResource( 2 )
+animation = "default"
+
+
