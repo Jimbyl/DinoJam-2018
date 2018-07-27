@@ -4,23 +4,23 @@ extends Node
 
 var in_swim = 0
 
-onready var itemList = get_node("Node2D/Panel/ItemList")
+onready var itemList = get_node("Panel/ItemList")
 
 # WindowDialog_AddItemWindow Variables.
-onready var addItemWindow = get_node("Node2D/Panel/WindowDialog_AddItemWindow")
-onready var addItemWindow_SpinBox_ItemId = get_node("Node2D/Panel/WindowDialog_AddItemWindow/AddIemWindow_Spinbox_ItemId")
+onready var addItemWindow = get_node("Panel/WindowDialog_AddItemWindow")
+onready var addItemWindow_SpinBox_ItemId = get_node("Panel/WindowDialog_AddItemWindow/AddIemWindow_Spinbox_ItemId")
 
 # WindowDialog_ItemMenu Variables.
-onready var itemMenu = get_node("Node2D/Panel/WindowDialog_ItemMenu")
-onready var itemMenu_TextureFrame_Icon = get_node("Node2D/Panel/WindowDialog_ItemMenu/ItemMenu_TextureFrame_Icon")
-onready var itemMenu_RichTextLabel_ItemInfo = get_node("Node2D/Panel/WindowDialog_ItemMenu/ItemMenu_RichTextLabel_ItemInfo")
-onready var itemMenu_Button_DropItem = get_node("Node2D/Panel/WindowDialog_ItemMenu/ItemMenu_Button_DropItem")
+onready var itemMenu = get_node("Panel/WindowDialog_ItemMenu")
+onready var itemMenu_TextureFrame_Icon = get_node("Panel/WindowDialog_ItemMenu/ItemMenu_TextureFrame_Icon")
+onready var itemMenu_RichTextLabel_ItemInfo = get_node("Panel/WindowDialog_ItemMenu/ItemMenu_RichTextLabel_ItemInfo")
+onready var itemMenu_Button_DropItem = get_node("Panel/WindowDialog_ItemMenu/ItemMenu_Button_DropItem")
 var activeItemSlot = -1
 var dropItemSlot = -1
 
 onready var isDraggingItem = false
 var draggedItemTexture
-onready var draggedItem = get_node("Node2D/Panel/Sprite_DraggedItem")
+onready var draggedItem = get_node("Panel/Sprite_DraggedItem")
 onready var mouseButtonReleased = true
 var draggedItemSlot = -1
 onready var initial_mousePos = Vector2()
