@@ -1,14 +1,14 @@
-[gd_scene load_steps=33 format=2]
+[gd_scene load_steps=34 format=2]
 
 [ext_resource path="res://Swimming.gd" type="Script" id=1]
 [ext_resource path="res://Sprites/Player/charhatscuba/Charhatscuba2.png" type="Texture" id=2]
-[ext_resource path="res://Sprites/Player/charhatscuba/Charhatscuba7.png" type="Texture" id=3]
-[ext_resource path="res://Sprites/Player/charhatscuba/Charhatscuba1.png" type="Texture" id=4]
-[ext_resource path="res://Sprites/Player/charhatscuba/Charhatscuba4.png" type="Texture" id=5]
-[ext_resource path="res://Sprites/Player/charhatscuba/Charhatscuba5.png" type="Texture" id=6]
-[ext_resource path="res://Sprites/Player/charhatscuba/Charhatscuba6.png" type="Texture" id=7]
-[ext_resource path="res://Sprites/Player/charhatscuba/Charhatscuba8.png" type="Texture" id=8]
-[ext_resource path="res://Sprites/Player/charhatscuba/Charhatscuba3.png" type="Texture" id=9]
+[ext_resource path="res://Sprites/Player/charhatscuba/Charhatscuba1.png" type="Texture" id=3]
+[ext_resource path="res://Sprites/Player/charhatscuba/Charhatscuba7.png" type="Texture" id=4]
+[ext_resource path="res://Sprites/Player/charhatscuba/Charhatscuba3.png" type="Texture" id=5]
+[ext_resource path="res://Sprites/Player/charhatscuba/Charhatscuba4.png" type="Texture" id=6]
+[ext_resource path="res://Sprites/Player/charhatscuba/Charhatscuba5.png" type="Texture" id=7]
+[ext_resource path="res://Sprites/Player/charhatscuba/Charhatscuba6.png" type="Texture" id=8]
+[ext_resource path="res://Sprites/Player/charhatscuba/Charhatscuba8.png" type="Texture" id=9]
 [ext_resource path="res://AnimatedSprite.gd" type="Script" id=10]
 [ext_resource path="res://Music/Diving.ogg" type="AudioStream" id=11]
 [ext_resource path="res://Sound Effects/Water Interaction/jump in water.ogg" type="AudioStream" id=12]
@@ -19,12 +19,13 @@
 [ext_resource path="res://Music/ontheboat.ogg" type="AudioStream" id=17]
 [ext_resource path="res://Sprites/Particles/note.png" type="Texture" id=18]
 [ext_resource path="res://GUI.tscn" type="PackedScene" id=19]
-[ext_resource path="res://Sprites/Particles/bubble.png" type="Texture" id=20]
-[ext_resource path="res://coin.tscn" type="PackedScene" id=21]
-[ext_resource path="res://Map scenes/Maptest.tscn" type="PackedScene" id=22]
-[ext_resource path="res://Database/DiveItems/CommonDrops/ItemWood.tscn" type="PackedScene" id=23]
-[ext_resource path="res://Sprites/Ships/boat side.png" type="Texture" id=24]
-[ext_resource path="res://Sprites/Ships/boat sidefore.png" type="Texture" id=25]
+[ext_resource path="res://PopupInventory.gd" type="Script" id=20]
+[ext_resource path="res://Sprites/Particles/bubble.png" type="Texture" id=21]
+[ext_resource path="res://coin.tscn" type="PackedScene" id=22]
+[ext_resource path="res://Map scenes/Maptest.tscn" type="PackedScene" id=23]
+[ext_resource path="res://Database/DiveItems/CommonDrops/ItemWood.tscn" type="PackedScene" id=24]
+[ext_resource path="res://Sprites/Ships/boat side.png" type="Texture" id=25]
+[ext_resource path="res://Sprites/Ships/boat sidefore.png" type="Texture" id=26]
 
 [sub_resource type="GDScript" id=1]
 
@@ -200,28 +201,28 @@ animations = [ {
 }, {
 "frames": [ ExtResource( 3 ) ],
 "loop": true,
-"name": "Float",
+"name": "Jump",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 4 ) ],
 "loop": true,
-"name": "Jump",
+"name": "Float",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 3 ), ExtResource( 8 ) ],
-"loop": true,
-"name": "Swim",
-"speed": 5.0
+"frames": [ ExtResource( 3 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ) ],
+"loop": false,
+"name": "Stroke",
+"speed": 10.0
 }, {
-"frames": [ ExtResource( 4 ), ExtResource( 9 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ) ],
+"frames": [ ExtResource( 3 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ) ],
 "loop": true,
 "name": "Walk",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 4 ), ExtResource( 9 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ) ],
-"loop": false,
-"name": "Stroke",
-"speed": 10.0
+"frames": [ ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 4 ), ExtResource( 9 ) ],
+"loop": true,
+"name": "Swim",
+"speed": 5.0
 } ]
 _sections_unfolded = [ "Resource" ]
 
@@ -320,7 +321,7 @@ _sections_unfolded = [ "Angle", "Emission Shape", "Gravity", "Initial Velocity",
 custom_solver_bias = 0.0
 extents = Vector2( 10, 10 )
 
-[node name="Swimming" type="Node" index="0"]
+[node name="Swimming" type="Node"]
 
 script = ExtResource( 1 )
 
@@ -328,7 +329,6 @@ script = ExtResource( 1 )
 "SwimmingAI",
 ]]
 
-editor/display_folded = true
 position = Vector2( -109.401, -109.605 )
 scale = Vector2( 1.25, 1.25 )
 z_index = 2
@@ -443,7 +443,6 @@ _sections_unfolded = [ "Process Material", "Textures", "Time" ]
 
 [node name="Camera2D" type="Camera2D" parent="Player" index="2"]
 
-editor/display_folded = true
 anchor_mode = 1
 rotating = false
 current = true
@@ -475,6 +474,12 @@ margin_top = -298.0
 margin_right = 446.0
 margin_bottom = 238.0
 _sections_unfolded = [ "Focus", "Grow Direction", "Hint", "Margin", "Rect" ]
+
+[node name="Inventory" type="Node2D" parent="Player/Camera2D" index="1"]
+
+z_index = 22
+script = ExtResource( 20 )
+_sections_unfolded = [ "Z Index" ]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player" index="3"]
 
@@ -519,7 +524,7 @@ visibility_rect = Rect2( -100, -100, 200, 200 )
 local_coords = false
 draw_order = 0
 process_material = SubResource( 6 )
-texture = ExtResource( 20 )
+texture = ExtResource( 21 )
 normal_map = null
 h_frames = 1
 v_frames = 1
@@ -531,27 +536,27 @@ position = Vector2( -504.701, -255.956 )
 z_index = 1
 _sections_unfolded = [ "Visibility", "Z Index" ]
 
-[node name="coin2" parent="Coins" index="0" instance=ExtResource( 21 )]
+[node name="coin2" parent="Coins" index="0" instance=ExtResource( 22 )]
 
 position = Vector2( 353.798, 126.979 )
 
-[node name="coin3" parent="Coins" index="1" instance=ExtResource( 21 )]
+[node name="coin3" parent="Coins" index="1" instance=ExtResource( 22 )]
 
 position = Vector2( 407.762, 132.564 )
 
-[node name="coin4" parent="Coins" index="2" instance=ExtResource( 21 )]
+[node name="coin4" parent="Coins" index="2" instance=ExtResource( 22 )]
 
 position = Vector2( 481.797, 132.398 )
 
-[node name="coin5" parent="Coins" index="3" instance=ExtResource( 21 )]
+[node name="coin5" parent="Coins" index="3" instance=ExtResource( 22 )]
 
 position = Vector2( 569.051, 133.83 )
 
-[node name="coin6" parent="Coins" index="4" instance=ExtResource( 21 )]
+[node name="coin6" parent="Coins" index="4" instance=ExtResource( 22 )]
 
 position = Vector2( 636.259, 135.262 )
 
-[node name="Map" parent="." index="2" instance=ExtResource( 22 )]
+[node name="Map" parent="." index="2" instance=ExtResource( 23 )]
 
 [node name="monster cage" type="StaticBody2D" parent="." index="3"]
 
@@ -573,7 +578,7 @@ scale = Vector2( 3.1925, 2.55128 )
 shape = SubResource( 7 )
 _sections_unfolded = [ "Transform", "Z Index" ]
 
-[node name="ItemWood" parent="." index="4" instance=ExtResource( 23 )]
+[node name="ItemWood" parent="." index="4" instance=ExtResource( 24 )]
 
 position = Vector2( 122.095, -189.445 )
 _sections_unfolded = [ "Transform", "Z Index" ]
@@ -614,7 +619,7 @@ __meta__ = {
 
 [node name="Sprite" type="Sprite" parent="Boat" index="0"]
 
-texture = ExtResource( 24 )
+texture = ExtResource( 25 )
 _sections_unfolded = [ "Transform" ]
 __meta__ = {
 "_edit_group_": true
@@ -638,7 +643,7 @@ polygon = PoolVector2Array( -251.214, 0.479618, -240.149, 38.8989, -199.579, 75.
 [node name="Sprite" type="Sprite" parent="Boat/Sprite" index="1"]
 
 z_index = 3
-texture = ExtResource( 25 )
+texture = ExtResource( 26 )
 _sections_unfolded = [ "Z Index" ]
 
 [connection signal="pressed" from="Button" to="." method="_on_Button_pressed"]
