@@ -29,14 +29,15 @@ script/source = "extends Area2D
 
 func _on_Area2D_body_entered(body):
 	if body == get_tree().get_nodes_in_group(\"SwimmingAI\")[0]: #if player touches this
-		get_parent().get_parent().queue_free()"
+		get_parent().get_parent().queue_free()
+		Global_Player.inventory_addItem(\"1\")"
 
 [sub_resource type="RectangleShape2D" id=4]
 
 custom_solver_bias = 0.0
 extents = Vector2( 12, 12 )
 
-[node name="ItemWood" type="Node2D" index="0" groups=[
+[node name="ItemWood" type="Node2D" groups=[
 "CommonDrops",
 ]]
 
