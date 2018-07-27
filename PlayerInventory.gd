@@ -12,7 +12,7 @@ onready var addItemWindow_SpinBox_ItemId = get_node("Panel/WindowDialog_AddItemW
 onready var itemMenu = get_node("Panel/WindowDialog_ItemMenu")
 onready var itemMenu_TextureFrame_Icon = get_node("Panel/WindowDialog_ItemMenu/ItemMenu_TextureFrame_Icon")
 onready var itemMenu_RichTextLabel_ItemInfo = get_node("Panel/WindowDialog_ItemMenu/ItemMenu_RichTextLabel_ItemInfo")
-onready var itemMenu_Button_Drop = get_node("Panel/WindowDialog_ItemMenu/ItemMenu_Button_Drop")
+onready var itemMenu_Button_DropItem = get_node("Panel/WindowDialog_ItemMenu/ItemMenu_Button_DropItem")
 var activeItemSlot = -1
 var dropItemSlot = -1
 
@@ -126,7 +126,7 @@ func _on_ItemList_item_rmb_selected(index, atpos):
 	strItemInfo = strItemInfo + "\n[color=#b3cde0]" + itemData["description"] + "[/color]"
 	
 	itemMenu_RichTextLabel_ItemInfo.set_bbcode(strItemInfo)
-	itemMenu_Button_Drop.set_text("(" + String(itemData["amount"]) + ") Drop" )
+	itemMenu_Button_DropItem.set_text("(" + String(itemData["amount"]) + ") Drop" )
 	activeItemSlot = index
 	itemMenu.popup()
 
@@ -136,7 +136,7 @@ func _on_ItemMenu_Button_DropItem_pressed():
 	if (newAmount < 1):
 		itemMenu.hide()
 	else:
-		itemMenu_Button_Drop.set_text("(" + String(newAmount) + ") Drop")
+		itemMenu_Button_DropItem.set_text("(" + String(newAmount) + ") Drop")
 	update_slot(dropItemSlot)
 
 
@@ -197,3 +197,11 @@ func _on_ItemList_mouse_exited():
 
 func _on_Button_Load_pressed():
 	Global_Player.load_data()
+
+
+func _on_Button_Exit_pressed():
+	get_tree().change_scene("res://World.tscn")
+
+
+
+

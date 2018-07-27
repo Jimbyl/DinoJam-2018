@@ -1,4 +1,3 @@
-
 extends Area2D
 
 const BULLET_SPEED = 400
