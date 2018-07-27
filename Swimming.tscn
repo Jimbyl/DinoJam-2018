@@ -1,14 +1,14 @@
 [gd_scene load_steps=33 format=2]
 
 [ext_resource path="res://Swimming.gd" type="Script" id=1]
-[ext_resource path="res://Sprites/Player/charhatscuba/Charhatscuba2.png" type="Texture" id=2]
-[ext_resource path="res://Sprites/Player/charhatscuba/Charhatscuba4.png" type="Texture" id=3]
-[ext_resource path="res://Sprites/Player/charhatscuba/Charhatscuba5.png" type="Texture" id=4]
-[ext_resource path="res://Sprites/Player/charhatscuba/Charhatscuba6.png" type="Texture" id=5]
-[ext_resource path="res://Sprites/Player/charhatscuba/Charhatscuba7.png" type="Texture" id=6]
-[ext_resource path="res://Sprites/Player/charhatscuba/Charhatscuba8.png" type="Texture" id=7]
-[ext_resource path="res://Sprites/Player/charhatscuba/Charhatscuba1.png" type="Texture" id=8]
-[ext_resource path="res://Sprites/Player/charhatscuba/Charhatscuba3.png" type="Texture" id=9]
+[ext_resource path="res://Sprites/Player/charhatscuba/Charhatscuba1.png" type="Texture" id=2]
+[ext_resource path="res://Sprites/Player/charhatscuba/Charhatscuba2.png" type="Texture" id=3]
+[ext_resource path="res://Sprites/Player/charhatscuba/Charhatscuba3.png" type="Texture" id=4]
+[ext_resource path="res://Sprites/Player/charhatscuba/Charhatscuba4.png" type="Texture" id=5]
+[ext_resource path="res://Sprites/Player/charhatscuba/Charhatscuba5.png" type="Texture" id=6]
+[ext_resource path="res://Sprites/Player/charhatscuba/Charhatscuba6.png" type="Texture" id=7]
+[ext_resource path="res://Sprites/Player/charhatscuba/Charhatscuba7.png" type="Texture" id=8]
+[ext_resource path="res://Sprites/Player/charhatscuba/Charhatscuba8.png" type="Texture" id=9]
 [ext_resource path="res://AnimatedSprite.gd" type="Script" id=10]
 [ext_resource path="res://Music/Diving.ogg" type="AudioStream" id=11]
 [ext_resource path="res://Sound Effects/Water Interaction/jump in water.ogg" type="AudioStream" id=12]
@@ -40,6 +40,7 @@ var friction = 5
 var grounded = 0
 var in_water = 0
 var can_jump = 1
+var first_time_in_water = 1
 
 var health = 4
 var breath = 100
@@ -134,10 +135,10 @@ func _physics_process(delta):
 		grounded = 0
 		breath = 100
 		if in_water == 1:
-			get_node(\"SFX/Radio/AudioStreamPlayer2D\")._set_playing(true)
+			get_node(\"SFX/Radio/AudioStreamPlayer2D\").set_volume_db(-1)
 			get_node(\"SFX/Exit Water\")._set_playing(true)
 			get_node(\"SFX/Shoot\").set_bus(\"Air\")
-			get_node(\"SFX/Music\")._set_playing(false)
+			get_node(\"SFX/Music\").set_volume_db(-80)
 		in_water = 0
 	elif player.y > 0:
 		swimSpeed = 150
@@ -148,11 +149,14 @@ func _physics_process(delta):
 		grounded = 0
 		can_jump = 1
 		if in_water == 0:
-			get_node(\"SFX/Radio/AudioStreamPlayer2D\")._set_playing(false)
+			get_node(\"SFX/Radio/AudioStreamPlayer2D\").set_volume_db(-80)
 			get_node(\"SFX/Enter Water\")._set_playing(true)
 			get_node(\"SFX/Shoot\").set_bus(\"Underwater\")
-			get_node(\"SFX/Music\")._set_playing(true)
+			get_node(\"SFX/Music\").set_volume_db(-11)
 			get_node(\"waterpart\").set_emitting(true)
+			if first_time_in_water == 1:
+				get_node(\"SFX/Music\")._set_playing(true)
+				first_time_in_water = 0
 		in_water = 1
 	
 	if (Input.is_action_just_pressed(\"ui_accept\") and can_shoot):
@@ -178,33 +182,33 @@ func create_bullet():
 animations = [ {
 "frames": [ ExtResource( 2 ) ],
 "loop": true,
-"name": "Ground",
+"name": "Jump",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ) ],
-"loop": true,
-"name": "Swim",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 8 ), ExtResource( 2 ), ExtResource( 9 ), ExtResource( 2 ) ],
+"frames": [ ExtResource( 2 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 3 ) ],
 "loop": true,
 "name": "Walk",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 8 ) ],
-"loop": true,
-"name": "Jump",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 8 ) ],
+"frames": [ ExtResource( 2 ) ],
 "loop": true,
 "name": "Float",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ) ],
+"frames": [ ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ) ],
 "loop": false,
 "name": "Stroke",
 "speed": 10.0
+}, {
+"frames": [ ExtResource( 3 ) ],
+"loop": true,
+"name": "Ground",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ) ],
+"loop": true,
+"name": "Swim",
+"speed": 5.0
 } ]
 _sections_unfolded = [ "Resource" ]
 
@@ -311,7 +315,6 @@ script = ExtResource( 1 )
 "SwimmingAI",
 ]]
 
-editor/display_folded = true
 position = Vector2( -109.401, -109.605 )
 scale = Vector2( 1.25, 1.25 )
 z_index = 2
