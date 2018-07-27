@@ -1,6 +1,6 @@
 extends Node2D
 
-var inventory_open =0
+var inventory_open = 0
 
 func _ready():
 	# Called when the node is added to the scene for the first time.
