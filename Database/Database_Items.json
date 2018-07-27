@@ -27,11 +27,37 @@
 	},
 	
 	"3": {
-		"name": "BIG ROCK",
-		"icon": "res://Database/Item_Icons/Item_002.png",
+		"name": "A Rock",
+		"icon": "res://Sprites/Items/Upgrades/Rock.png",
 		"type": "equipment",
 		"stackable": false,
-		"description":"A large rock that is very big.",
-		"sell_price": 1
+		"description":"A rock. Can't be more obvious. Increases underwater fall speed.",
+		"sell_price": 4
+	},
+	
+	"4": {
+		"name": "Big Rock",
+		"icon": "res://Sprites/Items/Upgrades/Big_Rock.png",
+		"type": "equipment",
+		"stackable": false,
+		"description":"A large rock that is very big. Really increases underwater fall sepeed.",
+		"sell_price": 8
+	},	
+	
+	"5": {
+		"name": "Diving Gear",
+		"icon": "res://Sprites/Items/Upgrades/Diving_Gear.png",
+		"type": "equipment",
+		"stackable": false,
+		"description":"Not to be confused with dining gear. Extends breath underwater.",
+		"sell_price": 40
+	},	
+	"6": {
+		"name": "Skeleton Necklace",
+		"icon": "res://Sprites/Items/Artifacts/Skeleton_Necklace.png",
+		"type": "equipment",
+		"stackable": false,
+		"description":"Pulsing with some kind of ancient energy. Or delusion. Does a small amount of damage per second to nearby enemies.",
+		"sell_price": 200
 	},
 }

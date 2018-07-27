@@ -2,12 +2,12 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/explosion3.png-e43070ea7db7484d281a360a0cd6e15d.stex"
+path="res://.import/Big_Rock.png-d6014a75fae255dac8f5f6d2de1dc9b4.stex"
 
 [deps]
 
-source_file="res://Effects/explosion3.png"
-dest_files=[ "res://.import/explosion3.png-e43070ea7db7484d281a360a0cd6e15d.stex" ]
+source_file="res://Sprites/Items/Upgrades/Big_Rock.png"
+dest_files=[ "res://.import/Big_Rock.png-d6014a75fae255dac8f5f6d2de1dc9b4.stex" ]
 
 [params]
 
@@ -16,7 +16,7 @@ compress/lossy_quality=0.7
 compress/hdr_mode=0
 compress/normal_map=0
 flags/repeat=0
-flags/filter=true
+flags/filter=false
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2

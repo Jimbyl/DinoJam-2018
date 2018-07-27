@@ -2,12 +2,12 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/explosion2.png-0288dab309c59718260705117e827485.stex"
+path="res://.import/Diving_Gear.png-3f5a9961278bc60b78d4ecaa260febf4.stex"
 
 [deps]
 
-source_file="res://Effects/explosion2.png"
-dest_files=[ "res://.import/explosion2.png-0288dab309c59718260705117e827485.stex" ]
+source_file="res://Sprites/Items/Upgrades/Diving_Gear.png"
+dest_files=[ "res://.import/Diving_Gear.png-3f5a9961278bc60b78d4ecaa260febf4.stex" ]
 
 [params]
 
@@ -16,7 +16,7 @@ compress/lossy_quality=0.7
 compress/hdr_mode=0
 compress/normal_map=0
 flags/repeat=0
-flags/filter=true
+flags/filter=false
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2
