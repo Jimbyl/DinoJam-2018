@@ -21,3 +21,4 @@ func _process(delta):
 			var inventory = get_node("Inventory")
 			remove_child(inventory)
 			inventory_open = 0
+		get_node("Inventory").in_swim = 1

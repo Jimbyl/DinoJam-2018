@@ -2,7 +2,7 @@
 
 [ext_resource path="res://Sprites/Mobs/Pufferfish.png" type="Texture" id=1]
 
-[sub_resource type="ParticlesMaterial" id=3]
+[sub_resource type="ParticlesMaterial" id=1]
 
 render_priority = 0
 trail_divisor = 1
@@ -41,7 +41,7 @@ anim_offset_random = 0.0
 anim_loop = false
 _sections_unfolded = [ "Initial Velocity", "Scale", "Spread", "Trail" ]
 
-[sub_resource type="GDScript" id=1]
+[sub_resource type="GDScript" id=2]
 
 script/source = "extends KinematicBody2D
 var motion = Vector2()
@@ -82,7 +82,7 @@ func _physics_process(delta):
 		get_parent().get_node(\"death\").set_emitting(true)
 		queue_free()"
 
-[sub_resource type="RectangleShape2D" id=2]
+[sub_resource type="RectangleShape2D" id=3]
 
 custom_solver_bias = 0.0
 extents = Vector2( 26.1328, 20.454 )
@@ -105,7 +105,7 @@ fract_delta = true
 visibility_rect = Rect2( -100, -100, 200, 200 )
 local_coords = false
 draw_order = 0
-process_material = SubResource( 3 )
+process_material = SubResource( 1 )
 texture = null
 normal_map = null
 h_frames = 1
@@ -120,7 +120,7 @@ input_pickable = false
 collision_layer = 2
 collision_mask = 11
 collision/safe_margin = 0.08
-script = SubResource( 1 )
+script = SubResource( 2 )
 _sections_unfolded = [ "Collision", "Transform" ]
 
 [node name="HBoxContainer" type="HBoxContainer" parent="KinematicBody2D" index="0"]
@@ -162,7 +162,7 @@ max_lines_visible = -1
 [node name="CollisionShape2D" type="CollisionShape2D" parent="KinematicBody2D" index="1"]
 
 position = Vector2( 3.64075, -0.320374 )
-shape = SubResource( 2 )
+shape = SubResource( 3 )
 _sections_unfolded = [ "Transform" ]
 
 [node name="Sprite" type="Sprite" parent="KinematicBody2D" index="2"]
