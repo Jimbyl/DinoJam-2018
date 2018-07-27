@@ -197,16 +197,15 @@ animations = [ {
 "name": "Ground",
 "speed": 5.0
 }, {
-<<<<<<< HEAD
 "frames": [ ExtResource( 3 ) ],
 "loop": true,
 "name": "Jump",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 3 ), ExtResource( 2 ), ExtResource( 4 ), ExtResource( 2 ) ],
-=======
+
 "frames": [ ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ) ],
->>>>>>> 1f12cdd702d6663074a6ee0eaa02734d723293d3
+
 "loop": true,
 "name": "Walk",
 "speed": 5.0
