@@ -188,9 +188,9 @@ animations = [ {
 "name": "Float",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 8 ) ],
+"frames": [ ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ) ],
 "loop": true,
-"name": "Jump",
+"name": "Swim",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 8 ), ExtResource( 2 ), ExtResource( 9 ), ExtResource( 2 ) ],
@@ -198,9 +198,9 @@ animations = [ {
 "name": "Walk",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ) ],
+"frames": [ ExtResource( 8 ) ],
 "loop": true,
-"name": "Swim",
+"name": "Jump",
 "speed": 5.0
 } ]
 _sections_unfolded = [ "Resource" ]
@@ -300,7 +300,7 @@ _sections_unfolded = [ "Angle", "Emission Shape", "Gravity", "Initial Velocity",
 custom_solver_bias = 0.0
 extents = Vector2( 10, 10 )
 
-[node name="Swimming" type="Node" index="0"]
+[node name="Swimming" type="Node"]
 
 script = ExtResource( 1 )
 

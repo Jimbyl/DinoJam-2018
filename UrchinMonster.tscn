@@ -1,7 +1,46 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://KinematicBody2D.gd" type="Script" id=1]
 [ext_resource path="res://Sprites/Mobs/Urchin.png" type="Texture" id=2]
+
+[sub_resource type="ParticlesMaterial" id=3]
+
+render_priority = 0
+trail_divisor = 1
+emission_shape = 0
+flag_align_y = false
+flag_rotate_y = false
+flag_disable_z = true
+spread = 180.0
+flatness = 0.0
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 93.25
+initial_velocity_random = 0.72
+angular_velocity = 0.0
+angular_velocity_random = 0.0
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+linear_accel = 0.0
+linear_accel_random = 0.0
+radial_accel = 0.0
+radial_accel_random = 0.0
+tangential_accel = 0.0
+tangential_accel_random = 0.0
+damping = 100.0
+damping_random = 0.24
+angle = 0.0
+angle_random = 0.0
+scale = 2.54
+scale_random = 0.0
+color = Color( 1, 1, 1, 1 )
+hue_variation = 0.0
+hue_variation_random = 0.0
+anim_speed = 0.0
+anim_speed_random = 0.0
+anim_offset = 0.0
+anim_offset_random = 0.0
+anim_loop = false
+_sections_unfolded = [ "Initial Velocity", "Scale", "Spread", "Trail" ]
 
 [sub_resource type="Animation" id=1]
 
@@ -53,7 +92,31 @@ collision/safe_margin = 0.08
 script = ExtResource( 1 )
 _sections_unfolded = [ "Transform" ]
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="KinematicBody2D" index="0"]
+[node name="death" type="Particles2D" parent="KinematicBody2D" index="0"]
+
+position = Vector2( 0, 5.00461 )
+z_index = 2
+emitting = false
+amount = 30
+lifetime = 0.48
+one_shot = true
+preprocess = 0.0
+speed_scale = 1.0
+explosiveness = 1.0
+randomness = 0.0
+fixed_fps = 0
+fract_delta = true
+visibility_rect = Rect2( -100, -100, 200, 200 )
+local_coords = false
+draw_order = 0
+process_material = SubResource( 3 )
+texture = null
+normal_map = null
+h_frames = 1
+v_frames = 1
+_sections_unfolded = [ "Drawing", "Process Material", "Time", "Z Index" ]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="KinematicBody2D" index="1"]
 
 root_node = NodePath("..")
 autoplay = "float"
@@ -64,7 +127,7 @@ anims/float = SubResource( 1 )
 blend_times = [  ]
 _sections_unfolded = [ "Playback Options" ]
 
-[node name="HBoxContainer" type="HBoxContainer" parent="KinematicBody2D" index="1"]
+[node name="HBoxContainer" type="HBoxContainer" parent="KinematicBody2D" index="2"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -100,11 +163,11 @@ percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
-[node name="Sprite" type="Sprite" parent="KinematicBody2D" index="2"]
+[node name="Sprite" type="Sprite" parent="KinematicBody2D" index="3"]
 
 texture = ExtResource( 2 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="KinematicBody2D" index="3"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="KinematicBody2D" index="4"]
 
 position = Vector2( 2.02914, 2.43497 )
 shape = SubResource( 2 )
