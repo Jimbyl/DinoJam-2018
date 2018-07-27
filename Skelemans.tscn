@@ -51,9 +51,11 @@ animations = [ {
 "speed": 5.0
 } ]
 
-[node name="Skelemans" type="Node2D" index="0"]
+[node name="Skelemans" type="Node2D"]
 
-[node name="KinematicSkeleman" type="KinematicBody2D" parent="." index="0"]
+[node name="KinematicSkeleman" type="KinematicBody2D" parent="." index="0" groups=[
+"SwimmingAI",
+]]
 
 input_pickable = false
 collision_layer = 1
