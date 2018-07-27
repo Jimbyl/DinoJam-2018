@@ -1,0 +1,14 @@
+[remap]
+
+importer="Webm"
+type="VideoStreamWebm"
+path="res://.import/DSP_Video_Games.webm-7bd4550ad4e74c9fb8f0986e51833196.webmstr"
+
+[deps]
+
+source_file="res://Music/DSP_Video_Games.webm"
+dest_files=[ "res://.import/DSP_Video_Games.webm-7bd4550ad4e74c9fb8f0986e51833196.webmstr" ]
+
+[params]
+
+loop=true

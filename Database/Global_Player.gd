@@ -21,10 +21,12 @@ func load_data():
 		inventory = dict["inventory"]
 	else:
 		inventory = playerData["inventory"]
+		print ("LOADED")
 
 
 func save_data():
 	Global_DataParser.write_data(url_PlayerData, {"inventory": inventory})
+	print ("SAVED")
 
 
 func inventory_getEmptySlot():

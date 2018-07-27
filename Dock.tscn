@@ -14,7 +14,7 @@ script/source = "extends Button
 func _on_SellButton_pressed():
 	get_tree().change_scene(\"res://PlayerInventory.tscn\")"
 
-[node name="Dock" type="Control" index="0"]
+[node name="Dock" type="Control"]
 
 anchor_left = 0.0
 anchor_top = 0.0

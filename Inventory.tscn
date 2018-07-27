@@ -11,7 +11,7 @@ func _ready():
 	add_item(\"Test 4\", null , true)
 	add_item(\"Test 5\", null , true)"
 
-[node name="Inventory" type="Node"]
+[node name="Inventory" type="Node" index="0"]
 
 [node name="CenterContainer" type="CenterContainer" parent="." index="0"]
 

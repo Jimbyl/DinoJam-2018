@@ -34,6 +34,7 @@ func _ready():
 	itemList.set_allow_rmb_select(true)
 	
 	load_items()
+	Global_Player.load_data()
 	
 	set_process(false)
 	set_process_input(true)
@@ -121,7 +122,6 @@ func _on_ItemList_item_rmb_selected(index, atpos):
 	
 	strItemInfo = "Name: [color=#00aedb] " + itemData["name"] + "[/color]\n"
 	strItemInfo = strItemInfo + "Type: [color=#f37735] " + itemData["type"] + "[/color]\n"
-	strItemInfo = strItemInfo + "Weight: [color=#00b159] " + String(itemData["weight"]) + "[/color]\n"
 	strItemInfo = strItemInfo + "Sell Price: [color=#ffc425] " + String(itemData["sell_price"]) + "[/color] gold\n"
 	strItemInfo = strItemInfo + "\n[color=#b3cde0]" + itemData["description"] + "[/color]"
 	
@@ -142,6 +142,7 @@ func _on_ItemMenu_Button_DropItem_pressed():
 
 func _on_Button_Save_pressed():
 	Global_Player.save_data()
+
 
 
 func begin_drag_item(index):
@@ -192,3 +193,7 @@ func _on_ItemList_mouse_exited():
 	cursor_insideItemList = false;
 
 
+
+
+func _on_Button_Load_pressed():
+	Global_Player.load_data()
