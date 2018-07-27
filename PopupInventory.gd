@@ -1,4 +1,4 @@
-extends Control
+extends CanvasLayer
 
 var inventory_open = 0
 
@@ -19,6 +19,7 @@ func _process(delta):
 			get_node("Inventory").in_swim = 1
 		elif inventory_open ==1:
 			print ("inventoryclose")	
+			Global_Player.save_data()
 			get_node("Inventory").in_swim = 0
 			var inventory = get_node("Inventory")
 			remove_child(inventory)
