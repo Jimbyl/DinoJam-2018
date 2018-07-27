@@ -5,6 +5,45 @@
 [ext_resource path="res://Sprites/Mobs/Skeleton3.png" type="Texture" id=3]
 [ext_resource path="res://Sprites/Mobs/Skeleton4.png" type="Texture" id=4]
 
+[sub_resource type="ParticlesMaterial" id=4]
+
+render_priority = 0
+trail_divisor = 1
+emission_shape = 0
+flag_align_y = false
+flag_rotate_y = false
+flag_disable_z = true
+spread = 180.0
+flatness = 0.0
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 93.25
+initial_velocity_random = 0.72
+angular_velocity = 0.0
+angular_velocity_random = 0.0
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+linear_accel = 0.0
+linear_accel_random = 0.0
+radial_accel = 0.0
+radial_accel_random = 0.0
+tangential_accel = 0.0
+tangential_accel_random = 0.0
+damping = 100.0
+damping_random = 0.24
+angle = 0.0
+angle_random = 0.0
+scale = 2.54
+scale_random = 0.0
+color = Color( 1, 1, 1, 1 )
+hue_variation = 0.0
+hue_variation_random = 0.0
+anim_speed = 0.0
+anim_speed_random = 0.0
+anim_offset = 0.0
+anim_offset_random = 0.0
+anim_loop = false
+_sections_unfolded = [ "Initial Velocity", "Scale", "Spread", "Trail" ]
+
 [sub_resource type="GDScript" id=1]
 
 script/source = "extends KinematicBody2D
@@ -57,7 +96,7 @@ func _physics_process(delta):
 	
 	
 	if health < 1:
-		get_node(\"death\").set_emitting(true)
+		get_parent().get_node(\"death\").set_emitting(true)
 		queue_free()"
 
 [sub_resource type="RectangleShape2D" id=2]
@@ -74,70 +113,9 @@ animations = [ {
 "speed": 5.0
 } ]
 
-[sub_resource type="ParticlesMaterial" id=4]
-
-render_priority = 0
-trail_divisor = 1
-emission_shape = 0
-flag_align_y = false
-flag_rotate_y = false
-flag_disable_z = true
-spread = 180.0
-flatness = 0.0
-gravity = Vector3( 0, 0, 0 )
-initial_velocity = 93.25
-initial_velocity_random = 0.72
-angular_velocity = 0.0
-angular_velocity_random = 0.0
-orbit_velocity = 0.0
-orbit_velocity_random = 0.0
-linear_accel = 0.0
-linear_accel_random = 0.0
-radial_accel = 0.0
-radial_accel_random = 0.0
-tangential_accel = 0.0
-tangential_accel_random = 0.0
-damping = 100.0
-damping_random = 0.24
-angle = 0.0
-angle_random = 0.0
-scale = 2.54
-scale_random = 0.0
-color = Color( 1, 1, 1, 1 )
-hue_variation = 0.0
-hue_variation_random = 0.0
-anim_speed = 0.0
-anim_speed_random = 0.0
-anim_offset = 0.0
-anim_offset_random = 0.0
-anim_loop = false
-_sections_unfolded = [ "Initial Velocity", "Scale", "Spread", "Trail" ]
-
 [node name="Skelemans" type="Node2D" index="0"]
 
-[node name="KinematicSkeleman" type="KinematicBody2D" parent="." index="0" groups=[
-"SwimmingAI",
-]]
-
-input_pickable = false
-collision_layer = 1
-collision_mask = 1
-collision/safe_margin = 0.08
-script = SubResource( 1 )
-
-[node name="Collision" type="CollisionShape2D" parent="KinematicSkeleman" index="0"]
-
-position = Vector2( -2, 4 )
-shape = SubResource( 2 )
-
-[node name="AnimatedSprite" type="AnimatedSprite" parent="KinematicSkeleman" index="1"]
-
-z_index = 2
-frames = SubResource( 3 )
-animation = "default"
-_sections_unfolded = [ "Z Index" ]
-
-[node name="death" type="Particles2D" parent="KinematicSkeleman" index="2"]
+[node name="death" type="Particles2D" parent="." index="0"]
 
 z_index = 2
 emitting = false
@@ -159,5 +137,27 @@ normal_map = null
 h_frames = 1
 v_frames = 1
 _sections_unfolded = [ "Drawing", "Process Material", "Time", "Z Index" ]
+
+[node name="KinematicSkeleman" type="KinematicBody2D" parent="." index="1" groups=[
+"SwimmingAI",
+]]
+
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+collision/safe_margin = 0.08
+script = SubResource( 1 )
+
+[node name="Collision" type="CollisionShape2D" parent="KinematicSkeleman" index="0"]
+
+position = Vector2( -2, 4 )
+shape = SubResource( 2 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="KinematicSkeleman" index="1"]
+
+z_index = 2
+frames = SubResource( 3 )
+animation = "default"
+_sections_unfolded = [ "Z Index" ]
 
 

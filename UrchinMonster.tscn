@@ -80,21 +80,8 @@ extents = Vector2( 18.1062, 19.3319 )
 
 [node name="UrchinMonster" type="Node2D"]
 
-[node name="KinematicBody2D" type="KinematicBody2D" parent="." index="0" groups=[
-"SwimmingAI",
-]]
+[node name="death" type="Particles2D" parent="." index="0"]
 
-position = Vector2( 0, -5.00461 )
-input_pickable = false
-collision_layer = 1
-collision_mask = 1
-collision/safe_margin = 0.08
-script = ExtResource( 1 )
-_sections_unfolded = [ "Transform" ]
-
-[node name="death" type="Particles2D" parent="KinematicBody2D" index="0"]
-
-position = Vector2( 0, 5.00461 )
 z_index = 2
 emitting = false
 amount = 30
@@ -116,7 +103,19 @@ h_frames = 1
 v_frames = 1
 _sections_unfolded = [ "Drawing", "Process Material", "Time", "Z Index" ]
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="KinematicBody2D" index="1"]
+[node name="KinematicBody2D" type="KinematicBody2D" parent="." index="1" groups=[
+"SwimmingAI",
+]]
+
+position = Vector2( 0, -5.00461 )
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+collision/safe_margin = 0.08
+script = ExtResource( 1 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="KinematicBody2D" index="0"]
 
 root_node = NodePath("..")
 autoplay = "float"
@@ -127,7 +126,7 @@ anims/float = SubResource( 1 )
 blend_times = [  ]
 _sections_unfolded = [ "Playback Options" ]
 
-[node name="HBoxContainer" type="HBoxContainer" parent="KinematicBody2D" index="2"]
+[node name="HBoxContainer" type="HBoxContainer" parent="KinematicBody2D" index="1"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -163,11 +162,11 @@ percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
-[node name="Sprite" type="Sprite" parent="KinematicBody2D" index="3"]
+[node name="Sprite" type="Sprite" parent="KinematicBody2D" index="2"]
 
 texture = ExtResource( 2 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="KinematicBody2D" index="4"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="KinematicBody2D" index="3"]
 
 position = Vector2( 2.02914, 2.43497 )
 shape = SubResource( 2 )

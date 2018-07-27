@@ -2,47 +2,6 @@
 
 [ext_resource path="res://Sprites/Mobs/Pufferfish.png" type="Texture" id=1]
 
-[sub_resource type="GDScript" id=1]
-
-script/source = "extends KinematicBody2D
-var motion = Vector2()
-var normalVec = Vector2(0,-1)
-var speed = 75
-var knockback = 300
-var health = 4
-
-var can_attack = true
-var timer = null
-var i_frame = 2
-
-func _ready():
-	timer = Timer.new()
-	timer.set_one_shot(true)
-	timer.set_wait_time(i_frame)
-	timer.connect(\"timeout\", self, \"on_timeout_complete\")
-	add_child(timer)
-func on_timeout_complete():
-	can_attack = true
-
-func _physics_process(delta):
-	var player = get_tree().get_nodes_in_group(\"SwimmingAI\")[0]
-	var angle = get_angle_to(player.position)
-	motion = polar2cartesian(speed, angle)
-	if(global_position.distance_to(player.position) < 60) and can_attack == true : #attack player
-		can_attack = false
-		timer.start()
-		player.motion += polar2cartesian(knockback, angle)
-		player.health -= 1
-	move_and_slide(motion, normalVec)
-	if motion.x > 0:
-		get_node(\"Sprite\").set_flip_h(true)
-	if motion.x < 0:
-		get_node(\"Sprite\").set_flip_h(false)
-	get_node(\"HBoxContainer/Health\").set_text(str(health))
-	if health < 1:
-		get_node(\"death\").set_emitting(true)
-		queue_free()"
-
 [sub_resource type="ParticlesMaterial" id=3]
 
 render_priority = 0
@@ -82,6 +41,47 @@ anim_offset_random = 0.0
 anim_loop = false
 _sections_unfolded = [ "Initial Velocity", "Scale", "Spread", "Trail" ]
 
+[sub_resource type="GDScript" id=1]
+
+script/source = "extends KinematicBody2D
+var motion = Vector2()
+var normalVec = Vector2(0,-1)
+var speed = 75
+var knockback = 300
+var health = 4
+
+var can_attack = true
+var timer = null
+var i_frame = 2
+
+func _ready():
+	timer = Timer.new()
+	timer.set_one_shot(true)
+	timer.set_wait_time(i_frame)
+	timer.connect(\"timeout\", self, \"on_timeout_complete\")
+	add_child(timer)
+func on_timeout_complete():
+	can_attack = true
+
+func _physics_process(delta):
+	var player = get_tree().get_nodes_in_group(\"SwimmingAI\")[0]
+	var angle = get_angle_to(player.position)
+	motion = polar2cartesian(speed, angle)
+	if(global_position.distance_to(player.position) < 60) and can_attack == true : #attack player
+		can_attack = false
+		timer.start()
+		player.motion += polar2cartesian(knockback, angle)
+		player.health -= 1
+	move_and_slide(motion, normalVec)
+	if motion.x > 0:
+		get_node(\"Sprite\").set_flip_h(true)
+	if motion.x < 0:
+		get_node(\"Sprite\").set_flip_h(false)
+	get_node(\"HBoxContainer/Health\").set_text(str(health))
+	if health < 1:
+		get_parent().get_node(\"death\").set_emitting(true)
+		queue_free()"
+
 [sub_resource type="RectangleShape2D" id=2]
 
 custom_solver_bias = 0.0
@@ -89,18 +89,7 @@ extents = Vector2( 26.1328, 20.454 )
 
 [node name="FollowMonster" type="Node2D"]
 
-[node name="KinematicBody2D" type="KinematicBody2D" parent="." index="0" groups=[
-"SwimmingAI",
-]]
-
-input_pickable = false
-collision_layer = 2
-collision_mask = 11
-collision/safe_margin = 0.08
-script = SubResource( 1 )
-_sections_unfolded = [ "Collision", "Transform" ]
-
-[node name="death" type="Particles2D" parent="KinematicBody2D" index="0"]
+[node name="death" type="Particles2D" parent="." index="0"]
 
 z_index = 2
 emitting = false
@@ -123,7 +112,18 @@ h_frames = 1
 v_frames = 1
 _sections_unfolded = [ "Drawing", "Process Material", "Time", "Z Index" ]
 
-[node name="HBoxContainer" type="HBoxContainer" parent="KinematicBody2D" index="1"]
+[node name="KinematicBody2D" type="KinematicBody2D" parent="." index="1" groups=[
+"SwimmingAI",
+]]
+
+input_pickable = false
+collision_layer = 2
+collision_mask = 11
+collision/safe_margin = 0.08
+script = SubResource( 1 )
+_sections_unfolded = [ "Collision", "Transform" ]
+
+[node name="HBoxContainer" type="HBoxContainer" parent="KinematicBody2D" index="0"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -159,18 +159,18 @@ percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="KinematicBody2D" index="2"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="KinematicBody2D" index="1"]
 
 position = Vector2( 3.64075, -0.320374 )
 shape = SubResource( 2 )
 _sections_unfolded = [ "Transform" ]
 
-[node name="Sprite" type="Sprite" parent="KinematicBody2D" index="3"]
+[node name="Sprite" type="Sprite" parent="KinematicBody2D" index="2"]
 
 texture = ExtResource( 1 )
 _sections_unfolded = [ "Offset" ]
 
-[node name="Timer" type="Timer" parent="KinematicBody2D" index="4"]
+[node name="Timer" type="Timer" parent="KinematicBody2D" index="3"]
 
 process_mode = 1
 wait_time = 4.0
