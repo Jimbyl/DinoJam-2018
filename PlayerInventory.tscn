@@ -1,13 +1,45 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://PlayerInventory.gd" type="Script" id=1]
-[ext_resource path="res://UI/ui_dive/ui_dive2.png" type="Texture" id=2]
-[ext_resource path="res://icon.png" type="Texture" id=3]
+[ext_resource path="res://UI/uipack-rpg/PNG/panel_brown.png" type="Texture" id=2]
+[ext_resource path="res://UI/uipack-rpg/PNG/buttonLong_blue.png" type="Texture" id=3]
+[ext_resource path="res://UI/uipack-rpg/PNG/iconCross_beige.png" type="Texture" id=4]
+[ext_resource path="res://icon.png" type="Texture" id=5]
 
 [sub_resource type="Theme" id=1]
 
-Button/icons/ = ExtResource( 2 )
-_sections_unfolded = [ "Button", "Button/icons" ]
+Button/icons/ = null
+Panel/icons/ = ExtResource( 2 )
+_sections_unfolded = [ "Button", "Button/icons", "Panel", "Panel/styles" ]
+
+[sub_resource type="StyleBoxFlat" id=2]
+
+content_margin_left = -1.0
+content_margin_right = -1.0
+content_margin_top = -1.0
+content_margin_bottom = -1.0
+bg_color = Color( 0.913725, 0.878431, 0.780392, 1 )
+draw_center = true
+border_width_left = 4
+border_width_top = 4
+border_width_right = 2
+border_width_bottom = 4
+border_color = Color( 0.816406, 0.774198, 0.656952, 1 )
+border_blend = true
+corner_radius_top_left = 0
+corner_radius_top_right = 0
+corner_radius_bottom_right = 0
+corner_radius_bottom_left = 0
+corner_detail = 8
+expand_margin_left = 0.0
+expand_margin_right = 0.0
+expand_margin_top = 0.0
+expand_margin_bottom = 0.0
+shadow_color = Color( 0, 0, 0, 0.6 )
+shadow_size = 0
+anti_aliasing = true
+anti_aliasing_size = 1
+_sections_unfolded = [ "Border", "Border Width" ]
 
 [node name="Node" type="Node" index="0"]
 
@@ -28,9 +60,26 @@ mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
 theme = SubResource( 1 )
-_sections_unfolded = [ "Theme" ]
+_sections_unfolded = [ "Material", "Theme", "Visibility", "custom_icons" ]
 
-[node name="ItemList" type="ItemList" parent="Panel" index="0"]
+[node name="TextureRect" type="TextureRect" parent="Panel" index="0"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 1023.0
+margin_bottom = 597.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 1
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+texture = ExtResource( 2 )
+expand = true
+
+[node name="ItemList" type="ItemList" parent="Panel" index="1"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -47,17 +96,20 @@ mouse_filter = 0
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
+custom_styles/bg = SubResource( 2 )
 custom_constants/vseparation = 30
 custom_constants/hseparation = 30
 items = [  ]
 select_mode = 0
 allow_reselect = false
+auto_height = true
 icon_mode = 1
 fixed_icon_size = Vector2( 48, 48 )
-_sections_unfolded = [ "Columns", "Icon", "Margin", "custom_constants" ]
+_sections_unfolded = [ "Columns", "Icon", "Margin", "custom_constants", "custom_styles" ]
 
-[node name="Button_AddItem" type="Button" parent="Panel" index="1"]
+[node name="Button_AddItem" type="Button" parent="Panel" index="2"]
 
+editor/display_folded = true
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
@@ -82,8 +134,50 @@ flat = false
 align = 1
 _sections_unfolded = [ "Rect" ]
 
-[node name="Button_Load" type="Button" parent="Panel" index="2"]
+[node name="TextureRect" type="TextureRect" parent="Panel/Button_AddItem" index="0"]
 
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 1.0
+margin_top = -2.0
+margin_right = 127.0
+margin_bottom = 67.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 1
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+texture = ExtResource( 3 )
+expand = true
+stretch_mode = 0
+
+[node name="Label" type="Label" parent="Panel/Button_AddItem/TextureRect" index="0"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 33.0
+margin_top = 27.0
+margin_right = 93.0
+margin_bottom = 41.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+text = "Add Item"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="Button_Load" type="Button" parent="Panel" index="3"]
+
+editor/display_folded = true
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
@@ -107,7 +201,49 @@ text = "Load"
 flat = false
 align = 1
 
-[node name="Button_Exit" type="Button" parent="Panel" index="3"]
+[node name="TextureRect2" type="TextureRect" parent="Panel/Button_Load" index="0"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 1.0
+margin_top = -1.0
+margin_right = 127.0
+margin_bottom = 68.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 1
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+texture = ExtResource( 3 )
+expand = true
+stretch_mode = 0
+
+[node name="Label" type="Label" parent="Panel/Button_Load/TextureRect2" index="0"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 33.0
+margin_top = 27.0
+margin_right = 93.0
+margin_bottom = 41.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+text = "Load"
+align = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="Button_Exit" type="Button" parent="Panel" index="4"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -128,11 +264,32 @@ enabled_focus_mode = 2
 shortcut = null
 group = null
 text = "X"
-flat = false
+flat = true
 align = 1
 
-[node name="Button_Save" type="Button" parent="Panel" index="4"]
+[node name="TextureRect" type="TextureRect" parent="Panel/Button_Exit" index="0"]
 
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = -2.0
+margin_top = -9.0
+margin_right = 38.0
+margin_bottom = 31.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 1
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+texture = ExtResource( 4 )
+expand = true
+stretch_mode = 0
+
+[node name="Button_Save" type="Button" parent="Panel" index="5"]
+
+editor/display_folded = true
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
@@ -153,11 +310,54 @@ enabled_focus_mode = 2
 shortcut = null
 group = null
 text = "Save"
-flat = false
+flat = true
 align = 1
 
-[node name="WindowDialog_AddItemWindow" type="WindowDialog" parent="Panel" index="5"]
+[node name="TextureRect3" type="TextureRect" parent="Panel/Button_Save" index="0"]
 
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 1.0
+margin_top = -3.0
+margin_right = 127.0
+margin_bottom = 66.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 1
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+texture = ExtResource( 3 )
+expand = true
+stretch_mode = 0
+
+[node name="Save" type="Label" parent="Panel/Button_Save/TextureRect3" index="0"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 33.0
+margin_top = 27.0
+margin_right = 93.0
+margin_bottom = 41.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+text = "Save"
+align = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="WindowDialog_AddItemWindow" type="WindowDialog" parent="Panel" index="6"]
+
+editor/display_folded = true
 visible = false
 anchor_left = 0.0
 anchor_top = 0.0
@@ -281,8 +481,9 @@ flat = false
 align = 1
 _sections_unfolded = [ "Rect" ]
 
-[node name="WindowDialog_ItemMenu" type="WindowDialog" parent="Panel" index="6"]
+[node name="WindowDialog_ItemMenu" type="WindowDialog" parent="Panel" index="7"]
 
+editor/display_folded = true
 visible = false
 anchor_left = 0.0
 anchor_top = 0.0
@@ -317,7 +518,7 @@ mouse_filter = 1
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
-texture = ExtResource( 3 )
+texture = ExtResource( 5 )
 expand = true
 stretch_mode = 6
 _sections_unfolded = [ "Rect" ]
@@ -403,10 +604,10 @@ flat = false
 align = 1
 _sections_unfolded = [ "Rect" ]
 
-[node name="Sprite_DraggedItem" type="Sprite" parent="Panel" index="7"]
+[node name="Sprite_DraggedItem" type="Sprite" parent="Panel" index="8"]
 
 position = Vector2( 928, 480 )
-texture = ExtResource( 3 )
+texture = ExtResource( 5 )
 
 [connection signal="item_activated" from="Panel/ItemList" to="." method="_on_ItemList_item_activated"]
 
