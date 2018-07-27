@@ -137,7 +137,7 @@ anim_offset_random = 0.0
 anim_loop = false
 _sections_unfolded = [ "Gravity", "Initial Velocity", "Scale", "Spread" ]
 
-[node name="Dinghy1" type="Node2D" index="0"]
+[node name="Dinghy1" type="Node2D"]
 
 _sections_unfolded = [ "Material", "Pause", "Transform", "Visibility" ]
 __meta__ = {

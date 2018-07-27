@@ -28,7 +28,7 @@ onready var cursor_insideItemList = false
 
 func _ready():
 	# Initialize Item List
-	itemList.set_max_columns(10)
+	itemList.set_max_columns(9)
 	itemList.set_fixed_icon_size(Vector2(48,48))
 	itemList.set_icon_mode(ItemList.ICON_MODE_TOP)
 	itemList.set_select_mode(ItemList.SELECT_SINGLE)

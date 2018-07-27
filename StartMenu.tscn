@@ -1,23 +1,11 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://StartMenu.gd" type="Script" id=1]
-[ext_resource path="res://UI/Main Menu/tempbkg.png" type="Texture" id=2]
+[ext_resource path="res://UI/Main Menu/tempbkg720.png" type="Texture" id=2]
 [ext_resource path="res://Music/HesaPirate.ogg" type="AudioStream" id=3]
-[ext_resource path="res://UI/cooper-hewitt/CooperHewitt-Book.otf" type="DynamicFontData" id=4]
-[ext_resource path="res://UI/uipack-rpg/PNG/buttonLong_blue.png" type="Texture" id=5]
-
-[sub_resource type="DynamicFont" id=1]
-
-size = 28
-use_mipmaps = true
-use_filter = true
-font_data = ExtResource( 4 )
-_sections_unfolded = [ "Font", "Font/fallback", "Settings" ]
-
-[sub_resource type="Theme" id=2]
-
-default_font = SubResource( 1 )
-_sections_unfolded = [ "Button", "Button/icons" ]
+[ext_resource path="res://UI/uipack-rpg/PNG/buttonLong_blue.png" type="Texture" id=4]
+[ext_resource path="res://UI/uipack-rpg/PNG/buttonLong_blue_pressed.png" type="Texture" id=5]
+[ext_resource path="res://UI/uipack-rpg/PNG/buttonLong_grey.png" type="Texture" id=6]
 
 [node name="StartMenu" type="Control" index="0"]
 
@@ -37,12 +25,8 @@ script = ExtResource( 1 )
 
 anchor_left = 0.0
 anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_left = -227.0
-margin_top = -38.0
-margin_right = 1173.0
-margin_bottom = 662.0
+anchor_right = 1.0
+anchor_bottom = 1.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 1
@@ -50,7 +34,7 @@ mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
 texture = ExtResource( 2 )
-stretch_mode = 6
+expand = true
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." index="1"]
 
@@ -63,14 +47,14 @@ bus = "Master"
 
 [node name="VBoxContainer" type="VBoxContainer" parent="." index="2"]
 
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_left = 469.0
-margin_top = 226.0
-margin_right = 633.0
-margin_bottom = 469.0
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -95.0
+margin_top = -121.5
+margin_right = 95.0
+margin_bottom = 121.5
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 1
@@ -86,7 +70,7 @@ anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_right = 164.0
+margin_right = 190.0
 margin_bottom = 14.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
@@ -94,278 +78,211 @@ mouse_filter = 2
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 4
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
 text = "DINOHOUSE"
+align = 1
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
-[node name="StartGameButton" type="Button" parent="VBoxContainer" index="1"]
+[node name="StartGameButton" type="TextureButton" parent="VBoxContainer" index="1"]
 
-editor/display_folded = true
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_top = 24.0
-margin_right = 164.0
-margin_bottom = 70.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = true
-focus_mode = 2
-mouse_filter = 0
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
-theme = SubResource( 2 )
-toggle_mode = false
-enabled_focus_mode = 2
-shortcut = null
-group = null
-text = "Start"
-flat = true
-align = 0
-_sections_unfolded = [ "Anchor", "Focus", "Grow Direction", "Hint", "Margin", "Mouse", "Rect", "custom_styles" ]
-
-[node name="TextureRect" type="TextureRect" parent="VBoxContainer/StartGameButton" index="0"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_top = 2.0
-margin_right = 164.0
-margin_bottom = 44.0
+margin_right = 190.0
+margin_bottom = 73.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
-mouse_filter = 1
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
-texture = ExtResource( 5 )
-expand = true
-stretch_mode = 0
-
-[node name="Label" type="Label" parent="VBoxContainer/StartGameButton/TextureRect" index="0"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_left = 48.0
-margin_top = 6.0
-margin_right = 110.0
-margin_bottom = 34.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 2
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 4
-text = "Start"
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
-
-[node name="SwimButton" type="Button" parent="VBoxContainer" index="2"]
-
-editor/display_folded = true
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_top = 68.0
-margin_right = 164.0
-margin_bottom = 114.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = true
 focus_mode = 2
 mouse_filter = 0
-mouse_default_cursor_shape = 0
+mouse_default_cursor_shape = 2
 size_flags_horizontal = 1
 size_flags_vertical = 1
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
 group = null
-text = "SWIM"
-flat = true
-align = 0
-_sections_unfolded = [ "Anchor", "Rect" ]
+texture_normal = ExtResource( 4 )
+texture_pressed = ExtResource( 5 )
+texture_hover = ExtResource( 6 )
+_sections_unfolded = [ "Mouse" ]
 
-[node name="TextureRect2" type="TextureRect" parent="VBoxContainer/SwimButton" index="0"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_top = 1.0
-margin_right = 164.0
-margin_bottom = 43.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 1
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
-texture = ExtResource( 5 )
-expand = true
-stretch_mode = 0
-
-[node name="Label" type="Label" parent="VBoxContainer/SwimButton/TextureRect2" index="0"]
+[node name="Label" type="Label" parent="VBoxContainer/StartGameButton" index="0"]
 
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 48.0
-margin_top = 7.0
-margin_right = 110.0
-margin_bottom = 35.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 2
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 4
-text = "Swim"
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
-
-[node name="InventoryButton" type="Button" parent="VBoxContainer" index="3"]
-
-editor/display_folded = true
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_top = 111.0
-margin_right = 164.0
-margin_bottom = 154.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = true
-hint_tooltip = "i have no idea what im doing"
-focus_mode = 2
-mouse_filter = 0
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
-toggle_mode = false
-enabled_focus_mode = 2
-shortcut = null
-group = null
-text = "INVENTORY"
-flat = true
-align = 0
-_sections_unfolded = [ "Rect" ]
-
-[node name="TextureRect3" type="TextureRect" parent="VBoxContainer/InventoryButton" index="0"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_left = -1.0
-margin_top = 1.0
-margin_right = 163.0
-margin_bottom = 43.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 1
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
-texture = ExtResource( 5 )
-expand = true
-stretch_mode = 0
-
-[node name="Label" type="Label" parent="VBoxContainer/InventoryButton/TextureRect3" index="0"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_left = 48.0
-margin_top = 6.0
-margin_right = 110.0
-margin_bottom = 34.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 2
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 4
-text = "Inventory"
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
-
-[node name="QuitGameButton" type="Button" parent="VBoxContainer" index="4"]
-
-editor/display_folded = true
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_top = 156.0
-margin_right = 164.0
-margin_bottom = 195.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = true
-focus_mode = 2
-mouse_filter = 0
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
-toggle_mode = false
-enabled_focus_mode = 2
-shortcut = null
-group = null
-text = "EXIT"
-flat = true
-align = 0
-_sections_unfolded = [ "Rect" ]
-
-[node name="TextureRect4" type="TextureRect" parent="VBoxContainer/QuitGameButton" index="0"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_left = -1.0
+margin_left = 5.0
 margin_top = -2.0
-margin_right = 163.0
-margin_bottom = 40.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 1
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
-texture = ExtResource( 5 )
-expand = true
-stretch_mode = 0
-
-[node name="Label" type="Label" parent="VBoxContainer/QuitGameButton/TextureRect4" index="0"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_left = 48.0
-margin_top = 6.0
-margin_right = 110.0
-margin_bottom = 34.0
+margin_right = 185.0
+margin_bottom = 46.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 2
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 4
-text = "Exit"
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+text = "Start"
+align = 1
+valign = 1
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
+_sections_unfolded = [ "Rect", "custom_colors" ]
+
+[node name="SwimButton" type="TextureButton" parent="VBoxContainer" index="2"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 83.0
+margin_right = 190.0
+margin_bottom = 132.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+focus_mode = 2
+mouse_filter = 0
+mouse_default_cursor_shape = 2
+size_flags_horizontal = 1
+size_flags_vertical = 1
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+group = null
+texture_normal = ExtResource( 4 )
+texture_pressed = ExtResource( 5 )
+texture_hover = ExtResource( 6 )
+_sections_unfolded = [ "Mouse", "Textures" ]
+
+[node name="Label" type="Label" parent="VBoxContainer/SwimButton" index="0"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 5.0
+margin_top = -1.0
+margin_right = 185.0
+margin_bottom = 46.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+text = "Swim"
+align = 1
+valign = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+_sections_unfolded = [ "Rect", "custom_colors" ]
+
+[node name="InventoryButton" type="TextureButton" parent="VBoxContainer" index="3"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 142.0
+margin_right = 190.0
+margin_bottom = 191.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+focus_mode = 2
+mouse_filter = 0
+mouse_default_cursor_shape = 2
+size_flags_horizontal = 1
+size_flags_vertical = 1
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+group = null
+texture_normal = ExtResource( 4 )
+texture_pressed = ExtResource( 5 )
+texture_hover = ExtResource( 6 )
+_sections_unfolded = [ "Mouse", "Textures" ]
+
+[node name="Label" type="Label" parent="VBoxContainer/InventoryButton" index="0"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 5.0
+margin_right = 185.0
+margin_bottom = 46.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+text = "Inventory"
+align = 1
+valign = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+_sections_unfolded = [ "Rect", "custom_colors" ]
+
+[node name="QuitGameButton" type="TextureButton" parent="VBoxContainer" index="4"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 201.0
+margin_right = 190.0
+margin_bottom = 250.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+focus_mode = 2
+mouse_filter = 0
+mouse_default_cursor_shape = 2
+size_flags_horizontal = 1
+size_flags_vertical = 1
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+group = null
+texture_normal = ExtResource( 4 )
+texture_pressed = ExtResource( 5 )
+texture_hover = ExtResource( 6 )
+_sections_unfolded = [ "Mouse", "Textures" ]
+
+[node name="Label" type="Label" parent="VBoxContainer/QuitGameButton" index="0"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 5.0
+margin_top = 1.0
+margin_right = 185.0
+margin_bottom = 46.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+text = "Quit"
+align = 1
+valign = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+_sections_unfolded = [ "Rect", "custom_colors" ]
 
 [connection signal="pressed" from="VBoxContainer/StartGameButton" to="." method="_on_StartGameButton_pressed"]
 
