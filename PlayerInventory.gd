@@ -205,6 +205,7 @@ func _on_Button_Exit_pressed():
 	Global_Player.save_data()
 	queue_free()
 	if in_swim == 1:
+		get_parent().inventory_open = 0
 		pass
 	else:
 		get_tree().change_scene("res://World.tscn")
