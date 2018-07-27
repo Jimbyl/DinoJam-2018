@@ -1,4 +1,4 @@
-extends Node2D
+extends Control
 
 var inventory_open = 0
 

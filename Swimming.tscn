@@ -1,24 +1,24 @@
 [gd_scene load_steps=33 format=2]
 
 [ext_resource path="res://Swimming.gd" type="Script" id=1]
-[ext_resource path="res://Sprites/Player/charhatscuba/Charhatscuba2.png" type="Texture" id=2]
-[ext_resource path="res://Sprites/Player/charhatscuba/Charhatscuba1.png" type="Texture" id=3]
-[ext_resource path="res://Sprites/Player/charhatscuba/Charhatscuba4.png" type="Texture" id=4]
-[ext_resource path="res://Sprites/Player/charhatscuba/Charhatscuba5.png" type="Texture" id=5]
-[ext_resource path="res://Sprites/Player/charhatscuba/Charhatscuba6.png" type="Texture" id=6]
-[ext_resource path="res://Sprites/Player/charhatscuba/Charhatscuba7.png" type="Texture" id=7]
-[ext_resource path="res://Sprites/Player/charhatscuba/Charhatscuba8.png" type="Texture" id=8]
-[ext_resource path="res://Sprites/Player/charhatscuba/Charhatscuba3.png" type="Texture" id=9]
-[ext_resource path="res://AnimatedSprite.gd" type="Script" id=10]
-[ext_resource path="res://Music/Diving.ogg" type="AudioStream" id=11]
-[ext_resource path="res://Sound Effects/Water Interaction/jump in water.ogg" type="AudioStream" id=12]
-[ext_resource path="res://Sound Effects/Water Interaction/get out.ogg" type="AudioStream" id=13]
-[ext_resource path="res://Sound Effects/GunshotRifle_BW.57683.ogg" type="AudioStream" id=14]
-[ext_resource path="res://Sound Effects/Water Interaction/stroke.ogg" type="AudioStream" id=15]
-[ext_resource path="res://Sprites/Decor/Radio.png" type="Texture" id=16]
-[ext_resource path="res://Music/ontheboat.ogg" type="AudioStream" id=17]
-[ext_resource path="res://Sprites/Particles/note.png" type="Texture" id=18]
-[ext_resource path="res://PopupInventory.gd" type="Script" id=19]
+[ext_resource path="res://PopupInventory.gd" type="Script" id=2]
+[ext_resource path="res://Sprites/Player/charhatscuba/Charhatscuba2.png" type="Texture" id=3]
+[ext_resource path="res://Sprites/Player/charhatscuba/Charhatscuba1.png" type="Texture" id=4]
+[ext_resource path="res://Sprites/Player/charhatscuba/Charhatscuba4.png" type="Texture" id=5]
+[ext_resource path="res://Sprites/Player/charhatscuba/Charhatscuba5.png" type="Texture" id=6]
+[ext_resource path="res://Sprites/Player/charhatscuba/Charhatscuba6.png" type="Texture" id=7]
+[ext_resource path="res://Sprites/Player/charhatscuba/Charhatscuba7.png" type="Texture" id=8]
+[ext_resource path="res://Sprites/Player/charhatscuba/Charhatscuba8.png" type="Texture" id=9]
+[ext_resource path="res://Sprites/Player/charhatscuba/Charhatscuba3.png" type="Texture" id=10]
+[ext_resource path="res://AnimatedSprite.gd" type="Script" id=11]
+[ext_resource path="res://Music/Diving.ogg" type="AudioStream" id=12]
+[ext_resource path="res://Sound Effects/Water Interaction/jump in water.ogg" type="AudioStream" id=13]
+[ext_resource path="res://Sound Effects/Water Interaction/get out.ogg" type="AudioStream" id=14]
+[ext_resource path="res://Sound Effects/GunshotRifle_BW.57683.ogg" type="AudioStream" id=15]
+[ext_resource path="res://Sound Effects/Water Interaction/stroke.ogg" type="AudioStream" id=16]
+[ext_resource path="res://Sprites/Decor/Radio.png" type="Texture" id=17]
+[ext_resource path="res://Music/ontheboat.ogg" type="AudioStream" id=18]
+[ext_resource path="res://Sprites/Particles/note.png" type="Texture" id=19]
 [ext_resource path="res://Sprites/Particles/bubble.png" type="Texture" id=20]
 [ext_resource path="res://coin.tscn" type="PackedScene" id=21]
 [ext_resource path="res://Map scenes/Maptest.tscn" type="PackedScene" id=22]
@@ -193,32 +193,32 @@ func create_sword():
 [sub_resource type="SpriteFrames" id=2]
 
 animations = [ {
-"frames": [ ExtResource( 2 ) ],
+"frames": [ ExtResource( 3 ) ],
 "loop": true,
 "name": "Ground",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 3 ) ],
+"frames": [ ExtResource( 4 ) ],
 "loop": true,
 "name": "Jump",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ) ],
+"frames": [ ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ) ],
 "loop": true,
 "name": "Swim",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 7 ) ],
+"frames": [ ExtResource( 8 ) ],
 "loop": true,
 "name": "Float",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 3 ), ExtResource( 9 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ) ],
+"frames": [ ExtResource( 4 ), ExtResource( 10 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ) ],
 "loop": true,
 "name": "Walk",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 3 ), ExtResource( 9 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ) ],
+"frames": [ ExtResource( 4 ), ExtResource( 10 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ) ],
 "loop": false,
 "name": "Stroke",
 "speed": 10.0
@@ -320,7 +320,7 @@ _sections_unfolded = [ "Angle", "Emission Shape", "Gravity", "Initial Velocity",
 custom_solver_bias = 0.0
 extents = Vector2( 10, 10 )
 
-[node name="Swimming" type="Node"]
+[node name="Swimming" type="Node" index="0"]
 
 script = ExtResource( 1 )
 
@@ -341,20 +341,35 @@ __meta__ = {
 "_edit_group_": true
 }
 
-[node name="AnimatedSprite" type="AnimatedSprite" parent="Player" index="0"]
+[node name="Inventory" type="Control" parent="Player" index="0"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+script = ExtResource( 2 )
+_sections_unfolded = [ "Transform", "Visibility", "Z Index" ]
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="Player" index="1"]
 
 scale = Vector2( 0.75, 0.75 )
 frames = SubResource( 2 )
 animation = "Float"
 playing = true
-script = ExtResource( 10 )
+script = ExtResource( 11 )
 _sections_unfolded = [ "Transform", "Visibility", "Z Index" ]
 
-[node name="SFX" type="Node" parent="Player" index="1"]
+[node name="SFX" type="Node" parent="Player" index="2"]
 
 [node name="Music" type="AudioStreamPlayer" parent="Player/SFX" index="0"]
 
-stream = ExtResource( 11 )
+stream = ExtResource( 12 )
 volume_db = -12.48
 pitch_scale = 1.0
 autoplay = false
@@ -363,7 +378,7 @@ bus = "Master"
 
 [node name="Enter Water" type="AudioStreamPlayer" parent="Player/SFX" index="1"]
 
-stream = ExtResource( 12 )
+stream = ExtResource( 13 )
 volume_db = -11.02
 pitch_scale = 1.0
 autoplay = false
@@ -372,7 +387,7 @@ bus = "Master"
 
 [node name="Exit Water" type="AudioStreamPlayer" parent="Player/SFX" index="2"]
 
-stream = ExtResource( 13 )
+stream = ExtResource( 14 )
 volume_db = -11.77
 pitch_scale = 1.0
 autoplay = false
@@ -381,7 +396,7 @@ bus = "Master"
 
 [node name="Shoot" type="AudioStreamPlayer" parent="Player/SFX" index="3"]
 
-stream = ExtResource( 14 )
+stream = ExtResource( 15 )
 volume_db = -13.56
 pitch_scale = 1.0
 autoplay = false
@@ -390,7 +405,7 @@ bus = "Master"
 
 [node name="Stroke" type="AudioStreamPlayer" parent="Player/SFX" index="4"]
 
-stream = ExtResource( 15 )
+stream = ExtResource( 16 )
 volume_db = 6.37
 pitch_scale = 1.0
 autoplay = false
@@ -401,7 +416,7 @@ bus = "Master"
 
 position = Vector2( 91.2681, -91.7314 )
 z_index = 2
-texture = ExtResource( 16 )
+texture = ExtResource( 17 )
 _sections_unfolded = [ "Z Index" ]
 __meta__ = {
 "_edit_group_": true
@@ -409,7 +424,7 @@ __meta__ = {
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Player/SFX/Radio" index="0"]
 
-stream = ExtResource( 17 )
+stream = ExtResource( 18 )
 volume_db = -1.0
 pitch_scale = 1.0
 autoplay = false
@@ -434,13 +449,13 @@ visibility_rect = Rect2( -100, -100, 200, 200 )
 local_coords = true
 draw_order = 0
 process_material = SubResource( 3 )
-texture = ExtResource( 18 )
+texture = ExtResource( 19 )
 normal_map = null
 h_frames = 1
 v_frames = 1
 _sections_unfolded = [ "Process Material", "Textures", "Time" ]
 
-[node name="Camera2D" type="Camera2D" parent="Player" index="2"]
+[node name="Camera2D" type="Camera2D" parent="Player" index="3"]
 
 anchor_mode = 1
 rotating = false
@@ -484,16 +499,7 @@ size_flags_horizontal = 1
 size_flags_vertical = 1
 _sections_unfolded = [ "Anchor", "Focus", "Grow Direction", "Hint", "Margin", "Rect" ]
 
-[node name="Inventory" type="Node2D" parent="Player/Camera2D/gui" index="0"]
-
-position = Vector2( 406, 239 )
-scale = Vector2( 1, 1 )
-z_index = 22
-z_as_relative = false
-script = ExtResource( 19 )
-_sections_unfolded = [ "Transform", "Visibility", "Z Index" ]
-
-[node name="HBoxContainer2" type="HBoxContainer" parent="Player/Camera2D/gui" index="1"]
+[node name="HBoxContainer2" type="HBoxContainer" parent="Player/Camera2D/gui" index="0"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -593,7 +599,7 @@ percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Player/Camera2D/gui" index="2"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Player/Camera2D/gui" index="1"]
 
 anchor_left = 1.0
 anchor_top = 0.0
@@ -658,31 +664,31 @@ lines_skipped = 0
 max_lines_visible = -1
 _sections_unfolded = [ "custom_colors", "custom_constants" ]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Player" index="3"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player" index="4"]
 
 position = Vector2( 1, -6 )
 shape = SubResource( 4 )
 _sections_unfolded = [ "Transform" ]
 
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="Player" index="4"]
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Player" index="5"]
 
 position = Vector2( 1, 23 )
 shape = SubResource( 5 )
 _sections_unfolded = [ "Transform" ]
 
-[node name="Position2D" type="Position2D" parent="Player" index="5"]
+[node name="Position2D" type="Position2D" parent="Player" index="6"]
 
 position = Vector2( 30, 0 )
 _sections_unfolded = [ "Transform" ]
 
-[node name="Timer" type="Timer" parent="Player" index="6"]
+[node name="Timer" type="Timer" parent="Player" index="7"]
 
 process_mode = 1
 wait_time = 1.0
 one_shot = false
 autostart = false
 
-[node name="waterpart" type="Particles2D" parent="Player" index="7"]
+[node name="waterpart" type="Particles2D" parent="Player" index="8"]
 
 position = Vector2( 2.15147, 29.6871 )
 rotation = 1.55284
