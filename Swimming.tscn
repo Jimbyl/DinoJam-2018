@@ -57,10 +57,13 @@ func _ready():
 	timer.connect(\"timeout\", self, \"on_timeout_complete\")
 	add_child(timer)
 	get_node(\"SFX/Radio/AudioStreamPlayer2D\")._set_playing(true)
+	
 func on_timeout_complete():
 	can_shoot = true
 
 func _physics_process(delta):
+	if health <= 0:
+		get_tree().change_scene(\"res://game_over.tscn\")
 	get_node(\"Camera2D/gui/ViewportContainer/TextureRect2/HBoxContainer/health\").set_text(str(health))
 	get_node(\"Camera2D/gui/ViewportContainer/TextureRect2/HBoxContainer/breath\").set_text(str(breath))
 	if in_water == 1:
@@ -179,16 +182,6 @@ animations = [ {
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ) ],
-"loop": false,
-"name": "Stroke",
-"speed": 10.0
-}, {
-"frames": [ ExtResource( 8 ) ],
-"loop": true,
-"name": "Float",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ) ],
 "loop": true,
 "name": "Swim",
 "speed": 5.0
@@ -202,6 +195,16 @@ animations = [ {
 "loop": true,
 "name": "Jump",
 "speed": 5.0
+}, {
+"frames": [ ExtResource( 8 ) ],
+"loop": true,
+"name": "Float",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ) ],
+"loop": false,
+"name": "Stroke",
+"speed": 10.0
 } ]
 _sections_unfolded = [ "Resource" ]
 
@@ -300,7 +303,7 @@ _sections_unfolded = [ "Angle", "Emission Shape", "Gravity", "Initial Velocity",
 custom_solver_bias = 0.0
 extents = Vector2( 10, 10 )
 
-[node name="Swimming" type="Node"]
+[node name="Swimming" type="Node" index="0"]
 
 script = ExtResource( 1 )
 
