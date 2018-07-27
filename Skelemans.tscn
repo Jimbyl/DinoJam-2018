@@ -32,7 +32,7 @@ func _physics_process(delta):
 			motion.y = -300
 	else:
 		spriteNode.playing = false
-	move_and_slide(motion, normalVec)
+	move_and_slide(motion, normalVec,5,4,.8)
 	
 	if health < 1:
 		queue_free()"
@@ -70,7 +70,9 @@ shape = SubResource( 1 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="KinematicSkeleman" index="1"]
 
+z_index = 2
 frames = SubResource( 2 )
 animation = "default"
+_sections_unfolded = [ "Z Index" ]
 
 

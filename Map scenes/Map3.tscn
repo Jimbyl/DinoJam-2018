@@ -1,10 +1,11 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://UrchinMonster.tscn" type="PackedScene" id=1]
 [ext_resource path="res://FollowMonster.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Tiles/Diving/sky.png" type="Texture" id=3]
 [ext_resource path="res://Tiles/Diving.tres" type="TileSet" id=4]
 [ext_resource path="res://Chest2.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Skelemans.tscn" type="PackedScene" id=6]
 
 [sub_resource type="Gradient" id=1]
 
@@ -17,7 +18,7 @@ flags = 4
 gradient = SubResource( 1 )
 width = 2000
 
-[node name="Map" type="Node"]
+[node name="Map" type="Node" index="0"]
 
 [node name="UrchinMonster" parent="." index="0" instance=ExtResource( 1 )]
 
@@ -153,5 +154,21 @@ position = Vector2( 892.986, 2071.08 )
 [node name="Chest2" parent="." index="8" instance=ExtResource( 5 )]
 
 position = Vector2( 292.131, 3088.65 )
+
+[node name="Skelemans" parent="." index="9" instance=ExtResource( 6 )]
+
+position = Vector2( 2548.08, 3859.96 )
+
+[node name="Skelemans2" parent="." index="10" instance=ExtResource( 6 )]
+
+position = Vector2( 1425.41, 3481.54 )
+
+[node name="Skelemans3" parent="." index="11" instance=ExtResource( 6 )]
+
+position = Vector2( 979.75, 2050.22 )
+
+[node name="Skelemans4" parent="." index="12" instance=ExtResource( 6 )]
+
+position = Vector2( 176.6, 3065.27 )
 
 
