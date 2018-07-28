@@ -117,8 +117,10 @@ func _physics_process(delta):
 	if Input.is_action_pressed('ui_right'): #swim left and right
 		motion.x = swimSpeed
 		get_node(\"AnimatedSprite\").set_flip_h(false)
+		get_node(\"Position2D\").position = Vector2(30,0)
 	elif Input.is_action_pressed('ui_left'):
 		get_node(\"AnimatedSprite\").set_flip_h(true)
+		get_node(\"Position2D\").position = Vector2(-30,0)
 		motion.x = -swimSpeed
 	else:
 		motion.x -= sign(motion.x)*friction
@@ -189,10 +191,9 @@ func create_sword():
 		if !get_node(\"AnimatedSprite\").flip_h:
 			sword.set_position(get_node(\"Position2D\").get_global_position())
 		else:
-			var swordPosition = get_node(\"Position2D\").get_global_position()
-			swordPosition.x -=60
 			sword.get_node(\"Area2D/Sprite\").set_flip_h(true)
-			sword.set_position(swordPosition)
+			sword.get_node(\"Area2D/CollisionShape2D\").position.x *=-1
+			sword.set_position(get_node(\"Position2D\").get_global_position())
 		"
 
 [sub_resource type="SpriteFrames" id=2]
@@ -325,7 +326,7 @@ _sections_unfolded = [ "Angle", "Emission Shape", "Gravity", "Initial Velocity",
 custom_solver_bias = 0.0
 extents = Vector2( 10, 10 )
 
-[node name="Swimming" type="Node" index="0"]
+[node name="Swimming" type="Node"]
 
 pause_mode = 1
 script = ExtResource( 1 )
@@ -369,6 +370,8 @@ script = ExtResource( 11 )
 _sections_unfolded = [ "Transform", "Visibility", "Z Index" ]
 
 [node name="SFX" type="Node" parent="Player" index="2"]
+
+editor/display_folded = true
 
 [node name="Music" type="AudioStreamPlayer" parent="Player/SFX" index="0"]
 
@@ -460,6 +463,7 @@ _sections_unfolded = [ "Process Material", "Textures", "Time" ]
 
 [node name="Camera2D" type="Camera2D" parent="Player" index="3"]
 
+editor/display_folded = true
 anchor_mode = 1
 rotating = false
 current = true
