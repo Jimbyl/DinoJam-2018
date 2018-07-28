@@ -103,7 +103,7 @@
 	},
 	"12": {
 		"name": "*Gun*",
-		"icon": "res://Sprites/Items/Weapons/basicsworditem.png",
+		"icon": "res://Sprites/Items/Weapons/Gun/pistoiteml.png",
 		"type": "equipment",
 		"stackable": false,
 		"description":"A Gun.",
@@ -111,7 +111,7 @@
 	},
 	"13": {
 		"name": "Sword",
-		"icon": "res://Sprites/Items/Weapons/Gun/pistoiteml.png",
+		"icon": "res://Sprites/Items/Weapons/basicsworditem.png",
 		"type": "equipment",
 		"stackable": false,
 		"description":"Swingy swingy sword.",
