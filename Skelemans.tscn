@@ -5,7 +5,7 @@
 [ext_resource path="res://Sprites/Mobs/Skeleton3.png" type="Texture" id=3]
 [ext_resource path="res://Sprites/Mobs/Skeleton4.png" type="Texture" id=4]
 
-[sub_resource type="ParticlesMaterial" id=4]
+[sub_resource type="ParticlesMaterial" id=1]
 
 render_priority = 0
 trail_divisor = 1
@@ -44,7 +44,7 @@ anim_offset_random = 0.0
 anim_loop = false
 _sections_unfolded = [ "Initial Velocity", "Scale", "Spread", "Trail" ]
 
-[sub_resource type="GDScript" id=1]
+[sub_resource type="GDScript" id=2]
 
 script/source = "extends KinematicBody2D
 
@@ -99,12 +99,12 @@ func _physics_process(delta):
 		get_parent().get_node(\"death\").set_emitting(true)
 		queue_free()"
 
-[sub_resource type="RectangleShape2D" id=2]
+[sub_resource type="RectangleShape2D" id=3]
 
 custom_solver_bias = 0.0
 extents = Vector2( 22.6476, 40.6341 )
 
-[sub_resource type="SpriteFrames" id=3]
+[sub_resource type="SpriteFrames" id=4]
 
 animations = [ {
 "frames": [ ExtResource( 1 ), ExtResource( 2 ), ExtResource( 3 ), ExtResource( 1 ), ExtResource( 4 ), ExtResource( 1 ) ],
@@ -113,7 +113,7 @@ animations = [ {
 "speed": 5.0
 } ]
 
-[node name="Skelemans" type="Node2D" index="0"]
+[node name="Skelemans" type="Node2D"]
 
 [node name="death" type="Particles2D" parent="." index="0"]
 
@@ -131,7 +131,7 @@ fract_delta = true
 visibility_rect = Rect2( -100, -100, 200, 200 )
 local_coords = false
 draw_order = 0
-process_material = SubResource( 4 )
+process_material = SubResource( 1 )
 texture = null
 normal_map = null
 h_frames = 1
@@ -146,17 +146,17 @@ input_pickable = false
 collision_layer = 1
 collision_mask = 1
 collision/safe_margin = 0.08
-script = SubResource( 1 )
+script = SubResource( 2 )
 
 [node name="Collision" type="CollisionShape2D" parent="KinematicSkeleman" index="0"]
 
 position = Vector2( -2, 4 )
-shape = SubResource( 2 )
+shape = SubResource( 3 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="KinematicSkeleman" index="1"]
 
 z_index = 2
-frames = SubResource( 3 )
+frames = SubResource( 4 )
 animation = "default"
 _sections_unfolded = [ "Z Index" ]
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=2]
+[gd_scene load_steps=34 format=2]
 
 [ext_resource path="res://Swimming.gd" type="Script" id=1]
 [ext_resource path="res://PopupInventory.gd" type="Script" id=2]
@@ -20,11 +20,12 @@
 [ext_resource path="res://Music/ontheboat.ogg" type="AudioStream" id=18]
 [ext_resource path="res://Sprites/Particles/note.png" type="Texture" id=19]
 [ext_resource path="res://Sprites/Particles/bubble.png" type="Texture" id=20]
-[ext_resource path="res://coin.tscn" type="PackedScene" id=21]
-[ext_resource path="res://Map scenes/Maptest.tscn" type="PackedScene" id=22]
-[ext_resource path="res://Database/DiveItems/CommonDrops/ItemWood.tscn" type="PackedScene" id=23]
-[ext_resource path="res://Sprites/Ships/boat side.png" type="Texture" id=24]
-[ext_resource path="res://Sprites/Ships/boat sidefore.png" type="Texture" id=25]
+[ext_resource path="res://Sprites/Items/Upgrades/Big_Rock.png" type="Texture" id=21]
+[ext_resource path="res://coin.tscn" type="PackedScene" id=22]
+[ext_resource path="res://Map scenes/Maptest.tscn" type="PackedScene" id=23]
+[ext_resource path="res://Database/DiveItems/CommonDrops/ItemWood.tscn" type="PackedScene" id=24]
+[ext_resource path="res://Sprites/Ships/boat side.png" type="Texture" id=25]
+[ext_resource path="res://Sprites/Ships/boat sidefore.png" type="Texture" id=26]
 
 [sub_resource type="GDScript" id=1]
 
@@ -66,7 +67,12 @@ func on_timeout_complete():
 	can_shoot = true
 
 func _physics_process(delta):
-
+	
+	if Global_Player.inventory_checkItem(\"5\"):
+		if Input.is_action_just_pressed(\"ui_down\"):
+			setGravity = 20
+			maxVertSpeed = 600
+			
 	
 	if health <= 0:
 		get_tree().change_scene(\"res://game_over.tscn\")
@@ -208,21 +214,6 @@ animations = [ {
 "name": "Swim",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 6 ) ],
-"loop": true,
-"name": "Float",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 8 ), ExtResource( 9 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ) ],
-"loop": false,
-"name": "Stroke",
-"speed": 10.0
-}, {
-"frames": [ ExtResource( 10 ) ],
-"loop": true,
-"name": "Ground",
-"speed": 5.0
-}, {
 "frames": [ ExtResource( 8 ) ],
 "loop": true,
 "name": "Jump",
@@ -232,6 +223,21 @@ animations = [ {
 "loop": true,
 "name": "Walk",
 "speed": 5.0
+}, {
+"frames": [ ExtResource( 6 ) ],
+"loop": true,
+"name": "Float",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 10 ) ],
+"loop": true,
+"name": "Ground",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 8 ), ExtResource( 9 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ) ],
+"loop": false,
+"name": "Stroke",
+"speed": 10.0
 } ]
 _sections_unfolded = [ "Resource" ]
 
@@ -724,33 +730,40 @@ h_frames = 1
 v_frames = 1
 _sections_unfolded = [ "Process Material", "Textures", "Time", "Z Index" ]
 
+[node name="Sprite" type="Sprite" parent="Player" index="9"]
+
+visible = false
+position = Vector2( 2, -40 )
+texture = ExtResource( 21 )
+_sections_unfolded = [ "Transform", "Visibility" ]
+
 [node name="Coins" type="Node2D" parent="." index="1"]
 
 position = Vector2( -504.701, -255.956 )
 z_index = 1
 _sections_unfolded = [ "Visibility", "Z Index" ]
 
-[node name="coin2" parent="Coins" index="0" instance=ExtResource( 21 )]
+[node name="coin2" parent="Coins" index="0" instance=ExtResource( 22 )]
 
 position = Vector2( 353.798, 126.979 )
 
-[node name="coin3" parent="Coins" index="1" instance=ExtResource( 21 )]
+[node name="coin3" parent="Coins" index="1" instance=ExtResource( 22 )]
 
 position = Vector2( 407.762, 132.564 )
 
-[node name="coin4" parent="Coins" index="2" instance=ExtResource( 21 )]
+[node name="coin4" parent="Coins" index="2" instance=ExtResource( 22 )]
 
 position = Vector2( 481.797, 132.398 )
 
-[node name="coin5" parent="Coins" index="3" instance=ExtResource( 21 )]
+[node name="coin5" parent="Coins" index="3" instance=ExtResource( 22 )]
 
 position = Vector2( 569.051, 133.83 )
 
-[node name="coin6" parent="Coins" index="4" instance=ExtResource( 21 )]
+[node name="coin6" parent="Coins" index="4" instance=ExtResource( 22 )]
 
 position = Vector2( 636.259, 135.262 )
 
-[node name="Map" parent="." index="2" instance=ExtResource( 22 )]
+[node name="Map" parent="." index="2" instance=ExtResource( 23 )]
 
 [node name="monster cage" type="StaticBody2D" parent="." index="3"]
 
@@ -792,7 +805,7 @@ scale = Vector2( 3.1925, 2.55128 )
 shape = SubResource( 7 )
 _sections_unfolded = [ "Transform", "Z Index" ]
 
-[node name="ItemWood" parent="." index="5" instance=ExtResource( 23 )]
+[node name="ItemWood" parent="." index="5" instance=ExtResource( 24 )]
 
 position = Vector2( 122.095, -189.445 )
 _sections_unfolded = [ "Transform", "Z Index" ]
@@ -833,7 +846,7 @@ __meta__ = {
 
 [node name="Sprite" type="Sprite" parent="Boat" index="0"]
 
-texture = ExtResource( 24 )
+texture = ExtResource( 25 )
 _sections_unfolded = [ "Transform" ]
 __meta__ = {
 "_edit_group_": true
@@ -857,7 +870,7 @@ polygon = PoolVector2Array( -251.214, 0.479618, -240.149, 38.8989, -199.579, 75.
 [node name="Sprite" type="Sprite" parent="Boat/Sprite" index="1"]
 
 z_index = 3
-texture = ExtResource( 25 )
+texture = ExtResource( 26 )
 _sections_unfolded = [ "Z Index" ]
 
 [connection signal="pressed" from="Button" to="." method="_on_Button_pressed"]
