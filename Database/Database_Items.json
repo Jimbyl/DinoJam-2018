@@ -27,6 +27,15 @@
 	},
 	
 	"3": {
+		"name": "Money",
+		"icon": "res://Sprites/Items/Materials/Coin.png",
+		"type": "material",
+		"stackable": true,
+		"description":"A single gold coin. Devalues over time.",
+		"sell_price": 1
+	},
+	
+	"4": {
 		"name": "A Rock",
 		"icon": "res://Sprites/Items/Upgrades/Rock.png",
 		"type": "equipment",
@@ -35,7 +44,7 @@
 		"sell_price": 4
 	},
 	
-	"4": {
+	"5": {
 		"name": "Big Rock",
 		"icon": "res://Sprites/Items/Upgrades/Big_Rock.png",
 		"type": "equipment",
@@ -44,7 +53,7 @@
 		"sell_price": 8
 	},	
 	
-	"5": {
+	"6": {
 		"name": "Diving Gear",
 		"icon": "res://Sprites/Items/Upgrades/Diving_Gear.png",
 		"type": "equipment",
@@ -52,12 +61,60 @@
 		"description":"Not to be confused with dining gear. Extends breath underwater.",
 		"sell_price": 40
 	},	
-	"6": {
+	"7": {
 		"name": "Skeleton Necklace",
 		"icon": "res://Sprites/Items/Artifacts/Skeleton_Necklace.png",
 		"type": "equipment",
 		"stackable": false,
 		"description":"Pulsing with some kind of ancient energy. Or delusion. Does a small amount of damage per second to nearby enemies.",
 		"sell_price": 200
+	},
+	"8": {
+		"name": "The Skeleton King's Hand",
+		"icon": "res://Sprites/Items/Artifacts/Skeleton_Hand.png",
+		"type": "equipment",
+		"stackable": false,
+		"description":"It's the Skeleton King's Hand! You know, the skeleton king? yeah. Lifesteal on hit.",
+		"sell_price": 200
+	},
+	"9": {
+		"name": "Cross",
+		"icon": "res://Sprites/Items/Upgrades/Cross.png",
+		"type": "equipment",
+		"stackable": false,
+		"description":"The power of nondescript higher power compells you! Does more damage to undead monsters.",
+		"sell_price": 30
+	},	
+	"10": {
+		"name": "A Sopping Wet Copy of Moby Dick",
+		"icon": "res://Sprites/Items/Upgrades/moby_dick.png",
+		"type": "equipment",
+		"stackable": false,
+		"description":"It's like the real thing. Does more damage to fish monsters.",
+		"sell_price": 30
+	},	
+	"11": {
+		"name": "Can O' Spinach",
+		"icon": "res://Sprites/Items/Upgrades/Spinach.png",
+		"type": "equipment",
+		"stackable": false,
+		"description":"A media tie-in deal with the hit 2005 videogame featuring a particular strongarm sailor. Increase to health",
+		"sell_price": 30
+	},
+	"12": {
+		"name": "*Gun*",
+		"icon": "res://Sprites/Items/Weapons/basicsworditem.png",
+		"type": "equipment",
+		"stackable": false,
+		"description":"A Gun.",
+		"sell_price": 30
+	},
+	"13": {
+		"name": "Sword",
+		"icon": "res://Sprites/Items/Weapons/Gun/pistoiteml.png",
+		"type": "equipment",
+		"stackable": false,
+		"description":"Swingy swingy sword.",
+		"sell_price": 30
 	},
 }
