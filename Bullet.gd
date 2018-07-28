@@ -35,8 +35,7 @@ func _on_VisibilityNotifier2D_screen_exited():
 func _on_Area2D_body_entered(body):
 	for toCompare in get_tree().get_nodes_in_group("SwimmingAI"):
 		if body == toCompare:
-			body.health -=1
-		if Global_Player.inventory_checkItem("10") == true:
-			for toCompare in get_tree().get_nodes_in_group("SwimmingAI"):
-				if body == toCompare:
-					body.health -=1
+			body.health -= damage
+			if Global_Player.inventory_checkItem("8") == true:
+				if get_parent().get_parent().get_node("Player").health < 4:
+					get_parent().get_parent().get_node("Player").health += 1

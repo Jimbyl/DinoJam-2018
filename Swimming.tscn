@@ -42,7 +42,8 @@ var grounded = 0
 var in_water = 0
 var can_jump = 1
 
-var health = 4
+var maxHealth = 4
+var health 
 var breath = 100
 var breath_tick = .1
 
@@ -61,8 +62,10 @@ func _ready():
 	timer.connect(\"timeout\", self, \"on_timeout_complete\")
 	add_child(timer)
 	get_node(\"SFX/Radio/AudioStreamPlayer2D\")._set_playing(true)
-	
-	
+	if Global_Player.inventory_checkItem(\"11\") == true:
+		maxHealth = 5
+	health = maxHealth
+
 func on_timeout_complete():
 	can_shoot = true
 
