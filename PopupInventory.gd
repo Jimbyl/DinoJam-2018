@@ -17,6 +17,7 @@ func _process(delta):
 			self.add_child(scene_instance)
 			inventory_open = 1
 			get_node("Inventory").in_swim = 1
+			get_tree().paused = true
 		elif inventory_open ==1:
 			print ("inventoryclose")	
 			Global_Player.save_data()
@@ -24,3 +25,6 @@ func _process(delta):
 			var inventory = get_node("Inventory")
 			remove_child(inventory)
 			inventory_open = 0
+			get_tree().paused = false
+		
+
