@@ -105,7 +105,7 @@ extents = Vector2( 32, 32 )
 custom_solver_bias = 0.0
 extents = Vector2( 32, 32 )
 
-[node name="DivingTileSet" type="Node"]
+[node name="DivingTileSet" type="Node" index="0"]
 
 [node name="Wood" type="Sprite" parent="." index="0"]
 
@@ -675,5 +675,26 @@ bounce = 0.0
 [node name="CollisionShape2D" type="CollisionShape2D" parent="stone edge/StaticBody2D" index="0"]
 
 shape = SubResource( 14 )
+
+[node name="invisible wall" type="Sprite" parent="." index="34"]
+
+modulate = Color( 1, 1, 1, 0.00392157 )
+position = Vector2( 480, 352 )
+texture = ExtResource( 23 )
+_sections_unfolded = [ "Visibility" ]
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="invisible wall" index="0"]
+
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="invisible wall/StaticBody2D2" index="0"]
+
+shape = SubResource( 13 )
 
 
