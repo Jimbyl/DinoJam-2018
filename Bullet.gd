@@ -16,6 +16,10 @@ func _ready():
 	if Global_Player.inventory_checkItem("10") == true:
 		for toCompare in get_tree().get_nodes_in_group("Fish"):
 				damage = 2
+	if Global_Player.inventory_checkItem("9") == true:
+			for toCompare in get_tree().get_nodes_in_group("Undead"):
+				damage = 2
+				
 
 func _process(delta):
 	var motion = Vector2(speed_x, speed_y) * BULLET_SPEED

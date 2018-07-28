@@ -26,6 +26,7 @@ func _ready():
 			for toCompare in get_tree().get_nodes_in_group(\"Undead\"):
 				damage = 2
 	
+	
 	timer.set_one_shot(true)
 	timer.set_wait_time(.2)
 	add_child(timer)
@@ -43,14 +44,18 @@ func _on_Area2D_body_entered(body):
 	for toCompare in get_tree().get_nodes_in_group(\"SwimmingAI\"):
 		if body == toCompare and toCompare != get_tree().get_nodes_in_group(\"SwimmingAI\")[0]:
 			body.health -= damage
-			body.motion += polar2cartesian(400, get_angle_to(body.global_position))"
+			body.motion += polar2cartesian(400, get_angle_to(body.global_position))
+			if Global_Player.inventory_checkItem(\"8\") == true:
+				if get_parent().get_parent().get_node(\"Player\").health < 4:
+					get_parent().get_parent().get_node(\"Player\").health += 1
+"
 
 [sub_resource type="RectangleShape2D" id=2]
 
 custom_solver_bias = 0.0
 extents = Vector2( 11.6414, 11.9858 )
 
-[node name="Sword" type="Node2D"]
+[node name="Sword" type="Node2D" index="0"]
 
 position = Vector2( 40, 0 )
 scale = Vector2( 3.25, 3.25 )

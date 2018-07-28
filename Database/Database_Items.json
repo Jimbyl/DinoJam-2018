@@ -74,7 +74,7 @@
 		"icon": "res://Sprites/Items/Artifacts/Skeleton_Hand.png",
 		"type": "equipment",
 		"stackable": false,
-		"description":"It's the Skeleton King's Hand! You know, the skeleton king? yeah. Lifesteal on hit.",
+		"description":"Reminds me of my ex-wife. Lifesteal on hit.",
 		"sell_price": 200
 	},
 	"9": {

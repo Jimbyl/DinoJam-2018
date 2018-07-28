@@ -103,8 +103,8 @@ v_frames = 1
 _sections_unfolded = [ "Drawing", "Process Material", "Time", "Z Index" ]
 
 [node name="KinematicBody2D" type="KinematicBody2D" parent="." index="1" groups=[
-"SwimmingAI",
 "Fish",
+"SwimmingAI",
 ]]
 
 position = Vector2( 0, -5.00461 )

@@ -114,7 +114,7 @@ animations = [ {
 "speed": 5.0
 } ]
 
-[node name="Skelemans" type="Node2D" index="0"]
+[node name="Skelemans" type="Node2D"]
 
 [node name="death" type="Particles2D" parent="." index="0"]
 
