@@ -77,7 +77,7 @@ anim_offset_random = 0.0
 anim_loop = false
 _sections_unfolded = [ "Gravity", "Initial Velocity", "Spread" ]
 
-[node name="ItemSkeletonNeck" type="Node2D" index="0" groups=[
+[node name="ItemSkeletonNeck" type="Node2D" groups=[
 "CommonDrops",
 ]]
 
