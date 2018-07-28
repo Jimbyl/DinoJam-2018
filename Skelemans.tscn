@@ -53,7 +53,7 @@ func _physics_process(delta):
 		can_attack = false
 		timer.start()
 		player.motion += polar2cartesian(knockback, angle)
-		player.health -= 3
+		player.health -= 2
 	get_node(\"HBoxContainer/Health\").set_text(str(health))
 	
 	
@@ -115,11 +115,11 @@ anim_offset_random = 0.0
 anim_loop = false
 _sections_unfolded = [ "Initial Velocity", "Scale", "Spread", "Trail" ]
 
-[node name="Skelemans" type="Node2D"]
+[node name="Skelemans" type="Node2D" index="0"]
 
 [node name="KinematicSkeleman" type="KinematicBody2D" parent="." index="0" groups=[
-"Undead",
 "SwimmingAI",
+"Undead",
 ]]
 
 input_pickable = false
