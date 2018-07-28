@@ -189,6 +189,7 @@ func create_sword():
 			sword.set_position(get_node(\"Position2D\").get_global_position())
 		else:
 			sword.get_node(\"Area2D/Sprite\").set_flip_h(true)
+			sword.get_node(\"Area2D/CollisionShape2D\").position.x *=-1
 			sword.set_position(get_node(\"Position2D\").get_global_position())
 		"
 
