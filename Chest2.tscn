@@ -30,7 +30,7 @@ func lootGen():
 	
 	var basicCount = randi()%10 + 1 #number of basic items to be added
 	var luck = randi()%100 + 1
-	if Global_Player.inventory_checkItem(14): #if player has clover
+	if Global_Player.inventory_checkItem(\"14\"): #if player has clover
 		luck += 5
 	var i = 0
 	var ItemNum
@@ -104,7 +104,7 @@ _sections_unfolded = [ "Resource" ]
 shortcut = SubResource( 3 )
 _sections_unfolded = [ "Resource" ]
 
-[node name="Chest2" type="Node2D"]
+[node name="Chest2" type="Node2D" index="0"]
 
 script = SubResource( 1 )
 
