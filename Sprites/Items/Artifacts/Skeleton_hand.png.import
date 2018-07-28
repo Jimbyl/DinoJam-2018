@@ -2,12 +2,12 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Skeleton_hand.png-d4b0ee6b2b0c084717bfaac31e913fe6.stex"
+path="res://.import/Skeleton_Hand.png-1c1e2d87584a4fbb3f7eaae76cb19981.stex"
 
 [deps]
 
-source_file="res://Sprites/Items/Artifacts/Skeleton_hand.png"
-dest_files=[ "res://.import/Skeleton_hand.png-d4b0ee6b2b0c084717bfaac31e913fe6.stex" ]
+source_file="res://Sprites/Items/Artifacts/Skeleton_Hand.png"
+dest_files=[ "res://.import/Skeleton_Hand.png-1c1e2d87584a4fbb3f7eaae76cb19981.stex" ]
 
 [params]
 
@@ -16,7 +16,7 @@ compress/lossy_quality=0.7
 compress/hdr_mode=0
 compress/normal_map=0
 flags/repeat=0
-flags/filter=true
+flags/filter=false
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2
