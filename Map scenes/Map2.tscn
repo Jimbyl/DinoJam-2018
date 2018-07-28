@@ -18,7 +18,7 @@ flags = 4
 gradient = SubResource( 1 )
 width = 2000
 
-[node name="Map" type="Node" index="0"]
+[node name="Map" type="Node"]
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="." index="0"]
 
