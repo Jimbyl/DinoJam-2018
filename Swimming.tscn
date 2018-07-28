@@ -3,8 +3,8 @@
 [ext_resource path="res://Swimming.gd" type="Script" id=1]
 [ext_resource path="res://PopupInventory.gd" type="Script" id=2]
 [ext_resource path="res://Sprites/Player/charhatscuba/Charhatscuba2.png" type="Texture" id=3]
-[ext_resource path="res://Sprites/Player/charhatscuba/Charhatscuba1.png" type="Texture" id=4]
-[ext_resource path="res://Sprites/Player/charhatscuba/Charhatscuba7.png" type="Texture" id=5]
+[ext_resource path="res://Sprites/Player/charhatscuba/Charhatscuba7.png" type="Texture" id=4]
+[ext_resource path="res://Sprites/Player/charhatscuba/Charhatscuba1.png" type="Texture" id=5]
 [ext_resource path="res://Sprites/Player/charhatscuba/Charhatscuba3.png" type="Texture" id=6]
 [ext_resource path="res://Sprites/Player/charhatscuba/Charhatscuba4.png" type="Texture" id=7]
 [ext_resource path="res://Sprites/Player/charhatscuba/Charhatscuba5.png" type="Texture" id=8]
@@ -202,25 +202,25 @@ animations = [ {
 }, {
 "frames": [ ExtResource( 4 ) ],
 "loop": true,
-"name": "Jump",
+"name": "Float",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 5 ) ],
 "loop": true,
-"name": "Float",
+"name": "Jump",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 4 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ) ],
+"frames": [ ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ) ],
 "loop": true,
 "name": "Walk",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 4 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ) ],
+"frames": [ ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ) ],
 "loop": false,
 "name": "Stroke",
 "speed": 10.0
 }, {
-"frames": [ ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ), ExtResource( 5 ), ExtResource( 10 ) ],
+"frames": [ ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ), ExtResource( 4 ), ExtResource( 10 ) ],
 "loop": true,
 "name": "Swim",
 "speed": 5.0
@@ -322,7 +322,7 @@ _sections_unfolded = [ "Angle", "Emission Shape", "Gravity", "Initial Velocity",
 custom_solver_bias = 0.0
 extents = Vector2( 10, 10 )
 
-[node name="Swimming" type="Node"]
+[node name="Swimming" type="Node" index="0"]
 
 script = ExtResource( 1 )
 

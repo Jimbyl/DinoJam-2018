@@ -1,6 +1,6 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
-[ext_resource path="res://Sprites/Items/Materials/Metal.png" type="Texture" id=1]
+[ext_resource path="res://Sprites/Items/Upgrades/clover.png" type="Texture" id=1]
 
 [sub_resource type="GDScript" id=1]
 
@@ -18,7 +18,7 @@ func _physics_process(delta):
 		motion.x = 0
 	move_and_slide(motion, floorVec, 5, 100)"
 
-[sub_resource type="RectangleShape2D" id=2]
+[sub_resource type="RectangleShape2D" id=4]
 
 custom_solver_bias = 0.0
 extents = Vector2( 10, 10 )
@@ -31,16 +31,57 @@ script/source = "extends Area2D
 func _on_Area2D_body_entered(body):
 	if body == get_tree().get_nodes_in_group(\"SwimmingAI\")[0]: #if player touches this
 		get_parent().get_parent().queue_free()
-		Global_Player.inventory_addItem(\"2\")"
+		Global_Player.inventory_addItem(\"14\")"
 
-[sub_resource type="RectangleShape2D" id=4]
+[sub_resource type="RectangleShape2D" id=5]
 
 custom_solver_bias = 0.0
 extents = Vector2( 12, 12 )
 
-[node name="ItemMetal" type="Node2D" index="0" groups=[
+[sub_resource type="ParticlesMaterial" id=6]
+
+render_priority = 0
+trail_divisor = 1
+emission_shape = 0
+flag_align_y = false
+flag_rotate_y = false
+flag_disable_z = true
+spread = 180.0
+flatness = 0.0
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 14.33
+initial_velocity_random = 0.0
+angular_velocity = 0.0
+angular_velocity_random = 0.0
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+linear_accel = 0.0
+linear_accel_random = 0.0
+radial_accel = 0.0
+radial_accel_random = 0.0
+tangential_accel = 0.0
+tangential_accel_random = 0.0
+damping = 0.0
+damping_random = 0.0
+angle = 0.0
+angle_random = 0.0
+scale = 1.0
+scale_random = 0.0
+color = Color( 1, 1, 1, 1 )
+hue_variation = 0.0
+hue_variation_random = 0.0
+anim_speed = 0.0
+anim_speed_random = 0.0
+anim_offset = 0.0
+anim_offset_random = 0.0
+anim_loop = false
+_sections_unfolded = [ "Gravity", "Initial Velocity", "Spread" ]
+
+[node name="ItemClover" type="Node2D" index="0" groups=[
 "CommonDrops",
 ]]
+
+position = Vector2( -0.681122, 0 )
 
 [node name="KinematicBody2D" type="KinematicBody2D" parent="." index="0"]
 
@@ -53,7 +94,7 @@ _sections_unfolded = [ "Collision", "Pickable", "Transform" ]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="KinematicBody2D" index="0"]
 
-shape = SubResource( 2 )
+shape = SubResource( 4 )
 _sections_unfolded = [ "Transform", "Z Index" ]
 
 [node name="Sprite" type="Sprite" parent="KinematicBody2D" index="1"]
@@ -75,7 +116,29 @@ _sections_unfolded = [ "Collision" ]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="KinematicBody2D/Area2D" index="0"]
 
-shape = SubResource( 4 )
+shape = SubResource( 5 )
+
+[node name="Particles2D" type="Particles2D" parent="." index="1"]
+
+emitting = true
+amount = 8
+lifetime = 1.0
+one_shot = false
+preprocess = 0.0
+speed_scale = 1.0
+explosiveness = 0.0
+randomness = 0.0
+fixed_fps = 0
+fract_delta = true
+visibility_rect = Rect2( -100, -100, 200, 200 )
+local_coords = true
+draw_order = 0
+process_material = SubResource( 6 )
+texture = null
+normal_map = null
+h_frames = 1
+v_frames = 1
+_sections_unfolded = [ "Process Material" ]
 
 [connection signal="body_entered" from="KinematicBody2D/Area2D" to="KinematicBody2D/Area2D" method="_on_Area2D_body_entered"]
 

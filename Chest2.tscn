@@ -29,7 +29,9 @@ func lootGen():
 	var rareDropsGp = list_files_in_directory(\"res://Database/DiveItems/rareDrops\")
 	
 	var basicCount = randi()%10 + 1 #number of basic items to be added
-	var luck = 0#randi()%100 + 1
+	var luck = randi()%100 + 1
+	if Global_Player.inventory_checkItem(14): #if player has clover
+		luck += 5
 	var i = 0
 	var ItemNum
 	while i < basicCount:
@@ -47,6 +49,10 @@ func lootGen():
 	if luck >= 95:
 		ItemNum = randi()%rareDropsGp.size()
 		loot.append(rareDropsGp[ItemNum])
+		i+=1
+	if luck >= 100:
+		ItemNum = randi()%rareDropsGp.size()
+		loot.append(rareDropsGp([ItemNum]))
 		i+=1
 	var lSize = loot.size()
 	var j = 0
@@ -70,7 +76,7 @@ func list_files_in_directory(path):
 		if file == \"\":
 			break
 		elif not file.begins_with(\".\"):
-			files.append(\"res://Database/DiveItems/CommonDrops/\"+file)
+			files.append(path+\"/\"+file)
 	dir.list_dir_end()
 	return files"
 
@@ -98,7 +104,7 @@ _sections_unfolded = [ "Resource" ]
 shortcut = SubResource( 3 )
 _sections_unfolded = [ "Resource" ]
 
-[node name="Chest2" type="Node2D" index="0"]
+[node name="Chest2" type="Node2D"]
 
 script = SubResource( 1 )
 
