@@ -2,12 +2,12 @@
 
 [ext_resource path="res://StartMenu.gd" type="Script" id=1]
 [ext_resource path="res://UI/Main Menu/tempbkg720.png" type="Texture" id=2]
-[ext_resource path="res://Music/HesaPirate.ogg" type="AudioStream" id=3]
+[ext_resource path="res://Music/Main Screen.ogg" type="AudioStream" id=3]
 [ext_resource path="res://UI/uipack-rpg/PNG/buttonLong_blue.png" type="Texture" id=4]
 [ext_resource path="res://UI/uipack-rpg/PNG/buttonLong_blue_pressed.png" type="Texture" id=5]
 [ext_resource path="res://UI/uipack-rpg/PNG/buttonLong_grey.png" type="Texture" id=6]
 
-[node name="StartMenu" type="Control"]
+[node name="StartMenu" type="Control" index="0"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -37,10 +37,10 @@ texture = ExtResource( 2 )
 expand = true
 stretch_mode = 0
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." index="1"]
+[node name="Music" type="AudioStreamPlayer" parent="." index="1"]
 
 stream = ExtResource( 3 )
-volume_db = 2.0
+volume_db = -10.0
 pitch_scale = 1.0
 autoplay = false
 mix_target = 0
@@ -109,7 +109,7 @@ group = null
 texture_normal = ExtResource( 4 )
 texture_pressed = ExtResource( 5 )
 texture_hover = ExtResource( 6 )
-_sections_unfolded = [ "Mouse" ]
+_sections_unfolded = [ "Mouse", "Textures" ]
 
 [node name="Label" type="Label" parent="VBoxContainer/StartGameButton" index="0"]
 
