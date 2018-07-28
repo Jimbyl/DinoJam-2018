@@ -2,10 +2,10 @@
 
 [ext_resource path="res://Swimming.gd" type="Script" id=1]
 [ext_resource path="res://PopupInventory.gd" type="Script" id=2]
-[ext_resource path="res://Sprites/Player/charhatscuba/Charhatscuba7.png" type="Texture" id=3]
-[ext_resource path="res://Sprites/Player/charhatscuba/Charhatscuba4.png" type="Texture" id=4]
-[ext_resource path="res://Sprites/Player/charhatscuba/Charhatscuba5.png" type="Texture" id=5]
-[ext_resource path="res://Sprites/Player/charhatscuba/Charhatscuba6.png" type="Texture" id=6]
+[ext_resource path="res://Sprites/Player/charhatscuba/Charhatscuba4.png" type="Texture" id=3]
+[ext_resource path="res://Sprites/Player/charhatscuba/Charhatscuba5.png" type="Texture" id=4]
+[ext_resource path="res://Sprites/Player/charhatscuba/Charhatscuba6.png" type="Texture" id=5]
+[ext_resource path="res://Sprites/Player/charhatscuba/Charhatscuba7.png" type="Texture" id=6]
 [ext_resource path="res://Sprites/Player/charhatscuba/Charhatscuba8.png" type="Texture" id=7]
 [ext_resource path="res://Sprites/Player/charhatscuba/Charhatscuba1.png" type="Texture" id=8]
 [ext_resource path="res://Sprites/Player/charhatscuba/Charhatscuba3.png" type="Texture" id=9]
@@ -60,10 +60,14 @@ func _ready():
 	add_child(timer)
 	get_node(\"SFX/Radio/AudioStreamPlayer2D\")._set_playing(true)
 	
+	
 func on_timeout_complete():
 	can_shoot = true
 
 func _physics_process(delta):
+	if Global_Player.inventory_checkItem(\"6\") == true:
+		breath += .05
+	
 	if health <= 0:
 		get_tree().change_scene(\"res://game_over.tscn\")
 	get_node(\"Camera2D/gui/HBoxContainer2/health\").set_text(str(health))
@@ -76,11 +80,11 @@ func _physics_process(delta):
 		grounded = 1
 		gravity = 0 
 		can_jump = 1
-		print(\"GROUND\")
+		#print(\"GROUND\")
 	elif !is_on_floor():
 		grounded = 0
 		gravity = setGravity
-		print(\"NOTGROUNDED\")
+		#print(\"NOTGROUNDED\")
 	if is_on_ceiling(): #halt vertical momentum if you hit the ceiling
 		motion.y = 0
 	if grounded == 0: #bring to floor if you're not on the floor
@@ -95,7 +99,7 @@ func _physics_process(delta):
 			get_node(\"AnimatedSprite\").set_animation(\"Walk\")
 	if motion.y > gravity and grounded == 0 and in_water == 1:
 		get_node(\"AnimatedSprite\").set_animation(\"Swim\")
-		print(\"FALLING\")
+		#print(\"FALLING\")
 	if Input.is_action_just_pressed('ui_up') and can_jump == 1 :#swim up
 		get_node(\"AnimatedSprite\").set_frame(0) #reset swim stroke on up input
 		if in_water == 1:
@@ -123,7 +127,7 @@ func _physics_process(delta):
 	
 	if abs(motion.y) > maxVertSpeed:
 		motion.y = sign(motion.y)*maxVertSpeed
-	print (motion , setGravity)
+	#print (motion , setGravity)
 	move_and_slide(motion,normalVector,5,4,.8)
 	var player = get_node(\"Position2D\").get_global_position()	#discern between water and air
 	if player.y <= 0:
@@ -134,6 +138,7 @@ func _physics_process(delta):
 		friction = 10
 		grounded = 0
 		breath = 100
+		
 		if in_water == 1:
 			get_node(\"SFX/Radio/AudioStreamPlayer2D\")._set_playing(true)
 			get_node(\"SFX/Exit Water\")._set_playing(true)
@@ -166,8 +171,6 @@ func _physics_process(delta):
 		can_shoot = false
 		timer.start()
 
-	if Global_Player.inventory_checkItem(1)==true:
-		print (\"haswood\")
 
 func create_bullet():
 		var bullet = BULLET_SCENE.instance()
@@ -195,30 +198,30 @@ func create_sword():
 [sub_resource type="SpriteFrames" id=2]
 
 animations = [ {
-"frames": [ ExtResource( 3 ) ],
-"loop": true,
-"name": "Float",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 3 ), ExtResource( 7 ) ],
+"frames": [ ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ) ],
 "loop": true,
 "name": "Swim",
 "speed": 5.0
-}, {
-"frames": [ ExtResource( 8 ), ExtResource( 9 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ) ],
-"loop": true,
-"name": "Walk",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 8 ), ExtResource( 9 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ) ],
-"loop": false,
-"name": "Stroke",
-"speed": 10.0
 }, {
 "frames": [ ExtResource( 8 ) ],
 "loop": true,
 "name": "Jump",
 "speed": 5.0
+}, {
+"frames": [ ExtResource( 6 ) ],
+"loop": true,
+"name": "Float",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 8 ), ExtResource( 9 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ) ],
+"loop": true,
+"name": "Walk",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 8 ), ExtResource( 9 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ) ],
+"loop": false,
+"name": "Stroke",
+"speed": 10.0
 }, {
 "frames": [ ExtResource( 10 ) ],
 "loop": true,
