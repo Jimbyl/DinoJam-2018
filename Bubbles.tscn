@@ -22,10 +22,8 @@ script/source = "extends Node2D
 func _on_TextureButton_pressed():
 	get_tree().change_scene(\"res://Swimming.tscn\")
 func _process(delta):
-	
-	var Bubbles = get_tree().get_nodes_in_group(\"DiveButton\")[0]
-	var Dinghy = get_tree().get_nodes_in_group(\"DiveButton\")[1]
-	if abs(Dinghy.get_position().x - Bubbles.get_position().x) < 200 and abs(Dinghy.get_position().y - Bubbles.get_position().y) < 200 :
+	var Dinghy = get_parent().get_parent().get_node(\"Dinghy1\").get_node(\"KinematicBody2D\")
+	if abs(Dinghy.get_global_position().x - global_position.x) < 100 and abs(Dinghy.get_global_position().y - global_position.y) < 100 :
 		get_node(\"TextureButton\").disabled = false
 		get_node(\"TextureButton\").visible = true
 	else:
@@ -78,7 +76,7 @@ script = SubResource( 1 )
 
 frames = SubResource( 2 )
 animation = "default"
-frame = 3
+frame = 7
 playing = true
 
 [node name="TextureButton" type="TextureButton" parent="." index="1"]
