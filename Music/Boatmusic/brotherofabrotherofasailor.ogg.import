@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/brotherofabrotherofasailor.ogg-6ab5df8fb8c1d3ec15f4b0a4d0afa445.oggstr"
+
+[deps]
+
+source_file="res://Music/Boatmusic/brotherofabrotherofasailor.ogg"
+dest_files=[ "res://.import/brotherofabrotherofasailor.ogg-6ab5df8fb8c1d3ec15f4b0a4d0afa445.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

@@ -76,7 +76,7 @@ script = SubResource( 1 )
 
 frames = SubResource( 2 )
 animation = "default"
-frame = 7
+frame = 3
 playing = true
 
 [node name="TextureButton" type="TextureButton" parent="." index="1"]
@@ -107,6 +107,7 @@ _sections_unfolded = [ "Material", "Pause", "Textures", "Visibility" ]
 position = Vector2( 60.6596, 38.9975 )
 frames = SubResource( 5 )
 animation = "default"
+frame = 1
 playing = true
 _sections_unfolded = [ "Transform", "Z Index" ]
 

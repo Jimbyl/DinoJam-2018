@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/hamburgerinparadise.ogg-33ae2d711bc962c90cc2f376dc3cf80b.oggstr"
+
+[deps]
+
+source_file="res://Music/Boatmusic/hamburgerinparadise.ogg"
+dest_files=[ "res://.import/hamburgerinparadise.ogg-33ae2d711bc962c90cc2f376dc3cf80b.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/ontheboat.ogg-e0627310b084fe8b35f5705fabaa716c.oggstr"
+
+[deps]
+
+source_file="res://Music/ontheboat.ogg"
+dest_files=[ "res://.import/ontheboat.ogg-e0627310b084fe8b35f5705fabaa716c.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

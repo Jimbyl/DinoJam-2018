@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/DaiquiriTown.ogg-7c5f7bd26735c0fffbe19930418766fb.oggstr"
+
+[deps]
+
+source_file="res://Music/Boatmusic/DaiquiriTown.ogg"
+dest_files=[ "res://.import/DaiquiriTown.ogg-7c5f7bd26735c0fffbe19930418766fb.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0
