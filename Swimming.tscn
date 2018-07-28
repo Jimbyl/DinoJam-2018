@@ -1,30 +1,31 @@
-[gd_scene load_steps=33 format=2]
+[gd_scene load_steps=34 format=2]
 
 [ext_resource path="res://Swimming.gd" type="Script" id=1]
-[ext_resource path="res://PopupInventory.gd" type="Script" id=2]
-[ext_resource path="res://Sprites/Player/charhatscuba/Charhatscuba2.png" type="Texture" id=3]
-[ext_resource path="res://Sprites/Player/charhatscuba/Charhatscuba1.png" type="Texture" id=4]
-[ext_resource path="res://Sprites/Player/charhatscuba/Charhatscuba7.png" type="Texture" id=5]
-[ext_resource path="res://Sprites/Player/charhatscuba/Charhatscuba3.png" type="Texture" id=6]
-[ext_resource path="res://Sprites/Player/charhatscuba/Charhatscuba4.png" type="Texture" id=7]
-[ext_resource path="res://Sprites/Player/charhatscuba/Charhatscuba5.png" type="Texture" id=8]
-[ext_resource path="res://Sprites/Player/charhatscuba/Charhatscuba6.png" type="Texture" id=9]
-[ext_resource path="res://Sprites/Player/charhatscuba/Charhatscuba8.png" type="Texture" id=10]
-[ext_resource path="res://AnimatedSprite.gd" type="Script" id=11]
-[ext_resource path="res://Music/Diving.ogg" type="AudioStream" id=12]
-[ext_resource path="res://Sound Effects/Water Interaction/jump in water.ogg" type="AudioStream" id=13]
-[ext_resource path="res://Sound Effects/Water Interaction/get out.ogg" type="AudioStream" id=14]
-[ext_resource path="res://Sound Effects/GunshotRifle_BW.57683.ogg" type="AudioStream" id=15]
-[ext_resource path="res://Sound Effects/Water Interaction/stroke.ogg" type="AudioStream" id=16]
-[ext_resource path="res://Sprites/Decor/Radio.png" type="Texture" id=17]
-[ext_resource path="res://Music/ontheboat.ogg" type="AudioStream" id=18]
-[ext_resource path="res://Sprites/Particles/note.png" type="Texture" id=19]
-[ext_resource path="res://Sprites/Particles/bubble.png" type="Texture" id=20]
-[ext_resource path="res://coin.tscn" type="PackedScene" id=21]
-[ext_resource path="res://Map scenes/Maptest.tscn" type="PackedScene" id=22]
-[ext_resource path="res://Database/DiveItems/CommonDrops/ItemWood.tscn" type="PackedScene" id=23]
-[ext_resource path="res://Sprites/Ships/boat side.png" type="Texture" id=24]
-[ext_resource path="res://Sprites/Ships/boat sidefore.png" type="Texture" id=25]
+[ext_resource path="res://Sword.tscn" type="PackedScene" id=2]
+[ext_resource path="res://PopupInventory.gd" type="Script" id=3]
+[ext_resource path="res://Sprites/Player/charhatscuba/Charhatscuba4.png" type="Texture" id=4]
+[ext_resource path="res://Sprites/Player/charhatscuba/Charhatscuba5.png" type="Texture" id=5]
+[ext_resource path="res://Sprites/Player/charhatscuba/Charhatscuba6.png" type="Texture" id=6]
+[ext_resource path="res://Sprites/Player/charhatscuba/Charhatscuba7.png" type="Texture" id=7]
+[ext_resource path="res://Sprites/Player/charhatscuba/Charhatscuba8.png" type="Texture" id=8]
+[ext_resource path="res://Sprites/Player/charhatscuba/Charhatscuba1.png" type="Texture" id=9]
+[ext_resource path="res://Sprites/Player/charhatscuba/Charhatscuba3.png" type="Texture" id=10]
+[ext_resource path="res://Sprites/Player/charhatscuba/Charhatscuba2.png" type="Texture" id=11]
+[ext_resource path="res://AnimatedSprite.gd" type="Script" id=12]
+[ext_resource path="res://Music/Diving.ogg" type="AudioStream" id=13]
+[ext_resource path="res://Sound Effects/Water Interaction/jump in water.ogg" type="AudioStream" id=14]
+[ext_resource path="res://Sound Effects/Water Interaction/get out.ogg" type="AudioStream" id=15]
+[ext_resource path="res://Sound Effects/GunshotRifle_BW.57683.ogg" type="AudioStream" id=16]
+[ext_resource path="res://Sound Effects/Water Interaction/stroke.ogg" type="AudioStream" id=17]
+[ext_resource path="res://Sprites/Decor/Radio.png" type="Texture" id=18]
+[ext_resource path="res://Music/ontheboat.ogg" type="AudioStream" id=19]
+[ext_resource path="res://Sprites/Particles/note.png" type="Texture" id=20]
+[ext_resource path="res://Sprites/Particles/bubble.png" type="Texture" id=21]
+[ext_resource path="res://coin.tscn" type="PackedScene" id=22]
+[ext_resource path="res://Map scenes/Maptest.tscn" type="PackedScene" id=23]
+[ext_resource path="res://Database/DiveItems/CommonDrops/ItemWood.tscn" type="PackedScene" id=24]
+[ext_resource path="res://Sprites/Ships/boat side.png" type="Texture" id=25]
+[ext_resource path="res://Sprites/Ships/boat sidefore.png" type="Texture" id=26]
 
 [sub_resource type="GDScript" id=1]
 
@@ -59,6 +60,9 @@ func _ready():
 	timer.connect(\"timeout\", self, \"on_timeout_complete\")
 	add_child(timer)
 	get_node(\"SFX/Radio/AudioStreamPlayer2D\")._set_playing(true)
+	
+	if Global_Player.inventory_checkItem(1)==true:
+		print (\"haswood\")
 	
 func on_timeout_complete():
 	can_shoot = true
@@ -166,8 +170,7 @@ func _physics_process(delta):
 		can_shoot = false
 		timer.start()
 
-	if Global_Player.inventory_checkItem(1)==true:
-		print (\"haswood\")
+
 
 func create_bullet():
 		var bullet = BULLET_SCENE.instance()
@@ -195,34 +198,34 @@ func create_sword():
 [sub_resource type="SpriteFrames" id=2]
 
 animations = [ {
-"frames": [ ExtResource( 3 ) ],
+"frames": [ ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ) ],
 "loop": true,
-"name": "Ground",
+"name": "Swim",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 4 ) ],
-"loop": true,
-"name": "Jump",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 5 ) ],
-"loop": true,
-"name": "Float",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 4 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ) ],
-"loop": true,
-"name": "Walk",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 4 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ) ],
+"frames": [ ExtResource( 9 ), ExtResource( 10 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ) ],
 "loop": false,
 "name": "Stroke",
 "speed": 10.0
 }, {
-"frames": [ ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ), ExtResource( 5 ), ExtResource( 10 ) ],
+"frames": [ ExtResource( 9 ), ExtResource( 10 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ) ],
 "loop": true,
-"name": "Swim",
+"name": "Walk",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 9 ) ],
+"loop": true,
+"name": "Jump",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 7 ) ],
+"loop": true,
+"name": "Float",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 11 ) ],
+"loop": true,
+"name": "Ground",
 "speed": 5.0
 } ]
 _sections_unfolded = [ "Resource" ]
@@ -322,11 +325,15 @@ _sections_unfolded = [ "Angle", "Emission Shape", "Gravity", "Initial Velocity",
 custom_solver_bias = 0.0
 extents = Vector2( 10, 10 )
 
-[node name="Swimming" type="Node"]
+[node name="Swimming" type="Node" index="0"]
 
+pause_mode = 1
 script = ExtResource( 1 )
+_sections_unfolded = [ "Pause" ]
 
-[node name="Player" type="KinematicBody2D" parent="." index="0" groups=[
+[node name="Sword" parent="." index="0" instance=ExtResource( 2 )]
+
+[node name="Player" type="KinematicBody2D" parent="." index="1" groups=[
 "SwimmingAI",
 ]]
 
@@ -338,20 +345,21 @@ collision_layer = 1
 collision_mask = 7
 collision/safe_margin = 0.08
 script = SubResource( 1 )
-_sections_unfolded = [ "Collision", "Transform", "Z Index" ]
+_sections_unfolded = [ "Collision", "Pause", "Transform", "Z Index" ]
 __meta__ = {
 "_edit_group_": true
 }
 
 [node name="Inventory" type="CanvasLayer" parent="Player" index="0"]
 
+pause_mode = 2
 layer = 5
 offset = Vector2( 0, 0 )
 rotation = 0.0
 scale = Vector2( 1, 1 )
 transform = Transform2D( 1, 0, 0, 1, 0, 0 )
-script = ExtResource( 2 )
-_sections_unfolded = [ "Transform", "Visibility", "Z Index" ]
+script = ExtResource( 3 )
+_sections_unfolded = [ "Pause", "Transform", "Visibility", "Z Index" ]
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="Player" index="1"]
 
@@ -359,14 +367,14 @@ scale = Vector2( 0.75, 0.75 )
 frames = SubResource( 2 )
 animation = "Float"
 playing = true
-script = ExtResource( 11 )
+script = ExtResource( 12 )
 _sections_unfolded = [ "Transform", "Visibility", "Z Index" ]
 
 [node name="SFX" type="Node" parent="Player" index="2"]
 
 [node name="Music" type="AudioStreamPlayer" parent="Player/SFX" index="0"]
 
-stream = ExtResource( 12 )
+stream = ExtResource( 13 )
 volume_db = -12.48
 pitch_scale = 1.0
 autoplay = false
@@ -375,7 +383,7 @@ bus = "Master"
 
 [node name="Enter Water" type="AudioStreamPlayer" parent="Player/SFX" index="1"]
 
-stream = ExtResource( 13 )
+stream = ExtResource( 14 )
 volume_db = -11.02
 pitch_scale = 1.0
 autoplay = false
@@ -384,7 +392,7 @@ bus = "Master"
 
 [node name="Exit Water" type="AudioStreamPlayer" parent="Player/SFX" index="2"]
 
-stream = ExtResource( 14 )
+stream = ExtResource( 15 )
 volume_db = -11.77
 pitch_scale = 1.0
 autoplay = false
@@ -393,7 +401,7 @@ bus = "Master"
 
 [node name="Shoot" type="AudioStreamPlayer" parent="Player/SFX" index="3"]
 
-stream = ExtResource( 15 )
+stream = ExtResource( 16 )
 volume_db = -13.56
 pitch_scale = 1.0
 autoplay = false
@@ -402,7 +410,7 @@ bus = "Master"
 
 [node name="Stroke" type="AudioStreamPlayer" parent="Player/SFX" index="4"]
 
-stream = ExtResource( 16 )
+stream = ExtResource( 17 )
 volume_db = 6.37
 pitch_scale = 1.0
 autoplay = false
@@ -413,7 +421,7 @@ bus = "Master"
 
 position = Vector2( 91.2681, -91.7314 )
 z_index = 2
-texture = ExtResource( 17 )
+texture = ExtResource( 18 )
 _sections_unfolded = [ "Z Index" ]
 __meta__ = {
 "_edit_group_": true
@@ -421,7 +429,7 @@ __meta__ = {
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Player/SFX/Radio" index="0"]
 
-stream = ExtResource( 18 )
+stream = ExtResource( 19 )
 volume_db = -1.0
 pitch_scale = 1.0
 autoplay = false
@@ -446,7 +454,7 @@ visibility_rect = Rect2( -100, -100, 200, 200 )
 local_coords = true
 draw_order = 0
 process_material = SubResource( 3 )
-texture = ExtResource( 19 )
+texture = ExtResource( 20 )
 normal_map = null
 h_frames = 1
 v_frames = 1
@@ -704,41 +712,41 @@ visibility_rect = Rect2( -100, -100, 200, 200 )
 local_coords = false
 draw_order = 0
 process_material = SubResource( 6 )
-texture = ExtResource( 20 )
+texture = ExtResource( 21 )
 normal_map = null
 h_frames = 1
 v_frames = 1
 _sections_unfolded = [ "Process Material", "Textures", "Time", "Z Index" ]
 
-[node name="Coins" type="Node2D" parent="." index="1"]
+[node name="Coins" type="Node2D" parent="." index="2"]
 
 position = Vector2( -504.701, -255.956 )
 z_index = 1
 _sections_unfolded = [ "Visibility", "Z Index" ]
 
-[node name="coin2" parent="Coins" index="0" instance=ExtResource( 21 )]
+[node name="coin2" parent="Coins" index="0" instance=ExtResource( 22 )]
 
 position = Vector2( 353.798, 126.979 )
 
-[node name="coin3" parent="Coins" index="1" instance=ExtResource( 21 )]
+[node name="coin3" parent="Coins" index="1" instance=ExtResource( 22 )]
 
 position = Vector2( 407.762, 132.564 )
 
-[node name="coin4" parent="Coins" index="2" instance=ExtResource( 21 )]
+[node name="coin4" parent="Coins" index="2" instance=ExtResource( 22 )]
 
 position = Vector2( 481.797, 132.398 )
 
-[node name="coin5" parent="Coins" index="3" instance=ExtResource( 21 )]
+[node name="coin5" parent="Coins" index="3" instance=ExtResource( 22 )]
 
 position = Vector2( 569.051, 133.83 )
 
-[node name="coin6" parent="Coins" index="4" instance=ExtResource( 21 )]
+[node name="coin6" parent="Coins" index="4" instance=ExtResource( 22 )]
 
 position = Vector2( 636.259, 135.262 )
 
-[node name="Map" parent="." index="2" instance=ExtResource( 22 )]
+[node name="Map" parent="." index="3" instance=ExtResource( 23 )]
 
-[node name="monster cage" type="StaticBody2D" parent="." index="3"]
+[node name="monster cage" type="StaticBody2D" parent="." index="4"]
 
 position = Vector2( 510, -10 )
 scale = Vector2( 4000.09, 0.1875 )
@@ -758,7 +766,7 @@ scale = Vector2( 3.1925, 2.55128 )
 shape = SubResource( 7 )
 _sections_unfolded = [ "Transform", "Z Index" ]
 
-[node name="monster cage2" type="StaticBody2D" parent="." index="4"]
+[node name="monster cage2" type="StaticBody2D" parent="." index="5"]
 
 position = Vector2( 510, -10 )
 scale = Vector2( 4000.09, 0.1875 )
@@ -778,12 +786,12 @@ scale = Vector2( 3.1925, 2.55128 )
 shape = SubResource( 7 )
 _sections_unfolded = [ "Transform", "Z Index" ]
 
-[node name="ItemWood" parent="." index="5" instance=ExtResource( 23 )]
+[node name="ItemWood" parent="." index="6" instance=ExtResource( 24 )]
 
 position = Vector2( 122.095, -189.445 )
 _sections_unfolded = [ "Transform", "Z Index" ]
 
-[node name="Button" type="Button" parent="." index="6"]
+[node name="Button" type="Button" parent="." index="7"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -808,7 +816,7 @@ text = "Leave"
 flat = false
 align = 1
 
-[node name="Boat" type="Node2D" parent="." index="7"]
+[node name="Boat" type="Node2D" parent="." index="8"]
 
 editor/display_folded = true
 position = Vector2( 0, -68 )
@@ -819,7 +827,7 @@ __meta__ = {
 
 [node name="Sprite" type="Sprite" parent="Boat" index="0"]
 
-texture = ExtResource( 24 )
+texture = ExtResource( 25 )
 _sections_unfolded = [ "Transform" ]
 __meta__ = {
 "_edit_group_": true
@@ -843,7 +851,7 @@ polygon = PoolVector2Array( -251.214, 0.479618, -240.149, 38.8989, -199.579, 75.
 [node name="Sprite" type="Sprite" parent="Boat/Sprite" index="1"]
 
 z_index = 3
-texture = ExtResource( 25 )
+texture = ExtResource( 26 )
 _sections_unfolded = [ "Z Index" ]
 
 [connection signal="pressed" from="Button" to="." method="_on_Button_pressed"]

@@ -11,6 +11,7 @@ const BULLET_SPEED = 1
 onready var speed_x = 1
 onready var speed_y = 0
 
+
 var timer = Timer.new()
 func _ready():
 	set_process(true)

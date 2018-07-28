@@ -204,6 +204,7 @@ func _on_Button_Load_pressed():
 func _on_Button_Exit_pressed():
 	Global_Player.save_data()
 	queue_free()
+	get_tree().paused = false
 	if in_swim == 1:
 		get_parent().inventory_open = 0
 		pass
