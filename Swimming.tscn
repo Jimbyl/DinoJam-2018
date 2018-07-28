@@ -7,8 +7,8 @@
 [ext_resource path="res://Sprites/Player/charhatscuba/Charhatscuba4.png" type="Texture" id=5]
 [ext_resource path="res://Sprites/Player/charhatscuba/Charhatscuba5.png" type="Texture" id=6]
 [ext_resource path="res://Sprites/Player/charhatscuba/Charhatscuba6.png" type="Texture" id=7]
-[ext_resource path="res://Sprites/Player/charhatscuba/Charhatscuba7.png" type="Texture" id=8]
-[ext_resource path="res://Sprites/Player/charhatscuba/Charhatscuba3.png" type="Texture" id=9]
+[ext_resource path="res://Sprites/Player/charhatscuba/Charhatscuba3.png" type="Texture" id=8]
+[ext_resource path="res://Sprites/Player/charhatscuba/Charhatscuba7.png" type="Texture" id=9]
 [ext_resource path="res://Sprites/Player/charhatscuba/Charhatscuba8.png" type="Texture" id=10]
 [ext_resource path="res://AnimatedSprite.gd" type="Script" id=11]
 [ext_resource path="res://Music/Diving.ogg" type="AudioStream" id=12]
@@ -221,29 +221,29 @@ animations = [ {
 "name": "Stroke",
 "speed": 10.0
 }, {
+"frames": [ ExtResource( 8 ) ],
+"loop": true,
+"name": "Ground",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 9 ) ],
+"loop": true,
+"name": "Float",
+"speed": 5.0
+}, {
 "frames": [ ExtResource( 4 ) ],
 "loop": true,
 "name": "Jump",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 8 ) ],
-"loop": true,
-"name": "Float",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 9 ) ],
-"loop": true,
-"name": "Ground",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 10 ) ],
-"loop": true,
-"name": "Swim",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 4 ), ExtResource( 9 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ) ],
+"frames": [ ExtResource( 4 ), ExtResource( 8 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ) ],
 "loop": true,
 "name": "Walk",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 9 ), ExtResource( 10 ) ],
+"loop": true,
+"name": "Swim",
 "speed": 5.0
 } ]
 _sections_unfolded = [ "Resource" ]
@@ -343,7 +343,7 @@ _sections_unfolded = [ "Angle", "Emission Shape", "Gravity", "Initial Velocity",
 custom_solver_bias = 0.0
 extents = Vector2( 10, 10 )
 
-[node name="Swimming" type="Node" index="0"]
+[node name="Swimming" type="Node"]
 
 pause_mode = 1
 script = ExtResource( 1 )
@@ -750,6 +750,7 @@ _sections_unfolded = [ "Transform", "Visibility", "Z Index" ]
 
 [node name="monster cage" type="StaticBody2D" parent="." index="2"]
 
+editor/display_folded = true
 position = Vector2( 510, -10 )
 scale = Vector2( 4000.09, 0.1875 )
 input_pickable = false
@@ -770,6 +771,7 @@ _sections_unfolded = [ "Transform", "Z Index" ]
 
 [node name="monster cage2" type="StaticBody2D" parent="." index="3"]
 
+editor/display_folded = true
 position = Vector2( 510, -10 )
 scale = Vector2( 4000.09, 0.1875 )
 input_pickable = false
@@ -815,6 +817,7 @@ align = 1
 
 [node name="Boat" type="Node2D" parent="." index="5"]
 
+editor/display_folded = true
 position = Vector2( 0, -68 )
 _sections_unfolded = [ "Transform", "Z Index" ]
 __meta__ = {

@@ -31,5 +31,5 @@ func _physics_process(delta):
 		player.health -= 1
 	get_node("HBoxContainer/Health").set_text(str(health))
 	if health < 1:
-		get_parent().get_node("death").set_emitting(true)
+		get_node("death").set_emitting(true)
 		queue_free()
