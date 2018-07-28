@@ -214,29 +214,7 @@ animations = [ {
 "name": "Swim",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 6 ) ],
-"loop": true,
-<<<<<<< HEAD
-"name": "Jump",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 8 ), ExtResource( 9 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ) ],
-=======
-"name": "Float",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 8 ), ExtResource( 9 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ) ],
-"loop": false,
-"name": "Stroke",
-"speed": 10.0
-}, {
-"frames": [ ExtResource( 10 ) ],
-"loop": true,
-"name": "Ground",
-"speed": 5.0
-}, {
 "frames": [ ExtResource( 8 ) ],
->>>>>>> parent of d2adaa7... added 2 new maps
 "loop": true,
 "name": "Jump",
 "speed": 5.0
@@ -244,6 +222,11 @@ animations = [ {
 "frames": [ ExtResource( 8 ), ExtResource( 9 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ) ],
 "loop": true,
 "name": "Walk",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 6 ) ],
+"loop": true,
+"name": "Float",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 10 ) ],
