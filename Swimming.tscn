@@ -342,7 +342,7 @@ _sections_unfolded = [ "Angle", "Emission Shape", "Gravity", "Initial Velocity",
 custom_solver_bias = 0.0
 extents = Vector2( 10, 10 )
 
-[node name="Swimming" type="Node" index="0"]
+[node name="Swimming" type="Node"]
 
 pause_mode = 1
 script = ExtResource( 1 )
