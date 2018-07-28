@@ -2,14 +2,14 @@
 
 [ext_resource path="res://Swimming.gd" type="Script" id=1]
 [ext_resource path="res://PopupInventory.gd" type="Script" id=2]
-[ext_resource path="res://Sprites/Player/charhatscuba/Charhatscuba2.png" type="Texture" id=3]
-[ext_resource path="res://Sprites/Player/charhatscuba/Charhatscuba7.png" type="Texture" id=4]
-[ext_resource path="res://Sprites/Player/charhatscuba/Charhatscuba1.png" type="Texture" id=5]
-[ext_resource path="res://Sprites/Player/charhatscuba/Charhatscuba3.png" type="Texture" id=6]
-[ext_resource path="res://Sprites/Player/charhatscuba/Charhatscuba4.png" type="Texture" id=7]
-[ext_resource path="res://Sprites/Player/charhatscuba/Charhatscuba5.png" type="Texture" id=8]
-[ext_resource path="res://Sprites/Player/charhatscuba/Charhatscuba6.png" type="Texture" id=9]
-[ext_resource path="res://Sprites/Player/charhatscuba/Charhatscuba8.png" type="Texture" id=10]
+[ext_resource path="res://Sprites/Player/charhatscuba/Charhatscuba7.png" type="Texture" id=3]
+[ext_resource path="res://Sprites/Player/charhatscuba/Charhatscuba4.png" type="Texture" id=4]
+[ext_resource path="res://Sprites/Player/charhatscuba/Charhatscuba5.png" type="Texture" id=5]
+[ext_resource path="res://Sprites/Player/charhatscuba/Charhatscuba6.png" type="Texture" id=6]
+[ext_resource path="res://Sprites/Player/charhatscuba/Charhatscuba8.png" type="Texture" id=7]
+[ext_resource path="res://Sprites/Player/charhatscuba/Charhatscuba1.png" type="Texture" id=8]
+[ext_resource path="res://Sprites/Player/charhatscuba/Charhatscuba3.png" type="Texture" id=9]
+[ext_resource path="res://Sprites/Player/charhatscuba/Charhatscuba2.png" type="Texture" id=10]
 [ext_resource path="res://AnimatedSprite.gd" type="Script" id=11]
 [ext_resource path="res://Music/Diving.ogg" type="AudioStream" id=12]
 [ext_resource path="res://Sound Effects/Water Interaction/jump in water.ogg" type="AudioStream" id=13]
@@ -197,32 +197,32 @@ func create_sword():
 animations = [ {
 "frames": [ ExtResource( 3 ) ],
 "loop": true,
-"name": "Ground",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 4 ) ],
-"loop": true,
 "name": "Float",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 5 ) ],
+"frames": [ ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 3 ), ExtResource( 7 ) ],
 "loop": true,
-"name": "Jump",
+"name": "Swim",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ) ],
+"frames": [ ExtResource( 8 ), ExtResource( 9 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ) ],
 "loop": true,
 "name": "Walk",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ) ],
+"frames": [ ExtResource( 8 ), ExtResource( 9 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ) ],
 "loop": false,
 "name": "Stroke",
 "speed": 10.0
 }, {
-"frames": [ ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ), ExtResource( 4 ), ExtResource( 10 ) ],
+"frames": [ ExtResource( 8 ) ],
 "loop": true,
-"name": "Swim",
+"name": "Jump",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 10 ) ],
+"loop": true,
+"name": "Ground",
 "speed": 5.0
 } ]
 _sections_unfolded = [ "Resource" ]
@@ -324,7 +324,9 @@ extents = Vector2( 10, 10 )
 
 [node name="Swimming" type="Node" index="0"]
 
+pause_mode = 1
 script = ExtResource( 1 )
+_sections_unfolded = [ "Pause" ]
 
 [node name="Player" type="KinematicBody2D" parent="." index="0" groups=[
 "SwimmingAI",
@@ -345,13 +347,14 @@ __meta__ = {
 
 [node name="Inventory" type="CanvasLayer" parent="Player" index="0"]
 
+pause_mode = 2
 layer = 5
 offset = Vector2( 0, 0 )
 rotation = 0.0
 scale = Vector2( 1, 1 )
 transform = Transform2D( 1, 0, 0, 1, 0, 0 )
 script = ExtResource( 2 )
-_sections_unfolded = [ "Transform", "Visibility", "Z Index" ]
+_sections_unfolded = [ "Pause", "Transform", "Visibility", "Z Index" ]
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="Player" index="1"]
 
