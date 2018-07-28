@@ -216,12 +216,10 @@ animations = [ {
 }, {
 "frames": [ ExtResource( 6 ) ],
 "loop": true,
-<<<<<<< HEAD
 "name": "Jump",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 8 ), ExtResource( 9 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ) ],
-=======
 "name": "Float",
 "speed": 5.0
 }, {
@@ -236,7 +234,6 @@ animations = [ {
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 8 ) ],
->>>>>>> parent of d2adaa7... added 2 new maps
 "loop": true,
 "name": "Jump",
 "speed": 5.0
@@ -249,7 +246,6 @@ animations = [ {
 "frames": [ ExtResource( 10 ) ],
 "loop": true,
 "name": "Ground",
-=======
 "name": "Ground",
 "speed": 5.0
 }, {
@@ -271,7 +267,6 @@ animations = [ {
 "frames": [ ExtResource( 6 ) ],
 "loop": true,
 "name": "Float",
->>>>>>> d2adaa712552dd349cd0d3bc849d3dc7396fc545
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 8 ), ExtResource( 9 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ) ],
