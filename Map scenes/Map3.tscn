@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://UrchinMonster.tscn" type="PackedScene" id=1]
 [ext_resource path="res://FollowMonster.tscn" type="PackedScene" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://Tiles/Diving.tres" type="TileSet" id=5]
 [ext_resource path="res://Chest2.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Skelemans.tscn" type="PackedScene" id=7]
+[ext_resource path="res://coin.tscn" type="PackedScene" id=8]
 
 [sub_resource type="Gradient" id=1]
 
@@ -181,5 +182,57 @@ position = Vector2( 176.6, 3065.27 )
 position = Vector2( 2856.54, 3863.21 )
 z_index = 1
 _sections_unfolded = [ "Z Index" ]
+
+[node name="coin" parent="." index="15" instance=ExtResource( 8 )]
+
+position = Vector2( 1412.03, 1437.94 )
+
+[node name="coin2" parent="." index="16" instance=ExtResource( 8 )]
+
+position = Vector2( 1552.01, 1439.93 )
+
+[node name="coin3" parent="." index="17" instance=ExtResource( 8 )]
+
+position = Vector2( 1331.09, 1441.92 )
+
+[node name="coin4" parent="." index="18" instance=ExtResource( 8 )]
+
+position = Vector2( 1695.31, 1381.54 )
+
+[node name="coin5" parent="." index="19" instance=ExtResource( 8 )]
+
+position = Vector2( 542.279, 2015.78 )
+
+[node name="coin6" parent="." index="20" instance=ExtResource( 8 )]
+
+position = Vector2( 2394.56, 2325.59 )
+
+[node name="coin7" parent="." index="21" instance=ExtResource( 8 )]
+
+position = Vector2( 2137.15, 2718.34 )
+
+[node name="coin8" parent="." index="22" instance=ExtResource( 8 )]
+
+position = Vector2( 1885.71, 3423.56 )
+
+[node name="coin9" parent="." index="23" instance=ExtResource( 8 )]
+
+position = Vector2( 1317.16, 3504.5 )
+
+[node name="coin10" parent="." index="24" instance=ExtResource( 8 )]
+
+position = Vector2( 803.005, 3550.27 )
+
+[node name="coin11" parent="." index="25" instance=ExtResource( 8 )]
+
+position = Vector2( 2961.48, 3611.62 )
+
+[node name="coin12" parent="." index="26" instance=ExtResource( 8 )]
+
+position = Vector2( 2825.16, 3616.16 )
+
+[node name="coin13" parent="." index="27" instance=ExtResource( 8 )]
+
+position = Vector2( 2888.78, 3618.44 )
 
 

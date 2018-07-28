@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Tiles/Diving/sky.png" type="Texture" id=1]
 [ext_resource path="res://Tiles/DivingDecor.tres" type="TileSet" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://Chest2.tscn" type="PackedScene" id=4]
 [ext_resource path="res://FollowMonster.tscn" type="PackedScene" id=5]
 [ext_resource path="res://UrchinMonster.tscn" type="PackedScene" id=6]
+[ext_resource path="res://coin.tscn" type="PackedScene" id=7]
 
 [sub_resource type="Gradient" id=1]
 
@@ -18,7 +19,7 @@ flags = 4
 gradient = SubResource( 1 )
 width = 2000
 
-[node name="Map" type="Node"]
+[node name="Map" type="Node" index="0"]
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="." index="0"]
 
@@ -146,5 +147,21 @@ position = Vector2( 494.792, 173.372 )
 [node name="UrchinMonster" parent="." index="7" instance=ExtResource( 6 )]
 
 position = Vector2( -33.2544, 671.354 )
+
+[node name="coin" parent="." index="8" instance=ExtResource( 7 )]
+
+position = Vector2( -795.228, 661.175 )
+
+[node name="coin2" parent="." index="9" instance=ExtResource( 7 )]
+
+position = Vector2( 670.264, 695.257 )
+
+[node name="coin3" parent="." index="10" instance=ExtResource( 7 )]
+
+position = Vector2( 1338.26, 597.557 )
+
+[node name="coin4" parent="." index="11" instance=ExtResource( 7 )]
+
+position = Vector2( -358.989, 715.705 )
 
 
