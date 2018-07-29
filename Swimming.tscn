@@ -2,8 +2,6 @@
 
 [ext_resource path="res://Swimming.gd" type="Script" id=1]
 [ext_resource path="res://PopupInventory.gd" type="Script" id=2]
-<<<<<<< HEAD
-<<<<<<< HEAD
 [ext_resource path="res://Sprites/Player/charhatscuba/Charhatscuba7.png" type="Texture" id=3]
 [ext_resource path="res://Sprites/Player/charhatscuba/Charhatscuba2.png" type="Texture" id=4]
 [ext_resource path="res://Sprites/Player/charhatscuba/Charhatscuba1.png" type="Texture" id=5]
@@ -12,20 +10,16 @@
 [ext_resource path="res://Sprites/Player/charhatscuba/Charhatscuba6.png" type="Texture" id=8]
 [ext_resource path="res://Sprites/Player/charhatscuba/Charhatscuba3.png" type="Texture" id=9]
 [ext_resource path="res://Sprites/Player/charhatscuba/Charhatscuba8.png" type="Texture" id=10]
-=======
 [ext_resource path="res://Sprites/Player/charhatscuba/Charhatscuba1.png" type="Texture" id=3]
 [ext_resource path="res://Sprites/Player/charhatscuba/Charhatscuba3.png" type="Texture" id=4]
-=======
 [ext_resource path="res://Sprites/Player/charhatscuba/Charhatscuba7.png" type="Texture" id=3]
 [ext_resource path="res://Sprites/Player/charhatscuba/Charhatscuba1.png" type="Texture" id=4]
->>>>>>> 064419e9bd5dbd4c2bda6fd174eb0001267564a2
 [ext_resource path="res://Sprites/Player/charhatscuba/Charhatscuba4.png" type="Texture" id=5]
 [ext_resource path="res://Sprites/Player/charhatscuba/Charhatscuba5.png" type="Texture" id=6]
 [ext_resource path="res://Sprites/Player/charhatscuba/Charhatscuba6.png" type="Texture" id=7]
 [ext_resource path="res://Sprites/Player/charhatscuba/Charhatscuba8.png" type="Texture" id=8]
 [ext_resource path="res://Sprites/Player/charhatscuba/Charhatscuba3.png" type="Texture" id=9]
 [ext_resource path="res://Sprites/Player/charhatscuba/Charhatscuba2.png" type="Texture" id=10]
->>>>>>> ee3fbdab60a746605b53ca582f3cb4b60b4475a5
 [ext_resource path="res://AnimatedSprite.gd" type="Script" id=11]
 [ext_resource path="res://Music/Diving.ogg" type="AudioStream" id=12]
 [ext_resource path="res://Sound Effects/Water Interaction/jump in water.ogg" type="AudioStream" id=13]
@@ -242,26 +236,20 @@ animations = [ {
 "name": "Float",
 "speed": 5.0
 }, {
-<<<<<<< HEAD
-<<<<<<< HEAD
 "frames": [ ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ) ],
 "loop": false,
 "name": "Stroke",
 "speed": 10.0
 }, {
 "frames": [ ExtResource( 5 ) ],
-=======
 "frames": [ ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ) ],
->>>>>>> ee3fbdab60a746605b53ca582f3cb4b60b4475a5
-=======
+
 "frames": [ ExtResource( 4 ) ],
->>>>>>> 064419e9bd5dbd4c2bda6fd174eb0001267564a2
+
 "loop": true,
 "name": "Jump",
 "speed": 5.0
 }, {
-<<<<<<< HEAD
-<<<<<<< HEAD
 "frames": [ ExtResource( 5 ), ExtResource( 9 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ) ],
 "loop": true,
 "name": "Walk",
@@ -270,37 +258,27 @@ animations = [ {
 "frames": [ ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 3 ), ExtResource( 10 ) ],
 "loop": true,
 "name": "Swim",
-=======
 "frames": [ ExtResource( 8 ) ],
-=======
 "frames": [ ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 3 ), ExtResource( 8 ) ],
->>>>>>> 064419e9bd5dbd4c2bda6fd174eb0001267564a2
 "loop": true,
 "name": "Swim",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 4 ), ExtResource( 9 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ) ],
 "loop": true,
-<<<<<<< HEAD
 "name": "Ground",
->>>>>>> ee3fbdab60a746605b53ca582f3cb4b60b4475a5
-=======
 "name": "Walk",
->>>>>>> 064419e9bd5dbd4c2bda6fd174eb0001267564a2
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 9 ) ],
 "loop": true,
 "name": "Ground",
 "speed": 5.0
-<<<<<<< HEAD
-=======
 }, {
 "frames": [ ExtResource( 10 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ) ],
 "loop": false,
 "name": "Stroke",
 "speed": 10.0
->>>>>>> ee3fbdab60a746605b53ca582f3cb4b60b4475a5
 } ]
 _sections_unfolded = [ "Resource" ]
 
@@ -399,15 +377,7 @@ _sections_unfolded = [ "Angle", "Emission Shape", "Gravity", "Initial Velocity",
 custom_solver_bias = 0.0
 extents = Vector2( 10, 10 )
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-[sub_resource type="InputEventKey" id=8]
-=======
-[sub_resource type="InputEventKey" id=10]
->>>>>>> ee3fbdab60a746605b53ca582f3cb4b60b4475a5
-=======
 [sub_resource type="InputEventKey" id=11]
->>>>>>> 064419e9bd5dbd4c2bda6fd174eb0001267564a2
 
 device = 0
 alt = false
@@ -420,27 +390,17 @@ scancode = 69
 unicode = 0
 echo = false
 
-<<<<<<< HEAD
-<<<<<<< HEAD
 [sub_resource type="ShortCut" id=9]
 
-shortcut = SubResource( 8 )
-
 [sub_resource type="GDScript" id=10]
-=======
 [sub_resource type="ShortCut" id=11]
-=======
 [sub_resource type="ShortCut" id=10]
->>>>>>> 064419e9bd5dbd4c2bda6fd174eb0001267564a2
 
 shortcut = SubResource( 11 )
 
-<<<<<<< HEAD
+
 [sub_resource type="GDScript" id=12]
->>>>>>> ee3fbdab60a746605b53ca582f3cb4b60b4475a5
-=======
 [sub_resource type="GDScript" id=8]
->>>>>>> 064419e9bd5dbd4c2bda6fd174eb0001267564a2
 
 script/source = "extends Button
 
@@ -918,28 +878,16 @@ size_flags_horizontal = 1
 size_flags_vertical = 1
 toggle_mode = false
 enabled_focus_mode = 2
-<<<<<<< HEAD
-<<<<<<< HEAD
 shortcut = SubResource( 9 )
-=======
 shortcut = SubResource( 11 )
->>>>>>> ee3fbdab60a746605b53ca582f3cb4b60b4475a5
-=======
 shortcut = SubResource( 10 )
->>>>>>> 064419e9bd5dbd4c2bda6fd174eb0001267564a2
 group = null
 text = "Leave"
 flat = false
 align = 1
-<<<<<<< HEAD
-<<<<<<< HEAD
 script = SubResource( 10 )
-=======
 script = SubResource( 12 )
->>>>>>> ee3fbdab60a746605b53ca582f3cb4b60b4475a5
-=======
 script = SubResource( 8 )
->>>>>>> 064419e9bd5dbd4c2bda6fd174eb0001267564a2
 _sections_unfolded = [ "Margin" ]
 
 [node name="Boat" type="Node2D" parent="." index="5"]
