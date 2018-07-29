@@ -44,7 +44,11 @@ func inventory_checkItem(itemID):
 func inventory_checkItemAmount(itemID):
 	for slot in range(0, inventory_maxSlots):
 		if (inventory[String(slot)]["id"] == String(itemID)): 
-			return int(inventory[String(slot)]["amount"])
+			var amount = int(inventory[String(slot)]["amount"])
+			if amount != null:
+				return int(inventory[String(slot)]["amount"])
+			else:
+				return 0
 	
 
 func inventory_addItem(itemId):
@@ -67,6 +71,14 @@ func inventory_addItem(itemId):
 	inventory[String(slot)] = {"id": String(itemId), "amount": 1}
 	return slot
 
+func inventory_sellItem(slot):
+	var id = inventory[String(slot)]["id"]
+	var item = Global_ItemDatabase.get_item(id)
+	var worth = int(item["sell_price"])
+	var newAmount = inventory_removeItem(slot)
+	for i in range (0,worth):
+		inventory_addItem(3)
+	return newAmount
 
 func inventory_removeItem(slot):
 	var newAmount = inventory[String(slot)]["amount"] - 1
