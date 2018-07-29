@@ -7,7 +7,7 @@
 [ext_resource path="res://Sprites/Items/Cosmetic/6oclocksomewhere.png" type="Texture" id=5]
 [ext_resource path="res://Sprites/Items/the end.png" type="Texture" id=6]
 
-[node name="Buy" type="Control"]
+[node name="Buy" type="Control" index="0"]
 
 anchor_left = 0.0
 anchor_top = 0.0

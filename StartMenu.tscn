@@ -7,7 +7,7 @@
 [ext_resource path="res://UI/uipack-rpg/PNG/buttonLong_blue_pressed.png" type="Texture" id=5]
 [ext_resource path="res://UI/uipack-rpg/PNG/buttonLong_grey.png" type="Texture" id=6]
 
-[node name="StartMenu" type="Control"]
+[node name="StartMenu" type="Control" index="0"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -136,7 +136,7 @@ lines_skipped = 0
 max_lines_visible = -1
 _sections_unfolded = [ "Rect", "custom_colors" ]
 
-[node name="SwimButton" type="TextureButton" parent="VBoxContainer" index="2"]
+[node name="QuitGameButton" type="TextureButton" parent="VBoxContainer" index="2"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -145,105 +145,6 @@ anchor_bottom = 0.0
 margin_top = 83.0
 margin_right = 190.0
 margin_bottom = 132.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-focus_mode = 2
-mouse_filter = 0
-mouse_default_cursor_shape = 2
-size_flags_horizontal = 1
-size_flags_vertical = 1
-toggle_mode = false
-enabled_focus_mode = 2
-shortcut = null
-group = null
-texture_normal = ExtResource( 4 )
-texture_pressed = ExtResource( 5 )
-texture_hover = ExtResource( 6 )
-_sections_unfolded = [ "Mouse", "Textures" ]
-
-[node name="Label" type="Label" parent="VBoxContainer/SwimButton" index="0"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_left = 5.0
-margin_top = -1.0
-margin_right = 185.0
-margin_bottom = 46.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 2
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 4
-custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
-text = "Swim"
-align = 1
-valign = 1
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
-_sections_unfolded = [ "Rect", "custom_colors" ]
-
-[node name="InventoryButton" type="TextureButton" parent="VBoxContainer" index="3"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_top = 142.0
-margin_right = 190.0
-margin_bottom = 191.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-focus_mode = 2
-mouse_filter = 0
-mouse_default_cursor_shape = 2
-size_flags_horizontal = 1
-size_flags_vertical = 1
-toggle_mode = false
-enabled_focus_mode = 2
-shortcut = null
-group = null
-texture_normal = ExtResource( 4 )
-texture_pressed = ExtResource( 5 )
-texture_hover = ExtResource( 6 )
-_sections_unfolded = [ "Mouse", "Textures" ]
-
-[node name="Label" type="Label" parent="VBoxContainer/InventoryButton" index="0"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_left = 5.0
-margin_right = 185.0
-margin_bottom = 46.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 2
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 4
-custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
-text = "Inventory"
-align = 1
-valign = 1
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
-_sections_unfolded = [ "Rect", "custom_colors" ]
-
-[node name="QuitGameButton" type="TextureButton" parent="VBoxContainer" index="4"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_top = 201.0
-margin_right = 190.0
-margin_bottom = 250.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 focus_mode = 2
@@ -286,10 +187,6 @@ max_lines_visible = -1
 _sections_unfolded = [ "Rect", "custom_colors" ]
 
 [connection signal="pressed" from="VBoxContainer/StartGameButton" to="." method="_on_StartGameButton_pressed"]
-
-[connection signal="pressed" from="VBoxContainer/SwimButton" to="." method="_on_SwimButton_pressed"]
-
-[connection signal="pressed" from="VBoxContainer/InventoryButton" to="." method="_on_InventoryButton_pressed"]
 
 [connection signal="pressed" from="VBoxContainer/QuitGameButton" to="." method="_on_QuitGameButton_pressed"]
 
