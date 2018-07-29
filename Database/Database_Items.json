@@ -125,4 +125,44 @@
 		"description":"Whoa! The tell-tale sign of increased luck.",
 		"sell_price": 30
 	},
+	"15": {
+		"name": "CD: Daquri Town",
+		"icon": "res://Sprites/Items/Cosmetic/daiquiritown.png",
+		"type": "equipment",
+		"stackable": false,
+		"description":"James Allyoucaneat's hit 1977 song. Wait, it's that old?",
+		"sell_price": 30
+	},
+	"16": {
+		"name": "CD: Hamburger In Wonderland",
+		"icon": "res://Sprites/Items/Cosmetic/Hamburgerinislandtown.png",
+		"type": "equipment",
+		"stackable": false,
+		"description":"James Allyoucaneat's back at it again! This time, he's brought his frycook friend.",
+		"sell_price": 30
+	},
+	"17": {
+		"name": "CD: Brother of a Brother of a Sailor",
+		"icon": "res://Sprites/Items/Cosmetic/Brother_of_a_brother_of_a_sailor.png",
+		"type": "equipment",
+		"stackable": false,
+		"description":"The title track off of James Allyoucaneat's 1978 album. It's familiar, but not too familiar. But, not too not-familiar either.",
+		"sell_price": 30
+	},
+	"17": {
+		"name": "CD: It's Six'O Clock Somewhere",
+		"icon": "res://Sprites/Items/Cosmetic/6oclocksomewhere.png",
+		"type": "equipment",
+		"stackable": false,
+		"description":"Written by a moose. Performed by a man with a parrot for a head. Released in 2003.",
+		"sell_price": 30
+	},
+	"18": {
+		"name": "Boat Color: Blue",
+		"icon": "res://Sprites/Items/Cosmetic/6oclocksomewhere.png",
+		"type": "equipment",
+		"stackable": false,
+		"description":"Written by a moose. Performed by a man with a parrot for a head. Released in 2003.",
+		"sell_price": 30
+	},
 }
