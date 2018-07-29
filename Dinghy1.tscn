@@ -43,7 +43,9 @@ func _physics_process(delta):
 	motion.x = speed*cos((angle)*PI/180)
 	motion.y = speed*sin((angle)*PI/180)
 	rotation_degrees = angle-90
-	move_and_slide(motion)"
+	move_and_slide(motion)
+
+"
 
 [sub_resource type="Curve" id=2]
 
@@ -140,9 +142,6 @@ _sections_unfolded = [ "Gravity", "Initial Velocity", "Scale", "Spread" ]
 [node name="Dinghy1" type="Node2D"]
 
 _sections_unfolded = [ "Material", "Pause", "Transform", "Visibility" ]
-__meta__ = {
-"_edit_group_": true
-}
 
 [node name="KinematicBody2D" type="KinematicBody2D" parent="." index="0" groups=[
 "DiveButton",

@@ -4,7 +4,7 @@ onready var money = Global_Player.inventory_checkItemAmount("3")
 
 func _ready():
 	Global_Player.load_data()
-	get_node("Container/HBoxContainer/moneycount").set_text String(money)
+	get_node("Container/HBoxContainer/moneycount").set_text(money)
 
 func _on_hamburger_pressed():
 	if money >= 30:
