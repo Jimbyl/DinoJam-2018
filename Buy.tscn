@@ -166,7 +166,7 @@ anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_top = 432.0
-margin_right = 1008.0
+margin_right = 960.0
 margin_bottom = 576.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
@@ -176,11 +176,69 @@ size_flags_horizontal = 1
 size_flags_vertical = 4
 text = "This is a store
 "
-uppercase = true
+autowrap = true
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 _sections_unfolded = [ "BBCode", "custom_colors" ]
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Container" index="6"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 912.0
+margin_right = 1015.0
+margin_bottom = 48.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 1
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+alignment = 0
+
+[node name="Label2" type="Label" parent="Container/HBoxContainer" index="0"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 17.0
+margin_right = 51.0
+margin_bottom = 31.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+text = "MONEY:"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="moneycount" type="Label" parent="Container/HBoxContainer" index="1"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 55.0
+margin_top = 17.0
+margin_right = 56.0
+margin_bottom = 31.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+autowrap = true
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
 
 [connection signal="mouse_entered" from="Container/brother" to="." method="_on_brother_mouse_entered"]
 
@@ -188,10 +246,18 @@ _sections_unfolded = [ "BBCode", "custom_colors" ]
 
 [connection signal="mouse_entered" from="Container/hamburger" to="." method="_on_hamburger_mouse_entered"]
 
+[connection signal="pressed" from="Container/hamburger" to="." method="_on_hamburger_pressed"]
+
 [connection signal="mouse_entered" from="Container/daquiritown" to="." method="_on_daquiritown_mouse_entered"]
+
+[connection signal="pressed" from="Container/daquiritown" to="." method="_on_daquiritown_pressed"]
 
 [connection signal="mouse_entered" from="Container/6oclock" to="." method="_on_6oclock_mouse_entered"]
 
+[connection signal="pressed" from="Container/6oclock" to="." method="_on_6oclock_pressed"]
+
 [connection signal="mouse_entered" from="Container/theEnd" to="." method="_on_theEnd_mouse_entered"]
+
+[connection signal="pressed" from="Container/theEnd" to="." method="_on_theEnd_pressed"]
 
 
