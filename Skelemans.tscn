@@ -38,7 +38,6 @@ func _physics_process(delta):
 	motion.x += sign(angle)*acc
 	if abs(motion.x) >= speedMax:
 		motion.x = sign(motion.x)*speedMax
-	print(motion.x)
 	spriteNode.set_flip_h(sign(angle) == 1)
 	motion.y += gravity
 	if(is_on_floor()):
