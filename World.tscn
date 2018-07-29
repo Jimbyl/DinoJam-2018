@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Tiles/Overworld/Overworld Tileset.tres" type="TileSet" id=1]
 [ext_resource path="res://Dinghy1.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Music/Boatmusic/6oclocksomewhere.ogg" type="AudioStream" id=3]
 
 [sub_resource type="GDScript" id=1]
 
@@ -35,7 +36,7 @@ script/source = "extends TileMap
 
 "
 
-[node name="World" type="Node" index="0"]
+[node name="World" type="Node"]
 
 script = SubResource( 1 )
 
@@ -88,6 +89,15 @@ _sections_unfolded = [ "Transform", "Z Index" ]
 [node name="Dinghy1" parent="." index="1" instance=ExtResource( 2 )]
 
 position = Vector2( 436.972, 261.968 )
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Dinghy1" index="1"]
+
+stream = ExtResource( 3 )
+volume_db = 0.5
+pitch_scale = 1.0
+autoplay = true
+mix_target = 0
+bus = "Master"
 
 [node name="Button" type="Button" parent="." index="2"]
 

@@ -149,7 +149,7 @@
 		"description":"The title track off of James Allyoucaneat's 1978 album. It's familiar, but not too familiar. But, not too not-familiar either.",
 		"sell_price": 30
 	},
-	"17": {
+	"18": {
 		"name": "CD: It's Six'O Clock Somewhere",
 		"icon": "res://Sprites/Items/Cosmetic/6oclocksomewhere.png",
 		"type": "equipment",
@@ -157,7 +157,7 @@
 		"description":"Written by a moose. Performed by a man with a parrot for a head. Released in 2003.",
 		"sell_price": 30
 	},
-	"18": {
+	"19": {
 		"name": "Boat Color: Blue",
 		"icon": "res://Sprites/Items/Cosmetic/6oclocksomewhere.png",
 		"type": "equipment",
