@@ -31,16 +31,16 @@
 		"icon": "res://Sprites/Items/Materials/Coin.png",
 		"type": "material",
 		"stackable": true,
-		"description":"A single gold coin. Devalues over time.",
+		"description":"A single gold coin.",
 		"sell_price": 1
 	},
 	
 	"4": {
-		"name": "A Rock",
+		"name": "Little Rock",
 		"icon": "res://Sprites/Items/Upgrades/Rock.png",
 		"type": "equipment",
 		"stackable": false,
-		"description":"A rock. Can't be more obvious. Increases underwater fall speed.",
+		"description":"A rock. Can't be more obvious. Increases underwater jump height.",
 		"sell_price": 4
 	},
 	
@@ -49,7 +49,7 @@
 		"icon": "res://Sprites/Items/Upgrades/Big_Rock.png",
 		"type": "equipment",
 		"stackable": false,
-		"description":"A large rock that is very big. Really increases underwater fall sepeed.",
+		"description":"A large rock that is very big. Hold the down button to increase fall speed",
 		"sell_price": 8
 	},	
 	
@@ -66,7 +66,7 @@
 		"icon": "res://Sprites/Items/Artifacts/Skeleton_Necklace.png",
 		"type": "equipment",
 		"stackable": false,
-		"description":"Pulsing with some kind of ancient energy. Or delusion. Does a small amount of damage per second to nearby enemies.",
+		"description":"Pulsing with some kind of ancient energy. Or delusion. Occasionally hurts nearby enemies.",
 		"sell_price": 200
 	},
 	"8": {
