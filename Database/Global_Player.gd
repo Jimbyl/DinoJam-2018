@@ -41,10 +41,10 @@ func inventory_checkItem(itemID):
 		if (inventory[String(slot)]["id"] == String(itemID)): 
 			return bool(true)
 			
-func inventory_checkItemAmount(amount):
+func inventory_checkItemAmount(itemID):
 	for slot in range(0, inventory_maxSlots):
-		if (inventory[String(slot)]["amount"] = String(amount)): 
-			return bool(true)
+		if (inventory[String(slot)]["id"] == String(itemID)): 
+			return int(inventory[String(slot)]["amount"])
 	
 
 func inventory_addItem(itemId):
