@@ -1,19 +1,36 @@
 extends Control
 
-# class member variables go here, for example:
-# var a = 2
-# var b = "textvar"
-
-func _ready():
-	# Called when the node is added to the scene for the first time.
-	# Initialization here
-	pass
-
-#func _process(delta):
-#	# Called every frame. Delta is time since last frame.
-#	# Update game logic here.
-#	pass
+var money = Global_Player.inventory_checkItemAmount("3")
 
 
-func _on_TheEnd_pressed():
-	if Global_Player.inventory_checkItem("1") and Global_Player.inventory_checkItem("2")
+
+
+
+
+
+
+
+func _on_brother_pressed():
+	if money <= 30:
+		Global_Player.inventory_addItem("17")
+		for i in range (1, 30): 
+			Global_Player.inventory_removeItem("3")
+		visible = false
+
+func _on_brother_mouse_entered():
+	get_node("Label").set_text("brother")
+
+
+func _on_hamburger_mouse_entered():
+	get_node("Label").set_text("hamburger")
+
+
+func _on_daquiritown_mouse_entered():
+	get_node("Label").set_text("daquiri")
+
+
+func _on_6oclock_mouse_entered():
+	get_node("Label").set_text("6 o'clock")
+	
+func _on_theEnd_mouse_entered():
+	get_node("Label").set_text("the end")
