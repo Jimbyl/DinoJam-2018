@@ -12,6 +12,7 @@ func _ready():
 	var sandMap = get_node(\"Map\").get_node(\"TileMap\")
 	var waterMap = get_node(\"Map\").get_node(\"Water\")
 	var prevBubbles = []
+	randomize()
 	for num in range(0,10):
 		var bubbleInst = load(bubbleScene).instance()
 		var positionvec = Vector2(randi()%52-15, randi()%34-16)
