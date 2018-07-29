@@ -4,7 +4,9 @@ onready var money = Global_Player.inventory_checkItemAmount("3")
 
 func _ready():
 	Global_Player.load_data()
-	get_node("Container/HBoxContainer/moneycount").set_text String(money)
+
+func _process(delta):
+	get_node("Container/HBoxContainer/moneycount").set_text(String(money))
 
 func _on_hamburger_pressed():
 	if money >= 30:
@@ -48,3 +50,8 @@ func _on_6oclock_mouse_entered():
 
 func _on_theEnd_mouse_entered():
 	get_node("Container/Label").set_text("the end")
+
+
+func _on_Button_pressed():
+	get_tree().change_scene("res://World.tscn")
+	pass # replace with function body

@@ -3,6 +3,7 @@ extends Control
 
 func _ready():
 	get_node("Music").playing = true
+	Global_Player.inventory_addItem("3")
 
 
 func _on_StartGameButton_pressed():
