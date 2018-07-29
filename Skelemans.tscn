@@ -38,7 +38,7 @@ func _physics_process(delta):
 	motion.x += sign(angle)*acc
 	if abs(motion.x) >= speedMax:
 		motion.x = sign(motion.x)*speedMax
-	print(motion.x)
+	#print(motion.x)
 	spriteNode.set_flip_h(sign(angle) == 1)
 	motion.y += gravity
 	if(is_on_floor()):
@@ -115,7 +115,7 @@ anim_offset_random = 0.0
 anim_loop = false
 _sections_unfolded = [ "Initial Velocity", "Scale", "Spread", "Trail" ]
 
-[node name="Skelemans" type="Node2D" index="0"]
+[node name="Skelemans" type="Node2D"]
 
 [node name="KinematicSkeleman" type="KinematicBody2D" parent="." index="0" groups=[
 "SwimmingAI",

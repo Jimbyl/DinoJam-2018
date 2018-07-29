@@ -40,6 +40,11 @@ func inventory_checkItem(itemID):
 	for slot in range(0, inventory_maxSlots):
 		if (inventory[String(slot)]["id"] == String(itemID)): 
 			return bool(true)
+			
+func inventory_checkItemAmount(amount):
+	for slot in range(0, inventory_maxSlots):
+		if (inventory[String(slot)]["amount"] = String(amount)): 
+			return bool(true)
 	
 
 func inventory_addItem(itemId):

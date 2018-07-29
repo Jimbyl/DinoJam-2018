@@ -3,13 +3,13 @@
 [ext_resource path="res://Swimming.gd" type="Script" id=1]
 [ext_resource path="res://PopupInventory.gd" type="Script" id=2]
 [ext_resource path="res://Sprites/Player/charhatscuba/Charhatscuba7.png" type="Texture" id=3]
-[ext_resource path="res://Sprites/Player/charhatscuba/Charhatscuba1.png" type="Texture" id=4]
-[ext_resource path="res://Sprites/Player/charhatscuba/Charhatscuba4.png" type="Texture" id=5]
-[ext_resource path="res://Sprites/Player/charhatscuba/Charhatscuba5.png" type="Texture" id=6]
-[ext_resource path="res://Sprites/Player/charhatscuba/Charhatscuba6.png" type="Texture" id=7]
-[ext_resource path="res://Sprites/Player/charhatscuba/Charhatscuba8.png" type="Texture" id=8]
+[ext_resource path="res://Sprites/Player/charhatscuba/Charhatscuba2.png" type="Texture" id=4]
+[ext_resource path="res://Sprites/Player/charhatscuba/Charhatscuba1.png" type="Texture" id=5]
+[ext_resource path="res://Sprites/Player/charhatscuba/Charhatscuba4.png" type="Texture" id=6]
+[ext_resource path="res://Sprites/Player/charhatscuba/Charhatscuba5.png" type="Texture" id=7]
+[ext_resource path="res://Sprites/Player/charhatscuba/Charhatscuba6.png" type="Texture" id=8]
 [ext_resource path="res://Sprites/Player/charhatscuba/Charhatscuba3.png" type="Texture" id=9]
-[ext_resource path="res://Sprites/Player/charhatscuba/Charhatscuba2.png" type="Texture" id=10]
+[ext_resource path="res://Sprites/Player/charhatscuba/Charhatscuba8.png" type="Texture" id=10]
 [ext_resource path="res://AnimatedSprite.gd" type="Script" id=11]
 [ext_resource path="res://Music/Diving.ogg" type="AudioStream" id=12]
 [ext_resource path="res://Sound Effects/Water Interaction/jump in water.ogg" type="AudioStream" id=13]
@@ -60,6 +60,8 @@ func _ready():
 	add_child(timer)
 	get_node(\"SFX/Radio/AudioStreamPlayer2D\")._set_playing(true)
 	if Global_Player.inventory_checkItem(\"11\") == true:
+		if Global_Player.inventory_checkItemAmount(\"1\"):
+			print (Global_Player.inventory_checkItemAmount(\"2\"))
 		maxHealth = 5
 	health = maxHealth
 
@@ -67,6 +69,7 @@ func on_timeout_complete():
 	can_shoot = true
 
 func _physics_process(delta):
+	
 	
 	if health <= 0:
 		get_tree().change_scene(\"res://game_over.tscn\")
@@ -223,30 +226,30 @@ animations = [ {
 "name": "Float",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 4 ) ],
+"frames": [ ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ) ],
+"loop": false,
+"name": "Stroke",
+"speed": 10.0
+}, {
+"frames": [ ExtResource( 5 ) ],
 "loop": true,
 "name": "Jump",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 3 ), ExtResource( 8 ) ],
-"loop": true,
-"name": "Swim",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 4 ), ExtResource( 9 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ) ],
+"frames": [ ExtResource( 5 ), ExtResource( 9 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ) ],
 "loop": true,
 "name": "Walk",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 3 ), ExtResource( 10 ) ],
+"loop": true,
+"name": "Swim",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 9 ) ],
 "loop": true,
 "name": "Ground",
 "speed": 5.0
-}, {
-"frames": [ ExtResource( 10 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ) ],
-"loop": false,
-"name": "Stroke",
-"speed": 10.0
 } ]
 _sections_unfolded = [ "Resource" ]
 
@@ -345,7 +348,7 @@ _sections_unfolded = [ "Angle", "Emission Shape", "Gravity", "Initial Velocity",
 custom_solver_bias = 0.0
 extents = Vector2( 10, 10 )
 
-[sub_resource type="InputEventKey" id=11]
+[sub_resource type="InputEventKey" id=8]
 
 device = 0
 alt = false
@@ -358,11 +361,11 @@ scancode = 69
 unicode = 0
 echo = false
 
-[sub_resource type="ShortCut" id=10]
+[sub_resource type="ShortCut" id=9]
 
-shortcut = SubResource( 11 )
+shortcut = SubResource( 8 )
 
-[sub_resource type="GDScript" id=8]
+[sub_resource type="GDScript" id=10]
 
 script/source = "extends Button
 
@@ -840,12 +843,12 @@ size_flags_horizontal = 1
 size_flags_vertical = 1
 toggle_mode = false
 enabled_focus_mode = 2
-shortcut = SubResource( 10 )
+shortcut = SubResource( 9 )
 group = null
 text = "Leave"
 flat = false
 align = 1
-script = SubResource( 8 )
+script = SubResource( 10 )
 _sections_unfolded = [ "Margin" ]
 
 [node name="Boat" type="Node2D" parent="." index="5"]
