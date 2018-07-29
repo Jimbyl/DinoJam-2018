@@ -3,12 +3,12 @@
 [ext_resource path="res://Swimming.gd" type="Script" id=1]
 [ext_resource path="res://PopupInventory.gd" type="Script" id=2]
 [ext_resource path="res://Sprites/Player/charhat/Charhat1.png" type="Texture" id=3]
-[ext_resource path="res://Sprites/Player/charhat/Charhat4.png" type="Texture" id=4]
-[ext_resource path="res://Sprites/Player/charhat/Charhat5.png" type="Texture" id=5]
-[ext_resource path="res://Sprites/Player/charhat/Charhat6.png" type="Texture" id=6]
-[ext_resource path="res://Sprites/Player/charhat/Charhat7.png" type="Texture" id=7]
-[ext_resource path="res://Sprites/Player/charhat/Charhat8.png" type="Texture" id=8]
-[ext_resource path="res://Sprites/Player/charhat/Charhat2.png" type="Texture" id=9]
+[ext_resource path="res://Sprites/Player/charhat/Charhat2.png" type="Texture" id=4]
+[ext_resource path="res://Sprites/Player/charhat/Charhat4.png" type="Texture" id=5]
+[ext_resource path="res://Sprites/Player/charhat/Charhat5.png" type="Texture" id=6]
+[ext_resource path="res://Sprites/Player/charhat/Charhat6.png" type="Texture" id=7]
+[ext_resource path="res://Sprites/Player/charhat/Charhat7.png" type="Texture" id=8]
+[ext_resource path="res://Sprites/Player/charhat/Charhat8.png" type="Texture" id=9]
 [ext_resource path="res://Sprites/Player/charhat/Charhat3.png" type="Texture" id=10]
 [ext_resource path="res://AnimatedSprite.gd" type="Script" id=11]
 [ext_resource path="res://Music/Diving.ogg" type="AudioStream" id=12]
@@ -87,7 +87,7 @@ func _physics_process(delta):
 	get_node(\"Camera2D/gui/BreathBar\").value = breath
 	if in_water == 1:
 		if Global_Player.inventory_checkItem(\"6\") == true:
-			breath_tick = 0
+			breath_tick = .025
 		else:
 			breath_tick = .1
 		breath -= breath_tick
@@ -236,29 +236,29 @@ animations = [ {
 "name": "Float",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ) ],
+"frames": [ ExtResource( 4 ) ],
+"loop": true,
+"name": "Ground",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ) ],
 "loop": false,
 "name": "Stroke",
 "speed": 10.0
-}, {
-"frames": [ ExtResource( 3 ), ExtResource( 9 ), ExtResource( 10 ), ExtResource( 9 ) ],
-"loop": true,
-"name": "Walk",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ) ],
-"loop": true,
-"name": "Swim",
-"speed": 5.0
 }, {
 "frames": [ ExtResource( 3 ) ],
 "loop": true,
 "name": "Jump",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 9 ) ],
+"frames": [ ExtResource( 3 ), ExtResource( 4 ), ExtResource( 10 ), ExtResource( 4 ) ],
 "loop": true,
-"name": "Ground",
+"name": "Walk",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ) ],
+"loop": true,
+"name": "Swim",
 "speed": 5.0
 } ]
 _sections_unfolded = [ "Resource" ]
@@ -411,7 +411,7 @@ func _process(delta):
 	else:
 		disabled = true"
 
-[node name="Swimming" type="Node" index="0"]
+[node name="Swimming" type="Node"]
 
 pause_mode = 1
 script = ExtResource( 1 )
